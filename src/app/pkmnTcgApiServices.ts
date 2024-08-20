@@ -15,7 +15,7 @@ export const get = async <T>(url: string) => {
 export const getPkmnFromApi = async (searchString: string, page: number) => {
   try {
     const result = await get<IPkmnResponse>(
-      `https://api.pokemontcg.io/v2/cards/${searchString}&orderBy=number&pageSize=50&page=${page}`
+      `https://api.pokemontcg.io/v2/cards/${searchString}&orderBy=number&pageSize=100&page=${page}`
     )
       .then((res) => {
         return res.data as IPkmnResponse;
