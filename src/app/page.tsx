@@ -10,14 +10,30 @@ import { SearchModal } from "../components/searchModal";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [traderOne, setTraderOne] = useState<IPkmnCard[]>([]);
+  const [traderTwo, setTraderTwo] = useState<IPkmnCard[]>([]);
+  const [traderToChange, setTraderToChange] = useState<number>(1);
   const changeShowModal = () => {
     console.log("clicked");
     setShowModal(false);
   };
+  const changeTraderOnesCards = (cardToAdd: IPkmnCard) => {
+    let newList: IPkmnCard[] = traderOne;
+    newList.push(cardToAdd);
+    console.log(newList);
+    // setTraderOne(newList);
+  };
+  const changeTraderTwosCards = () => {};
   return (
     <main className={styles.main}>
       {showModal && (
-        <SearchModal searchFor="set" changeShowModal={changeShowModal} />
+        <SearchModal
+          searchFor="set"
+          changeShowModal={changeShowModal}
+          changeTradersCards={
+            traderToChange === 1 ? changeTraderOnesCards : changeTraderTwosCards
+          }
+        />
       )}
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <div
@@ -46,7 +62,7 @@ export const Home = () => {
                 borderRadius: "50%",
                 cursor: "pointer",
               }}
-              onClick={() => setShowModal(!showModal)}
+              onClick={() => (setShowModal(!showModal), setTraderToChange(1))}
             >
               Search
             </button>

@@ -2,9 +2,10 @@ import { IPkmnCard } from "@/app/dataFromApi";
 
 interface pkmnCardProps {
   card: IPkmnCard;
+  saveCard: (card: IPkmnCard) => void;
 }
 
-export const PkmnCard = ({ card }: pkmnCardProps) => {
+export const PkmnCard = ({ card, saveCard }: pkmnCardProps) => {
   return (
     <>
       <div
@@ -12,6 +13,7 @@ export const PkmnCard = ({ card }: pkmnCardProps) => {
           aspectRatio: "3/4",
           width: "12.5rem", //isDesktop ? "12.5rem" : "10rem",
         }}
+        onClick={() => saveCard(card)}
       >
         <img
           style={{ width: "100%", borderRadius: "10px" }}

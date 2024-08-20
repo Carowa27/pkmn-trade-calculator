@@ -8,9 +8,16 @@ import { PkmnCard } from "./pkmnCard";
 interface ModalProps {
   searchFor: "set" | "card";
   changeShowModal: () => void;
+  changeTradersCards: (card: IPkmnCard) => void;
+  // changeTraderTwosCards: (card: IPkmnCard) => void;
 }
 
-export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
+export const SearchModal = ({
+  searchFor,
+  changeShowModal,
+  changeTradersCards,
+}: // changeTraderTwosCards,
+ModalProps) => {
   const [setList, setSetList] = useState<IPkmnSet[]>();
   const [cardList, setCardList] = useState<IPkmnCard[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -142,7 +149,9 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
               {search === "card" && (
                 <>
                   {cardList?.map((card) => {
-                    return <PkmnCard card={card} />;
+                    return (
+                      <PkmnCard card={card} saveCard={changeTradersCards} />
+                    );
                   })}
                 </>
               )}
