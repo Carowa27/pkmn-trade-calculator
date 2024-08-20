@@ -14,8 +14,7 @@ export const PkmnCard = ({ card }: pkmnCardProps) => {
         }}
       >
         <img
-          style={{ width: "100%" }}
-          className="rounded"
+          style={{ width: "100%", borderRadius: "10px" }}
           src={card.images.small}
           alt={card.name}
         />

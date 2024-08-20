@@ -1,5 +1,5 @@
 import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
-import { getSetsFromApi } from "@/app/pkmnTcgApiServices";
+import { getPkmnFromApi, getSetsFromApi } from "@/app/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
@@ -17,11 +17,10 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
   const [noHits, setNoHits] = useState<boolean>(false);
   const [savedCard, setSavedCard] = useState<IPkmnCard>();
   const [savedSet, setSavedSet] = useState<IPkmnSet>();
-  const [search, setSearchFor] = useState<string>(searchFor);
+  const [search, setSearch] = useState<string>(searchFor);
   const saveSet = (set: IPkmnSet) => {
-    console.log(set.name);
     setSavedSet(set);
-    setSearchFor("card");
+    setSearch("card");
   };
   const getAllSets = async () => {
     await getSetsFromApi().then((res) => {
@@ -35,12 +34,35 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
       }
     });
   };
+  const getCardsInSet = async (set: IPkmnSet) => {
+    await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, 1).then((res) => {
+      if (!res || res.data.length === 0) {
+        setNoHits(true);
+        setIsLoading(false);
+      }
+      if (res) {
+        setCardList(res.data as IPkmnCard[]);
+        setIsLoading(false);
+      }
+    });
+  };
   useEffect(() => {
     if (setList === undefined || setList.length === 0) {
       setIsLoading(true);
       getAllSets();
     }
   }, []);
+  useEffect(() => {
+    if (search === "card") {
+      if (
+        (cardList === undefined || cardList.length === 0) &&
+        savedSet !== undefined
+      ) {
+        setIsLoading(true);
+        getCardsInSet(savedSet);
+      }
+    }
+  }, [search]);
   return (
     <>
       <section
@@ -116,14 +138,15 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
                   })}
                 </>
               )}
+
+              {search === "card" && (
+                <>
+                  {cardList?.map((card) => {
+                    return <PkmnCard card={card} />;
+                  })}
+                </>
+              )}
             </div>
-            {search === "card" && (
-              <>
-                {cardList?.map((card) => {
-                  <PkmnCard card={card} />;
-                })}
-              </>
-            )}
           </section>
           <section className="modalFooter"></section>
         </article>
