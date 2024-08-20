@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
-import axios from "axios";
-import { ICardResponse, IPkmnCard, IPkmnResponse } from "./dataFromApi";
-import { get } from "./pkmnTcgApiServices";
+import { IPkmnCard } from "./dataFromApi";
 import { useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
