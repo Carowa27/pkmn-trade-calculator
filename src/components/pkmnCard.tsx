@@ -11,7 +11,7 @@ export const PkmnCard = ({ card, saveCard }: pkmnCardProps) => {
       <div
         style={{
           aspectRatio: "3/4",
-          width: "12.5rem", //isDesktop ? "12.5rem" : "10rem",
+          width: "12.5rem",
         }}
         onClick={() => saveCard(card)}
       >

@@ -9,15 +9,13 @@ interface ModalProps {
   searchFor: "set" | "card";
   changeShowModal: () => void;
   changeTradersCards: (card: IPkmnCard) => void;
-  // changeTraderTwosCards: (card: IPkmnCard) => void;
 }
 
 export const SearchModal = ({
   searchFor,
   changeShowModal,
   changeTradersCards,
-}: // changeTraderTwosCards,
-ModalProps) => {
+}: ModalProps) => {
   const [setList, setSetList] = useState<IPkmnSet[]>();
   const [cardList, setCardList] = useState<IPkmnCard[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
