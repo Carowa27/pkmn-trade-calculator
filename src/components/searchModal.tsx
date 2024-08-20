@@ -43,6 +43,7 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
           alignItems: "center",
           justifyContent: "center",
         }}
+        onClick={changeShowModal}
       >
         {noHits && (
           <>
