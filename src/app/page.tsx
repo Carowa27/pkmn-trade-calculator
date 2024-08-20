@@ -9,10 +9,16 @@ import { useState } from "react";
 import { SearchModal } from "../components/searchModal";
 
 export const Home = () => {
-  const [showSetModal, setShowSetModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const changeShowModal = () => {
+    console.log("clicked");
+    setShowModal(false);
+  };
   return (
     <main className={styles.main}>
-      {showSetModal && <SearchModal />}
+      {showModal && (
+        <SearchModal searchFor="set" changeShowModal={changeShowModal} />
+      )}
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <div
           style={{
@@ -40,7 +46,7 @@ export const Home = () => {
                 borderRadius: "50%",
                 cursor: "pointer",
               }}
-              onClick={() => setShowSetModal(!showSetModal)}
+              onClick={() => setShowModal(!showModal)}
             >
               Search
             </button>

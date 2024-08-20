@@ -77,6 +77,9 @@ export interface ICardResponse {
 export interface ISetResponse {
   data: IPkmnSet;
 }
+export interface ISetsResponse {
+  data: IPkmnSet[];
+}
 export interface IPkmnCard {
   artist?: string;
   attacks?: IAttack[];
