@@ -27,6 +27,30 @@ export const Home = () => {
     newList.push(cardToAdd);
     setTraderTwo(newList);
   };
+  const sumTraderOne = () => {
+    let sum = 0;
+    traderOne.map((card) => {
+      const cardPrice = card.tcgplayer?.prices.normal?.market
+        ? card.tcgplayer?.prices.normal?.market
+        : card.cardmarket.prices.averageSellPrice
+        ? card.cardmarket.prices.averageSellPrice
+        : 0;
+      sum = sum + cardPrice;
+    });
+    return sum;
+  };
+  const sumTraderTwo = () => {
+    let sum = 0;
+    traderTwo.map((card) => {
+      const cardPrice = card.tcgplayer?.prices.normal?.market
+        ? card.tcgplayer?.prices.normal?.market
+        : card.cardmarket.prices.averageSellPrice
+        ? card.cardmarket.prices.averageSellPrice
+        : 0;
+      sum = sum + cardPrice;
+    });
+    return sum;
+  };
   return (
     <main className={styles.main}>
       {showModal && (
@@ -52,19 +76,21 @@ export const Home = () => {
             style={{
               width: "",
               height: "2rem",
-              margin: "1rem 1rem 0 1rem",
+              margin: "1rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             <button
               style={{
-                background: "white",
-                color: "black",
-                height: "80px",
-                width: "80px",
+                background: "grey",
+                color: "white",
+                fontWeight: "bold",
+                height: "100%",
                 margin: "",
                 padding: "0.25rem 1rem",
-                border: "none",
-                borderRadius: "50%",
+                border: "lightgrey solid 1px",
                 cursor: "pointer",
               }}
               onClick={() => (
@@ -73,6 +99,14 @@ export const Home = () => {
             >
               Search
             </button>
+            <div
+              style={{
+                color: "white",
+                paddingRight: "3rem",
+              }}
+            >
+              <p>Sum: {sumTraderOne()}$</p>
+            </div>
           </div>
           <div
             style={{
@@ -91,7 +125,9 @@ export const Home = () => {
             })}
           </div>
         </div>
-        <div>arrows</div>
+        <div>
+          <div>arrows</div> <div>diff: {sumTraderOne() - sumTraderTwo()}$</div>
+        </div>
         <div
           style={{
             border: "2px solid darkgreen",
@@ -103,19 +139,21 @@ export const Home = () => {
             style={{
               width: "",
               height: "2rem",
-              margin: "1rem 1rem 0 1rem",
+              margin: "1rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             <button
               style={{
-                background: "white",
-                color: "black",
-                height: "80px",
-                width: "80px",
+                background: "grey",
+                color: "white",
+                fontWeight: "bold",
+                height: "100%",
                 margin: "",
                 padding: "0.25rem 1rem",
-                border: "none",
-                borderRadius: "50%",
+                border: "lightgrey solid 1px",
                 cursor: "pointer",
               }}
               onClick={() => (
@@ -124,6 +162,14 @@ export const Home = () => {
             >
               Search
             </button>
+            <div
+              style={{
+                color: "white",
+                paddingRight: "3rem",
+              }}
+            >
+              <p>Sum: {sumTraderTwo()}$</p>
+            </div>
           </div>
           <div
             style={{
