@@ -148,7 +148,11 @@ export const SearchModal = ({
                 <>
                   {cardList?.map((card) => {
                     return (
-                      <PkmnCard card={card} saveCard={changeTradersCards} />
+                      <PkmnCard
+                        card={card}
+                        saveCard={changeTradersCards}
+                        cardWidth={"12.5rem"}
+                      />
                     );
                   })}
                 </>
