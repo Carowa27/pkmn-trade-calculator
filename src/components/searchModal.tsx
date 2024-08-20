@@ -1,8 +1,9 @@
-import { IPkmnSet } from "@/app/dataFromApi";
+import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
 import { getSetsFromApi } from "@/app/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
+import { PkmnCard } from "./pkmnCard";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -11,9 +12,17 @@ interface ModalProps {
 
 export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
   const [setList, setSetList] = useState<IPkmnSet[]>();
+  const [cardList, setCardList] = useState<IPkmnCard[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [noHits, setNoHits] = useState<boolean>(false);
-  const search = searchFor;
+  const [savedCard, setSavedCard] = useState<IPkmnCard>();
+  const [savedSet, setSavedSet] = useState<IPkmnSet>();
+  const [search, setSearchFor] = useState<string>(searchFor);
+  const saveSet = (set: IPkmnSet) => {
+    console.log(set.name);
+    setSavedSet(set);
+    setSearchFor("card");
+  };
   const getAllSets = async () => {
     await getSetsFromApi().then((res) => {
       if (!res || res.length === 0) {
@@ -22,11 +31,13 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
       }
       if (res) {
         setSetList(res as IPkmnSet[]);
+        setIsLoading(false);
       }
     });
   };
   useEffect(() => {
     if (setList === undefined || setList.length === 0) {
+      setIsLoading(true);
       getAllSets();
     }
   }, []);
@@ -43,16 +54,8 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
           alignItems: "center",
           justifyContent: "center",
         }}
-        onClick={changeShowModal}
+        // onClick={changeShowModal}
       >
-        {noHits && (
-          <>
-            <p>No hits</p>
-            {/* <p> {language.lang_code.error_search_no_hits}</p> */}
-            {/* <p>{language.lang_code.error_search_new_set}</p> */}
-          </>
-        )}
-        {isLoading && <LoadingModule />}
         <article
           style={{
             width: "70vw",
@@ -96,19 +99,31 @@ export const SearchModal = ({ searchFor, changeShowModal }: ModalProps) => {
                 paddingRight: "0.5rem",
               }}
             >
+              {noHits && (
+                <>
+                  <p>No hits</p>
+                </>
+              )}
+              {isLoading && <LoadingModule />}
               {search === "set" && (
                 <>
                   {setList?.map((set) => {
                     return (
                       <>
-                        <PkmnSet set={set} />
+                        <PkmnSet set={set} saveSet={saveSet} />
                       </>
                     );
                   })}
                 </>
               )}
             </div>
-            {search === "card" && <></>}
+            {search === "card" && (
+              <>
+                {cardList?.map((card) => {
+                  <PkmnCard card={card} />;
+                })}
+              </>
+            )}
           </section>
           <section className="modalFooter"></section>
         </article>

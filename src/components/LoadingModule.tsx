@@ -12,10 +12,10 @@ export const LoadingModule = () => {
   }, []);
   return (
     <>
-      <h5>
+      <h3>
         Loading..
         {isThirdDot ? <>.</> : null}
-      </h5>
+      </h3>
     </>
   );
 };

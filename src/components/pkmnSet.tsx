@@ -2,9 +2,10 @@ import { IPkmnSet } from "@/app/dataFromApi";
 
 interface pkmnSetProps {
   set: IPkmnSet;
+  saveSet: (set: IPkmnSet) => void;
 }
 
-export const PkmnSet = ({ set }: pkmnSetProps) => {
+export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
   return (
     <>
       <div>
@@ -35,6 +36,7 @@ export const PkmnSet = ({ set }: pkmnSetProps) => {
                 height: "100%",
                 padding: "1rem 1rem 0.5rem 1rem",
               }}
+              onClick={() => saveSet(set)}
             >
               <div
                 className="five"
