@@ -126,17 +126,17 @@ export const Home = () => {
                 paddingRight: "3rem",
               }}
             >
-              <p>Sum: {sumTraderOne()}$</p>
+              <p>Sum: {(Math.round(sumTraderOne() * 100) / 100).toFixed(2)}$</p>
             </div>
           </div>
           <div
             style={{
-              width: "90%",
+              width: "95%",
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "space-evenly",
               gap: "1rem",
-              overflow: "hidden visible",
+              // overflow: "hidden visible",
               height: "90%",
               paddingRight: "0.5rem",
             }}
@@ -163,7 +163,11 @@ export const Home = () => {
             <ArrowLeftRight size={40} />
           </div>
           <p style={{ textAlign: "center", marginTop: "1rem" }}>
-            diff: {sumTraderOne() - sumTraderTwo()}$
+            diff:{" "}
+            {(Math.round(sumTraderOne() - sumTraderTwo() * 100) / 100).toFixed(
+              2
+            )}
+            $
           </p>
         </div>
         <div
@@ -214,7 +218,7 @@ export const Home = () => {
                 paddingRight: "3rem",
               }}
             >
-              <p>Sum: {sumTraderTwo()}$</p>
+              <p>Sum: {(Math.round(sumTraderTwo() * 100) / 100).toFixed(2)}$</p>
             </div>
           </div>
           <div
