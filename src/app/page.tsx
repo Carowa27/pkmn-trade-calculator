@@ -5,6 +5,7 @@ import { IPkmnCard } from "./dataFromApi";
 import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
+import { ArrowLeftRight } from "react-bootstrap-icons";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -142,8 +143,19 @@ export const Home = () => {
             })}
           </div>
         </div>
-        <div>
-          <div>arrows</div> <div>diff: {sumTraderOne() - sumTraderTwo()}$</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <ArrowLeftRight size={40} />
+          </div>
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            diff: {sumTraderOne() - sumTraderTwo()}$
+          </p>
         </div>
         <div
           style={{
