@@ -9,6 +9,7 @@ import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
 import { PkmnCard } from "./pkmnCard";
 import { Pagination } from "./Pagination";
+import { X, XLg } from "react-bootstrap-icons";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -133,7 +134,9 @@ export const SearchModal = ({
             }}
           >
             <div>{search === "set" ? <h2>Set</h2> : <h2>Card</h2>}</div>
-            <div onClick={changeShowModal}>X</div>
+            <div onClick={changeShowModal} style={{ cursor: "pointer" }}>
+              <XLg size={25} />
+            </div>
           </section>
           <section
             className="modalBody"
