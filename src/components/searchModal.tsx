@@ -1,9 +1,14 @@
 import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
-import { getPkmnFromApi, getSetsFromApi } from "@/app/pkmnTcgApiServices";
+import {
+  getCardFromApi,
+  getPkmnFromApi,
+  getSetsFromApi,
+} from "@/app/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
 import { PkmnCard } from "./pkmnCard";
+import { Pagination } from "./Pagination";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -23,24 +28,45 @@ export const SearchModal = ({
   const [savedCard, setSavedCard] = useState<IPkmnCard>();
   const [savedSet, setSavedSet] = useState<IPkmnSet>();
   const [search, setSearch] = useState<string>(searchFor);
+  const [pageNr, setPageNr] = useState<number>(1);
+  const [pageInfo, setPageInfo] = useState<{
+    page: number;
+    pageSize: number;
+    totalCount: number;
+  }>();
   const saveSet = (set: IPkmnSet) => {
     setSavedSet(set);
     setSearch("card");
+    setPageNr(1);
   };
-  const getAllSets = async () => {
-    await getSetsFromApi().then((res) => {
-      if (!res || res.length === 0) {
+  const getSets = async (page: number) => {
+    await getSetsFromApi(page).then((res) => {
+      if (!res || res.data.length === 0) {
         setNoHits(true);
         setIsLoading(false);
       }
       if (res) {
-        setSetList(res as IPkmnSet[]);
+        setSetList(res.data as IPkmnSet[]);
         setIsLoading(false);
+        setPageInfo({
+          page: res.page,
+          pageSize: res.pageSize,
+          totalCount: res.totalCount,
+        });
       }
     });
   };
-  const getCardsInSet = async (set: IPkmnSet) => {
-    await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, 1).then((res) => {
+  const updateSearch = async (newPage: number) => {
+    setIsLoading(true);
+    setPageNr(newPage);
+    if (search === "set") {
+      await getSets(newPage);
+    } else {
+      await getCardsInSet(savedSet!, newPage);
+    }
+  };
+  const getCardsInSet = async (set: IPkmnSet, page: number) => {
+    await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, page).then((res) => {
       if (!res || res.data.length === 0) {
         setNoHits(true);
         setIsLoading(false);
@@ -48,13 +74,18 @@ export const SearchModal = ({
       if (res) {
         setCardList(res.data as IPkmnCard[]);
         setIsLoading(false);
+        setPageInfo({
+          page: res.page,
+          pageSize: res.pageSize,
+          totalCount: res.totalCount,
+        });
       }
     });
   };
   useEffect(() => {
     if (setList === undefined || setList.length === 0) {
       setIsLoading(true);
-      getAllSets();
+      getSets(pageNr);
     }
   }, []);
   useEffect(() => {
@@ -64,7 +95,7 @@ export const SearchModal = ({
         savedSet !== undefined
       ) {
         setIsLoading(true);
-        getCardsInSet(savedSet);
+        getCardsInSet(savedSet, 1);
       }
     }
   }, [search]);
@@ -111,7 +142,7 @@ export const SearchModal = ({
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              height: "90%",
+              height: "78%",
             }}
           >
             <div
@@ -122,7 +153,7 @@ export const SearchModal = ({
                 justifyContent: "space-evenly",
                 gap: "1rem",
                 overflow: "hidden visible",
-                height: "90%",
+                height: "100%",
                 paddingRight: "0.5rem",
               }}
             >
@@ -159,7 +190,19 @@ export const SearchModal = ({
               )}
             </div>
           </section>
-          <section className="modalFooter"></section>
+          <section
+            className="modalFooter"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            {pageInfo ? (
+              <Pagination
+                page={pageInfo.page}
+                pageSize={pageInfo.pageSize}
+                totalCount={pageInfo.totalCount}
+                updateSearch={updateSearch}
+              />
+            ) : null}
+          </section>
         </article>
       </section>
     </>

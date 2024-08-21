@@ -78,7 +78,11 @@ export interface ISetResponse {
   data: IPkmnSet;
 }
 export interface ISetsResponse {
+  count: number;
   data: IPkmnSet[];
+  page: number;
+  pageSize: number;
+  totalCount: number;
 }
 export interface IPkmnCard {
   artist?: string;

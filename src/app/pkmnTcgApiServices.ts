@@ -44,13 +44,13 @@ export const getSetFromApi = async (searchString: string) => {
     console.error("An error has occurred: ", error);
   }
 };
-export const getSetsFromApi = async () => {
+export const getSetsFromApi = async (page: number) => {
   try {
     const result = await get<ISetsResponse>(
-      `https://api.pokemontcg.io/v2/sets/`
+      `https://api.pokemontcg.io/v2/sets/?orderBy=releaseDate&pageSize=100&page=${page}`
     )
       .then((res) => {
-        return res.data.data as IPkmnSet[];
+        return res.data as ISetsResponse;
       })
       .catch((error) => {
         console.error(error);
