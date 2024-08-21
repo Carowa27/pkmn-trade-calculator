@@ -29,6 +29,8 @@ export const Home = () => {
   };
   const clearTraderCards = () => {
     sessionStorage.clear;
+    setTraderOne([]);
+    setTraderTwo([]);
   };
   const sumTraderOne = () => {
     let sum = 0;
@@ -78,7 +80,14 @@ export const Home = () => {
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <div
           style={{
-            border: "2px solid darkgreen",
+            border: `2px solid ${
+              sumTraderOne() === sumTraderTwo()
+                ? "darkgreen"
+                : sumTraderOne() > sumTraderTwo()
+                ? "darkorange"
+                : "darkred"
+            }`,
+            borderRadius: "10px",
             width: "45vw",
             height: "80vh",
           }}
@@ -159,7 +168,14 @@ export const Home = () => {
         </div>
         <div
           style={{
-            border: "2px solid darkgreen",
+            border: `2px solid ${
+              sumTraderOne() === sumTraderTwo()
+                ? "darkgreen"
+                : sumTraderOne() < sumTraderTwo()
+                ? "darkorange"
+                : "darkred"
+            }`,
+            borderRadius: "10px",
             width: "45vw",
             height: "80vh",
           }}
