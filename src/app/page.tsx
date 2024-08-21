@@ -136,7 +136,7 @@ export const Home = () => {
               flexWrap: "wrap",
               justifyContent: "space-evenly",
               gap: "1rem",
-              // overflow: "hidden visible",
+              overflow: "hidden visible",
               height: "90%",
               paddingRight: "0.5rem",
             }}
