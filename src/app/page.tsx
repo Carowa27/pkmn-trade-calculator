@@ -90,11 +90,14 @@ export const Home = () => {
             borderRadius: "10px",
             width: "45vw",
             height: "80vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div
             style={{
-              width: "",
+              width: "100%",
               height: "2rem",
               margin: "1rem",
               display: "flex",
@@ -110,6 +113,7 @@ export const Home = () => {
                 fontSize: "large",
                 height: "100%",
                 margin: "",
+                marginLeft: "1rem",
                 padding: "0.25rem 1rem",
                 border: "lightgrey solid 1px",
                 cursor: "pointer",
@@ -182,11 +186,14 @@ export const Home = () => {
             borderRadius: "10px",
             width: "45vw",
             height: "80vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div
             style={{
-              width: "",
+              width: "100%",
               height: "2rem",
               margin: "1rem",
               display: "flex",
@@ -202,6 +209,7 @@ export const Home = () => {
                 fontSize: "large",
                 height: "100%",
                 margin: "",
+                marginLeft: "1rem",
                 padding: "0.25rem 1rem",
                 border: "lightgrey solid 1px",
                 cursor: "pointer",
