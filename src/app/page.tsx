@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 import { IPkmnCard } from "./dataFromApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
 
@@ -18,11 +18,16 @@ export const Home = () => {
     let newList: IPkmnCard[] = traderOne;
     newList.push(cardToAdd);
     setTraderOne(newList);
+    sessionStorage.setItem("tr1", JSON.stringify(traderOne));
   };
   const changeTraderTwosCards = (cardToAdd: IPkmnCard) => {
     let newList: IPkmnCard[] = traderTwo;
     newList.push(cardToAdd);
     setTraderTwo(newList);
+    sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
+  };
+  const clearTraderCards = () => {
+    sessionStorage.clear;
   };
   const sumTraderOne = () => {
     let sum = 0;
@@ -48,6 +53,14 @@ export const Home = () => {
     });
     return sum;
   };
+  useEffect(() => {
+    if (sessionStorage.getItem("tr1") !== null) {
+      setTraderOne(JSON.parse(sessionStorage.getItem("tr1")!));
+    }
+    if (sessionStorage.getItem("tr2") !== null) {
+      setTraderTwo(JSON.parse(sessionStorage.getItem("tr2")!));
+    }
+  }, []);
   return (
     <main className={styles.main}>
       {showModal && (
@@ -84,6 +97,7 @@ export const Home = () => {
                 background: "grey",
                 color: "white",
                 fontWeight: "bold",
+                fontSize: "large",
                 height: "100%",
                 margin: "",
                 padding: "0.25rem 1rem",
@@ -117,8 +131,14 @@ export const Home = () => {
               paddingRight: "0.5rem",
             }}
           >
-            {traderOne?.map((card) => {
-              return <PkmnCard card={card} cardWidth={"8rem"} />;
+            {traderOne?.map((card, i) => {
+              return (
+                <PkmnCard
+                  card={card}
+                  cardWidth={"8rem"}
+                  key={card.id + "-" + i}
+                />
+              );
             })}
           </div>
         </div>
@@ -147,6 +167,7 @@ export const Home = () => {
                 background: "grey",
                 color: "white",
                 fontWeight: "bold",
+                fontSize: "large",
                 height: "100%",
                 margin: "",
                 padding: "0.25rem 1rem",
@@ -180,12 +201,34 @@ export const Home = () => {
               paddingRight: "0.5rem",
             }}
           >
-            {traderTwo?.map((card) => {
-              return <PkmnCard card={card} cardWidth={"8rem"} />;
+            {traderTwo?.map((card, i) => {
+              return (
+                <PkmnCard
+                  card={card}
+                  cardWidth={"8rem"}
+                  key={card.id + "-" + i}
+                />
+              );
             })}
           </div>
         </div>
       </div>
+      <button
+        style={{
+          background: "grey",
+          color: "white",
+          fontWeight: "bold",
+          fontSize: "large",
+          height: "100%",
+          margin: "1rem 2rem",
+          padding: "0.25rem 1rem",
+          border: "lightgrey solid 1px",
+          cursor: "pointer",
+        }}
+        onClick={() => clearTraderCards()}
+      >
+        Clear all cards
+      </button>
     </main>
   );
 };

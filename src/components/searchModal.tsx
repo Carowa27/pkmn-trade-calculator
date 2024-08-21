@@ -168,10 +168,14 @@ export const SearchModal = ({
               {isLoading && <LoadingModule />}
               {search === "set" && (
                 <>
-                  {setList?.map((set) => {
+                  {setList?.map((set, i) => {
                     return (
                       <>
-                        <PkmnSet set={set} saveSet={saveSet} />
+                        <PkmnSet
+                          set={set}
+                          saveSet={saveSet}
+                          key={set.id + "-" + i}
+                        />
                       </>
                     );
                   })}
@@ -180,12 +184,13 @@ export const SearchModal = ({
 
               {search === "card" && (
                 <>
-                  {cardList?.map((card) => {
+                  {cardList?.map((card, i) => {
                     return (
                       <PkmnCard
                         card={card}
                         saveCard={changeTradersCards}
                         cardWidth={"12.5rem"}
+                        key={card.id + "-" + i}
                       />
                     );
                   })}
