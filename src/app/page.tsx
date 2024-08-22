@@ -7,6 +7,7 @@ import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
 import { NotificationWindow } from "@/components/Notification";
+import { windowSize } from "@/functions/windowSizes";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
