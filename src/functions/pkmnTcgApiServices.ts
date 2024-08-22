@@ -6,7 +6,7 @@ import {
   IPkmnSet,
   ISetResponse,
   ISetsResponse,
-} from "./dataFromApi";
+} from "../app/dataFromApi";
 
 export const get = async <T>(url: string) => {
   return await axios.get<T>(url);

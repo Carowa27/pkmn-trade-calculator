@@ -3,7 +3,7 @@ import {
   getCardFromApi,
   getPkmnFromApi,
   getSetsFromApi,
-} from "@/app/pkmnTcgApiServices";
+} from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
