@@ -6,9 +6,12 @@ import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
+import { NotificationWindow } from "@/components/Notification";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showNotification, setShowNotification] = useState<boolean>(false);
+  const [notificationMessage, setNotificationMessage] = useState<string>("");
   const [traderOne, setTraderOne] = useState<IPkmnCard[]>([]);
   const [traderTwo, setTraderTwo] = useState<IPkmnCard[]>([]);
   const [traderToChange, setTraderToChange] = useState<"one" | "two">("one");
@@ -31,6 +34,12 @@ export const Home = () => {
     sessionStorage.clear;
     setTraderOne([]);
     setTraderTwo([]);
+  };
+  const closeNotification = () => {
+    setShowNotification(false);
+  };
+  const changeNotificationMNessage = (message: string) => {
+    setNotificationMessage(message);
   };
   const sumTraderOne = () => {
     let sum = 0;
@@ -75,6 +84,12 @@ export const Home = () => {
               ? changeTraderOnesCards
               : changeTraderTwosCards
           }
+        />
+      )}
+      {showNotification && (
+        <NotificationWindow
+          closeNotification={closeNotification}
+          notificationMessage={notificationMessage}
         />
       )}
       <div
