@@ -5,7 +5,7 @@ import { IPkmnCard } from "./dataFromApi";
 import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
-import { ArrowLeftRight } from "react-bootstrap-icons";
+import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -77,7 +77,14 @@ export const Home = () => {
           }
         />
       )}
-      <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+      <div
+        style={{
+          height: "80vh",
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+        }}
+      >
         <div
           style={{
             border: `2px solid ${
@@ -89,7 +96,7 @@ export const Home = () => {
             }`,
             borderRadius: "10px",
             width: "45vw",
-            height: "80vh",
+            height: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -156,24 +163,77 @@ export const Home = () => {
             })}
           </div>
         </div>
-        <div
+        <section
           style={{
+            height: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <div>
-            <ArrowLeftRight size={40} />
+          <div>circle</div>
+          <div
+            style={{
+              width: "70%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                color: `${
+                  sumTraderOne() === sumTraderTwo()
+                    ? "darkgreen"
+                    : sumTraderOne() > sumTraderTwo()
+                    ? "darkorange"
+                    : "darkred"
+                }`,
+              }}
+            >
+              <ArrowLeft size={40} />
+            </div>
+            <p style={{ textAlign: "center", margin: "0" }}>
+              diff:{" "}
+              {(
+                Math.round(sumTraderOne() - sumTraderTwo() * 100) / 100
+              ).toFixed(2)}
+              $
+            </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                color: `${
+                  sumTraderOne() === sumTraderTwo()
+                    ? "darkgreen"
+                    : sumTraderOne() < sumTraderTwo()
+                    ? "darkorange"
+                    : "darkred"
+                }`,
+              }}
+            >
+              <ArrowRight size={40} />
+            </div>
           </div>
-          <p style={{ textAlign: "center", marginTop: "1rem" }}>
-            diff:{" "}
-            {(Math.round(sumTraderOne() - sumTraderTwo() * 100) / 100).toFixed(
-              2
-            )}
-            $
-          </p>
-        </div>
+          <button
+            style={{
+              background: "grey",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "large",
+              margin: "1rem 2rem",
+              padding: "0.25rem 1rem",
+              border: "lightgrey solid 1px",
+              cursor: "pointer",
+            }}
+            onClick={() => clearTraderCards()}
+          >
+            Clear all cards
+          </button>
+        </section>
         <div
           style={{
             border: `2px solid ${
@@ -185,7 +245,7 @@ export const Home = () => {
             }`,
             borderRadius: "10px",
             width: "45vw",
-            height: "80vh",
+            height: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -253,22 +313,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <button
-        style={{
-          background: "grey",
-          color: "white",
-          fontWeight: "bold",
-          fontSize: "large",
-          height: "100%",
-          margin: "1rem 2rem",
-          padding: "0.25rem 1rem",
-          border: "lightgrey solid 1px",
-          cursor: "pointer",
-        }}
-        onClick={() => clearTraderCards()}
-      >
-        Clear all cards
-      </button>
     </main>
   );
 };
