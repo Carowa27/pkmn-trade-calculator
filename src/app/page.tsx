@@ -75,6 +75,12 @@ export const Home = () => {
   }, []);
   return (
     <main className={styles.main}>
+      {showNotification && (
+        <NotificationWindow
+          closeNotification={closeNotification}
+          notificationMessage={notificationMessage}
+        />
+      )}
       {showModal && (
         <SearchModal
           searchFor="set"
@@ -84,12 +90,6 @@ export const Home = () => {
               ? changeTraderOnesCards
               : changeTraderTwosCards
           }
-        />
-      )}
-      {showNotification && (
-        <NotificationWindow
-          closeNotification={closeNotification}
-          notificationMessage={notificationMessage}
         />
       )}
       <div
