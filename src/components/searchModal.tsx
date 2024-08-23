@@ -171,13 +171,11 @@ export const SearchModal = ({
                 <>
                   {setList?.map((set, i) => {
                     return (
-                      <>
-                        <PkmnSet
-                          set={set}
-                          saveSet={saveSet}
-                          key={set.id + "-" + i}
-                        />
-                      </>
+                      <PkmnSet
+                        set={set}
+                        saveSet={saveSet}
+                        key={set.id + "-" + i}
+                      />
                     );
                   })}
                 </>

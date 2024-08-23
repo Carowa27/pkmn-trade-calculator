@@ -21,6 +21,7 @@ export const Home = () => {
   const [notificationMessage, setNotificationMessage] = useState<string>("");
   const [traderOne, setTraderOne] = useState<IPkmnCard[]>([]);
   const [traderTwo, setTraderTwo] = useState<IPkmnCard[]>([]);
+  const [diffSum, setDiffSum] = useState<string>("");
   const [traderToChange, setTraderToChange] = useState<"one" | "two">("one");
   const changeShowModal = () => {
     setShowModal(false);
@@ -80,6 +81,12 @@ export const Home = () => {
       setTraderTwo(JSON.parse(sessionStorage.getItem("tr2")!));
     }
   }, []);
+  useEffect(() => {
+    const diff = (Math.round((sumTraderOne() - sumTraderTwo()) * 100) / 100)
+      .toFixed(2)
+      .replaceAll("-", "");
+    setDiffSum(diff);
+  }, [traderOne, traderTwo]);
   return (
     <main
       style={{
@@ -219,13 +226,7 @@ export const Home = () => {
                 <ArrowLeft size={40} />
               )}
             </div>
-            <p style={{ textAlign: "center", margin: "0" }}>
-              diff:{" "}
-              {(
-                Math.round(sumTraderOne() - sumTraderTwo() * 100) / 100
-              ).toFixed(2)}
-              $
-            </p>
+            <p style={{ textAlign: "center", margin: "0" }}>diff: {diffSum}$</p>
             <div
               style={{
                 display: "flex",
