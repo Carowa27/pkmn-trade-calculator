@@ -5,9 +5,15 @@ import { IPkmnCard } from "./dataFromApi";
 import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import { PkmnCard } from "@/components/pkmnCard";
-import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+} from "react-bootstrap-icons";
 import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
+import { TradersMat } from "@/components/Containers";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -75,7 +81,14 @@ export const Home = () => {
     }
   }, []);
   return (
-    <main className={styles.main}>
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100vh",
+      }}
+    >
       {showNotification && (
         <NotificationWindow
           closeNotification={closeNotification}
@@ -95,28 +108,19 @@ export const Home = () => {
       )}
       <div
         style={{
-          height: "80vh",
+          height: `${windowSize() === "S" ? "90%" : "80vh"}`,
           display: "flex",
+          flexDirection: `${windowSize() === "S" ? "column" : "row"}`,
           gap: "1rem",
           alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        <div
-          style={{
-            border: `2px solid ${
-              sumTraderOne() === sumTraderTwo()
-                ? "darkgreen"
-                : sumTraderOne() > sumTraderTwo()
-                ? "darkorange"
-                : "darkred"
-            }`,
-            borderRadius: "10px",
-            width: "45vw",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+        <TradersMat
+          trader={"one"}
+          sumTraderOne={sumTraderOne}
+          sumTraderTwo={sumTraderTwo}
+          windowSize={windowSize}
         >
           <div
             style={{
@@ -172,28 +176,28 @@ export const Home = () => {
               return (
                 <PkmnCard
                   card={card}
-                  cardWidth={"8rem"}
+                  cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
                   key={card.id + "-" + i}
                 />
               );
             })}
           </div>
-        </div>
+        </TradersMat>
         <section
           style={{
-            height: "100%",
+            height: `${windowSize() === "S" ? "min-content" : "100%"}`,
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "column", //`${windowSize() === "S" ? "row" : "column"}`,
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
-          <div>circle</div>
+          {windowSize() !== "S" && <div>circle</div>}
           <div
             style={{
               width: "70%",
               display: "flex",
-              flexDirection: "column",
+              flexDirection: `${windowSize() === "S" ? "row" : "column"}`,
             }}
           >
             <div
@@ -209,7 +213,11 @@ export const Home = () => {
                 }`,
               }}
             >
-              <ArrowLeft size={40} />
+              {windowSize() === "S" ? (
+                <ArrowUp size={40} />
+              ) : (
+                <ArrowLeft size={40} />
+              )}
             </div>
             <p style={{ textAlign: "center", margin: "0" }}>
               diff:{" "}
@@ -231,41 +239,36 @@ export const Home = () => {
                 }`,
               }}
             >
-              <ArrowRight size={40} />
+              {windowSize() === "S" ? (
+                <ArrowDown size={40} />
+              ) : (
+                <ArrowRight size={40} />
+              )}
             </div>
           </div>
-          <button
-            style={{
-              background: "grey",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "large",
-              margin: "1rem 2rem",
-              padding: "0.25rem 1rem",
-              border: "lightgrey solid 1px",
-              cursor: "pointer",
-            }}
-            onClick={() => clearTraderCards()}
-          >
-            Clear all cards
-          </button>
+          {windowSize() !== "S" && (
+            <button
+              style={{
+                background: "grey",
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "large",
+                margin: "1rem 2rem",
+                padding: "0.25rem 1rem",
+                border: "lightgrey solid 1px",
+                cursor: "pointer",
+              }}
+              onClick={() => clearTraderCards()}
+            >
+              Clear all cards
+            </button>
+          )}
         </section>
-        <div
-          style={{
-            border: `2px solid ${
-              sumTraderOne() === sumTraderTwo()
-                ? "darkgreen"
-                : sumTraderOne() < sumTraderTwo()
-                ? "darkorange"
-                : "darkred"
-            }`,
-            borderRadius: "10px",
-            width: "45vw",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+        <TradersMat
+          trader={"two"}
+          sumTraderOne={sumTraderOne}
+          sumTraderTwo={sumTraderTwo}
+          windowSize={windowSize}
         >
           <div
             style={{
@@ -321,13 +324,30 @@ export const Home = () => {
               return (
                 <PkmnCard
                   card={card}
-                  cardWidth={"8rem"}
+                  cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
                   key={card.id + "-" + i}
                 />
               );
             })}
           </div>
-        </div>
+        </TradersMat>
+        {windowSize() === "S" && (
+          <button
+            style={{
+              background: "grey",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "large",
+              margin: "1rem 2rem",
+              padding: "0.25rem 1rem",
+              border: "lightgrey solid 1px",
+              cursor: "pointer",
+            }}
+            onClick={() => clearTraderCards()}
+          >
+            Clear all cards
+          </button>
+        )}
       </div>
     </main>
   );

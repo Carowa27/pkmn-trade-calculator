@@ -1,4 +1,5 @@
 import { IPkmnCard } from "@/app/dataFromApi";
+import { windowSize } from "@/functions/windowSizes";
 
 interface pkmnCardProps {
   card: IPkmnCard;
@@ -19,7 +20,10 @@ export const PkmnCard = ({ card, saveCard, cardWidth }: pkmnCardProps) => {
         }}
       >
         <img
-          style={{ width: "100%", borderRadius: "10px" }}
+          style={{
+            width: "100%",
+            borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+          }}
           src={card.images.small}
           alt={card.name}
         />

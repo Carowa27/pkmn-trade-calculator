@@ -1,4 +1,5 @@
 import { IPkmnSet } from "@/app/dataFromApi";
+import { windowSize } from "@/functions/windowSizes";
 
 interface pkmnSetProps {
   set: IPkmnSet;
@@ -41,15 +42,15 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
               <div
                 className="five"
                 style={{
-                  height: "5rem",
+                  height: `${windowSize() === "S" ? "2rem" : "5rem"}`,
                   alignContent: "center",
                 }}
               >
                 <div
                   className="six"
                   style={{
-                    maxWidth: "12.5rem",
-                    maxHeight: "5rem",
+                    maxWidth: `${windowSize() === "S" ? "5rem" : "12.5rem"}`,
+                    maxHeight: `${windowSize() === "S" ? "2rem" : "5rem"}`,
                     display: "flex",
                     justifyContent: "center",
                   }}
@@ -57,7 +58,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                   <img
                     style={{
                       maxWidth: "100%",
-                      maxHeight: "5rem",
+                      maxHeight: `${windowSize() === "S" ? "2rem" : "5rem"}`,
                     }}
                     src={set.images.symbol}
                     alt={set.name}
@@ -66,7 +67,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
               </div>
               <h4
                 style={{
-                  maxWidth: "9rem",
+                  maxWidth: `${windowSize() === "S" ? "5rem" : "9rem"}`,
                   textWrap: "wrap",
                   justifyContent: "end",
                   justifySelf: "end",

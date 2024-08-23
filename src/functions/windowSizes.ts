@@ -1,4 +1,4 @@
-enum ScrSize {
+export enum ScrSize {
   S = "S",
   M = "M",
   L = "L",
@@ -12,20 +12,21 @@ export const windowSize = () => {
   const lBr = 992;
   const xlBr = 1200;
   const xxlBr = 1400;
-
-  if (innerWidth <= sBr) {
-    return ScrSize.S;
-  } else {
-    if (innerWidth <= mBr) {
-      return ScrSize.M;
+  if (typeof window !== undefined) {
+    if (window.innerWidth <= sBr) {
+      return ScrSize.S;
     } else {
-      if (innerWidth <= lBr) {
-        return ScrSize.L;
+      if (innerWidth <= mBr) {
+        return ScrSize.M;
       } else {
-        if (innerWidth <= xlBr) {
-          return ScrSize.XL;
+        if (innerWidth <= lBr) {
+          return ScrSize.L;
         } else {
-          return ScrSize.XXL;
+          if (innerWidth <= xlBr) {
+            return ScrSize.XL;
+          } else {
+            return ScrSize.XXL;
+          }
         }
       }
     }

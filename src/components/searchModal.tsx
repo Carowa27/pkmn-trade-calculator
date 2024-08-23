@@ -1,15 +1,12 @@
 import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
-import {
-  getCardFromApi,
-  getPkmnFromApi,
-  getSetsFromApi,
-} from "@/functions/pkmnTcgApiServices";
+import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
 import { PkmnCard } from "./pkmnCard";
 import { Pagination } from "./Pagination";
-import { X, XLg } from "react-bootstrap-icons";
+import { XLg } from "react-bootstrap-icons";
+import { windowSize } from "@/functions/windowSizes";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -117,8 +114,8 @@ export const SearchModal = ({
       >
         <article
           style={{
-            width: "70vw",
-            height: "80vh",
+            width: `${windowSize() === "S" ? "90vw" : "70vw"}`,
+            height: `${windowSize() === "S" ? "90vh" : "80vh"}`,
             background: "grey",
             borderRadius: "20px",
             border: "2px solid lightgrey",
@@ -142,10 +139,10 @@ export const SearchModal = ({
             className="modalBody"
             style={{
               margin: "20px",
-              width: "100%",
+              width: `${windowSize() === "S" ? "90%" : "100%"}`,
               display: "flex",
               justifyContent: "center",
-              height: "78%",
+              height: `${windowSize() === "S" ? "85%" : "78%"}`,
             }}
           >
             <div
@@ -160,12 +157,16 @@ export const SearchModal = ({
                 paddingRight: "0.5rem",
               }}
             >
-              {noHits && (
-                <>
-                  <p>No hits</p>
-                </>
-              )}
-              {isLoading && <LoadingModule />}
+              {noHits || isLoading ? (
+                <section style={{ width: "100%" }}>
+                  {noHits && (
+                    <>
+                      <p>No hits</p>
+                    </>
+                  )}
+                  {isLoading && <LoadingModule />}
+                </section>
+              ) : null}
               {search === "set" && (
                 <>
                   {setList?.map((set, i) => {
@@ -189,7 +190,9 @@ export const SearchModal = ({
                       <PkmnCard
                         card={card}
                         saveCard={changeTradersCards}
-                        cardWidth={"12.5rem"}
+                        cardWidth={`${
+                          windowSize() === "S" ? "8rem" : "12.5rem"
+                        }`}
                         key={card.id + "-" + i}
                       />
                     );
