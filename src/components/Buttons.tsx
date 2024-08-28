@@ -5,7 +5,7 @@ interface IBtnProps {
   clickFn: () => void;
 }
 interface IIconProps {
-  icon: string;
+  icon: "X" | "";
   size: number;
   color: string;
   clickFn: () => void;
