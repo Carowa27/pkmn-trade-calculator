@@ -5,7 +5,6 @@ import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
 import { PkmnCard } from "./pkmnCard";
 import { Pagination } from "./Pagination";
-import { XLg } from "react-bootstrap-icons";
 import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
 
