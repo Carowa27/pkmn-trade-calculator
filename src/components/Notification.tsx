@@ -1,4 +1,5 @@
 import { XLg } from "react-bootstrap-icons";
+import { IconButton } from "./Buttons";
 
 interface INotificationProps {
   notificationMessage: string;
@@ -44,11 +45,7 @@ export const NotificationWindow = ({
             style={{ display: "flex", alignItems: "start" }}
           >
             {notificationMessage}
-            <button
-              style={{ background: "none", border: "none", color: "black" }}
-            >
-              <XLg onClick={closeNotification} />
-            </button>
+            <IconButton icon={"X"} clickFn={closeNotification} />
           </article>
           <article className="notificationFoot">{notificationFooter}</article>
         </section>

@@ -14,6 +14,7 @@ import {
 import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
 import { TradersMat } from "@/components/Containers";
+import { PrimaryButton } from "@/components/Buttons";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -139,25 +140,12 @@ export const Home = () => {
               alignItems: "center",
             }}
           >
-            <button
-              style={{
-                background: "grey",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "large",
-                height: "100%",
-                margin: "",
-                marginLeft: "1rem",
-                padding: "0.25rem 1rem",
-                border: "lightgrey solid 1px",
-                cursor: "pointer",
+            <PrimaryButton
+              btnText="Search"
+              clickFn={() => {
+                setShowModal(!showModal), setTraderToChange("one");
               }}
-              onClick={() => (
-                setShowModal(!showModal), setTraderToChange("one")
-              )}
-            >
-              Search
-            </button>
+            />
             <div
               style={{
                 color: "white",
@@ -248,21 +236,10 @@ export const Home = () => {
             </div>
           </div>
           {windowSize() !== "S" && (
-            <button
-              style={{
-                background: "grey",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "large",
-                margin: "1rem 2rem",
-                padding: "0.25rem 1rem",
-                border: "lightgrey solid 1px",
-                cursor: "pointer",
-              }}
-              onClick={() => clearTraderCards()}
-            >
-              Clear all cards
-            </button>
+            <PrimaryButton
+              btnText="Clear all cards"
+              clickFn={() => clearTraderCards()}
+            />
           )}
         </section>
         <TradersMat
@@ -281,25 +258,12 @@ export const Home = () => {
               alignItems: "center",
             }}
           >
-            <button
-              style={{
-                background: "grey",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "large",
-                height: "100%",
-                margin: "",
-                marginLeft: "1rem",
-                padding: "0.25rem 1rem",
-                border: "lightgrey solid 1px",
-                cursor: "pointer",
-              }}
-              onClick={() => (
+            <PrimaryButton
+              btnText="Search"
+              clickFn={() => (
                 setShowModal(!showModal), setTraderToChange("two")
               )}
-            >
-              Search
-            </button>
+            />
             <div
               style={{
                 color: "white",
@@ -333,21 +297,10 @@ export const Home = () => {
           </div>
         </TradersMat>
         {windowSize() === "S" && (
-          <button
-            style={{
-              background: "grey",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "large",
-              margin: "1rem 2rem",
-              padding: "0.25rem 1rem",
-              border: "lightgrey solid 1px",
-              cursor: "pointer",
-            }}
-            onClick={() => clearTraderCards()}
-          >
-            Clear all cards
-          </button>
+          <PrimaryButton
+            btnText="Clear all cards"
+            clickFn={() => clearTraderCards()}
+          />
         )}
       </div>
     </main>
