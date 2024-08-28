@@ -1,4 +1,3 @@
-import { XLg } from "react-bootstrap-icons";
 import { IconButton } from "./Buttons";
 
 interface INotificationProps {
