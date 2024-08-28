@@ -7,6 +7,7 @@ import { PkmnCard } from "./pkmnCard";
 import { Pagination } from "./Pagination";
 import { XLg } from "react-bootstrap-icons";
 import { windowSize } from "@/functions/windowSizes";
+import { IconButton } from "./Buttons";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -131,9 +132,12 @@ export const SearchModal = ({
             }}
           >
             <div>{search === "set" ? <h2>Set</h2> : <h2>Card</h2>}</div>
-            <div onClick={changeShowModal} style={{ cursor: "pointer" }}>
-              <XLg size={25} />
-            </div>
+            <IconButton
+              icon={"X"}
+              clickFn={changeShowModal}
+              size={25}
+              color="inherit"
+            />
           </section>
           <section
             className="modalBody"

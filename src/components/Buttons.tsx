@@ -6,6 +6,8 @@ interface IBtnProps {
 }
 interface IIconProps {
   icon: string;
+  size: number;
+  color: string;
   clickFn: () => void;
 }
 
@@ -28,10 +30,10 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
   );
 };
 
-export const IconButton = ({ icon, clickFn }: IIconProps) => {
+export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
   return (
-    <button style={{ background: "none", border: "none", color: "black" }}>
-      {icon === "X" && <XLg onClick={clickFn} />}
+    <button style={{ background: "none", border: "none", color: color }}>
+      {icon === "X" && <XLg size={size} onClick={clickFn} />}
     </button>
   );
 };

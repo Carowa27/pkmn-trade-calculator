@@ -19,7 +19,8 @@ import { PrimaryButton } from "@/components/Buttons";
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
-  const [notificationMessage, setNotificationMessage] = useState<string>("");
+  const [notificationMessage, setNotificationMessage] =
+    useState<string>("lorem");
   const [traderOne, setTraderOne] = useState<IPkmnCard[]>([]);
   const [traderTwo, setTraderTwo] = useState<IPkmnCard[]>([]);
   const [diffSum, setDiffSum] = useState<string>("");
@@ -47,7 +48,7 @@ export const Home = () => {
   const closeNotification = () => {
     setShowNotification(false);
   };
-  const changeNotificationMNessage = (message: string) => {
+  const changeNotificationMessage = (message: string) => {
     setNotificationMessage(message);
   };
   const sumTraderOne = () => {

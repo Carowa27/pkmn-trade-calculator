@@ -44,7 +44,14 @@ export const NotificationWindow = ({
             style={{ display: "flex", alignItems: "start" }}
           >
             {notificationMessage}
-            <IconButton icon={"X"} clickFn={closeNotification} />
+            <div style={{ paddingLeft: "1rem" }}>
+              <IconButton
+                icon={"X"}
+                clickFn={closeNotification}
+                size={20}
+                color="black"
+              />
+            </div>
           </article>
           <article className="notificationFoot">{notificationFooter}</article>
         </section>
