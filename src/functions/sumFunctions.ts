@@ -3,6 +3,7 @@ import { ISavedCard } from "@/interfaces/interfaces";
 
 export interface ICardSumProps {
   card?: IPkmnCard;
+  chosenType?: string;
   trader?: "one" | "two";
   traderOne?: ISavedCard[];
   traderTwo?: ISavedCard[];
@@ -10,6 +11,7 @@ export interface ICardSumProps {
 
 export const cardSum = ({
   card,
+  chosenType,
   trader,
   traderOne,
   traderTwo,
@@ -117,35 +119,39 @@ export const cardSum = ({
   } else {
     if (card !== undefined) {
       if (card.tcgplayer !== undefined) {
-        if (card.tcgplayer.prices["1stEdition"]) {
-          cardPrice = card.tcgplayer.prices["1stEdition"]?.market || 0;
-        } else {
-          if (card.tcgplayer.prices["1stEditionHolofoil"]) {
-            cardPrice =
-              card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
+        if (chosenType !== undefined) {
+          if (chosenType === "1st") {
+            cardPrice = card.tcgplayer.prices["1stEdition"]?.market || 0;
           } else {
-            if (card.tcgplayer.prices["1stEditionNormal"]) {
+            if (chosenType === "1st Holo") {
               cardPrice =
-                card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
+                card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
             } else {
-              if (card.tcgplayer.prices.holofoil) {
-                cardPrice = card.tcgplayer.prices.holofoil?.market || 0;
+              if (chosenType === "1st Normal") {
+                cardPrice =
+                  card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
               } else {
-                if (card.tcgplayer.prices.normal) {
-                  cardPrice = card.tcgplayer.prices.normal?.market || 0;
+                if (chosenType === "Holo") {
+                  cardPrice = card.tcgplayer.prices.holofoil?.market || 0;
                 } else {
-                  if (card.tcgplayer.prices.reverseHolofoil) {
-                    cardPrice =
-                      card.tcgplayer.prices.reverseHolofoil?.market || 0;
+                  if (chosenType === "Normal") {
+                    cardPrice = card.tcgplayer.prices.normal?.market || 0;
                   } else {
-                    if (card.tcgplayer.prices.unlimited) {
-                      cardPrice = card.tcgplayer.prices.unlimited?.market || 0;
+                    if (chosenType === "rev Holo") {
+                      cardPrice =
+                        card.tcgplayer.prices.reverseHolofoil?.market || 0;
                     } else {
-                      if (card.tcgplayer.prices.unlimitedHolofoil) {
+                      if (chosenType === "Unlimit") {
                         cardPrice =
-                          card.tcgplayer.prices.unlimitedHolofoil?.market || 0;
+                          card.tcgplayer.prices.unlimited?.market || 0;
                       } else {
-                        cardPrice = 0;
+                        if (chosenType === "Unlimit Holo") {
+                          cardPrice =
+                            card.tcgplayer.prices.unlimitedHolofoil?.market ||
+                            0;
+                        } else {
+                          cardPrice = 0;
+                        }
                       }
                     }
                   }
@@ -154,10 +160,10 @@ export const cardSum = ({
             }
           }
         }
+        sum = cardPrice;
       }
     }
   }
-  sum = sum + cardPrice;
 
   return sum;
 };

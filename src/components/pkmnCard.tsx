@@ -128,7 +128,9 @@ export const PkmnCardTrader = ({
           clickFn={() => removeCard({ id, trader })}
         />
         <p style={{ color: "black", paddingTop: "0.5rem" }}>
-          Value: {cardSum({ card }) !== 0 ? cardSum({ card }) : "--"}$
+          Value:{" "}
+          {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
+          $
         </p>
       </div>
     </div>
