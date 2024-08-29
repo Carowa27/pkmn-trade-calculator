@@ -32,7 +32,6 @@ export const TradersMat = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // justifyContent: "space-between",
         paddingBottom: "1rem",
       }}
     >
