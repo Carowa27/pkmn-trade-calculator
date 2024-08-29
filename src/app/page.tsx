@@ -62,12 +62,49 @@ export const Home = () => {
   const sumTraderOne = () => {
     let sum = 0;
     traderOne.map((item) => {
-      const cardPrice = 5;
-      // item.card.tcgplayer?.prices.normal?.market
-      //   ? item.card.tcgplayer?.prices.normal?.market
-      //   : item.card.cardmarket.prices.averageSellPrice
-      //   ? item.card.cardmarket.prices.averageSellPrice
-      //   : 0;
+      let cardPrice = 0;
+      if (item.card.tcgplayer !== undefined) {
+        if (item.type === "1st") {
+          cardPrice = item.card.tcgplayer.prices["1stEdition"]?.market || 0;
+        } else {
+          if (item.type === "1st Holo") {
+            cardPrice =
+              item.card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
+          } else {
+            if (item.type === "1st Normal") {
+              cardPrice =
+                item.card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
+            } else {
+              if (item.type === "Holo") {
+                cardPrice = item.card.tcgplayer.prices.holofoil?.market || 0;
+              } else {
+                if (item.type === "Normal") {
+                  cardPrice = item.card.tcgplayer.prices.normal?.market || 0;
+                } else {
+                  if (item.type === "rev Holo") {
+                    cardPrice =
+                      item.card.tcgplayer.prices.reverseHolofoil?.market || 0;
+                  } else {
+                    if (item.type === "Unlimit") {
+                      cardPrice =
+                        item.card.tcgplayer.prices.unlimited?.market || 0;
+                    } else {
+                      if (item.type === "Unlimit Holo") {
+                        cardPrice =
+                          item.card.tcgplayer.prices.unlimitedHolofoil
+                            ?.market || 0;
+                      } else {
+                        cardPrice = 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
       sum = sum + cardPrice;
     });
     return sum;
@@ -75,12 +112,48 @@ export const Home = () => {
   const sumTraderTwo = () => {
     let sum = 0;
     traderTwo.map((item) => {
-      const cardPrice = 5;
-      // item.card.tcgplayer?.prices.normal?.market
-      //   ? item.card.tcgplayer?.prices.normal?.market
-      //   : item.card.cardmarket.prices.averageSellPrice
-      //   ? item.card.cardmarket.prices.averageSellPrice
-      //   : 0;
+      let cardPrice = 0;
+      if (item.card.tcgplayer !== undefined) {
+        if (item.type === "1st") {
+          cardPrice = item.card.tcgplayer.prices["1stEdition"]?.market || 0;
+        } else {
+          if (item.type === "1st Holo") {
+            cardPrice =
+              item.card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
+          } else {
+            if (item.type === "1st Normal") {
+              cardPrice =
+                item.card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
+            } else {
+              if (item.type === "Holo") {
+                cardPrice = item.card.tcgplayer.prices.holofoil?.market || 0;
+              } else {
+                if (item.type === "Normal") {
+                  cardPrice = item.card.tcgplayer.prices.normal?.market || 0;
+                } else {
+                  if (item.type === "rev Holo") {
+                    cardPrice =
+                      item.card.tcgplayer.prices.reverseHolofoil?.market || 0;
+                  } else {
+                    if (item.type === "Unlimit") {
+                      cardPrice =
+                        item.card.tcgplayer.prices.unlimited?.market || 0;
+                    } else {
+                      if (item.type === "Unlimit Holo") {
+                        cardPrice =
+                          item.card.tcgplayer.prices.unlimitedHolofoil
+                            ?.market || 0;
+                      } else {
+                        cardPrice = 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       sum = sum + cardPrice;
     });
     return sum;
