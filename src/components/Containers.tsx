@@ -1,7 +1,11 @@
-import { ScrSize } from "@/functions/windowSizes";
+import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { PrimaryButton } from "./Buttons";
 import { PkmnCard } from "./pkmnCard";
 import { IPkmnCard } from "@/app/dataFromApi";
+
+interface IHeaderProps {
+  clearAllCards: () => void;
+}
 
 interface ITradersMat {
   trader: "one" | "two";
@@ -12,7 +16,25 @@ interface ITradersMat {
   cards: IPkmnCard[];
   clearCards: () => void;
 }
-
+export const Header = ({ clearAllCards }: IHeaderProps) => {
+  return (
+    <header
+      style={{
+        height: "5vh",
+        margin: "1rem",
+        marginRight: "2rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <h1>MonTrader Calculator</h1>
+      {windowSize() !== "S" && (
+        <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+      )}
+    </header>
+  );
+};
 export const TradersMat = ({
   trader,
   sumTraderOne,

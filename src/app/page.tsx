@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap-icons";
 import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
-import { TradersMat } from "@/components/Containers";
+import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
 
 export const Home = () => {
@@ -98,6 +98,7 @@ export const Home = () => {
         height: "100vh",
       }}
     >
+      <Header clearAllCards={clearTraderCards} />
       {showNotification && (
         <NotificationWindow
           closeNotification={closeNotification}
@@ -117,7 +118,7 @@ export const Home = () => {
       )}
       <div
         style={{
-          height: `${windowSize() === "S" ? "90%" : "80vh"}`,
+          height: `${windowSize() === "S" ? "90%" : "95vh"}`,
           display: "flex",
           flexDirection: `${windowSize() === "S" ? "column" : "row"}`,
           gap: "1rem",
@@ -148,10 +149,10 @@ export const Home = () => {
             display: "flex",
             flexDirection: "column", //`${windowSize() === "S" ? "row" : "column"}`,
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
         >
-          {windowSize() !== "S" && <div>circle</div>}
+          {/* {windowSize() !== "S" && <div>circle</div>} */}
           <div
             style={{
               width: "70%",
@@ -199,12 +200,6 @@ export const Home = () => {
               )}
             </div>
           </div>
-          {windowSize() !== "S" && (
-            <PrimaryButton
-              btnText="Clear all cards"
-              clickFn={() => clearTraderCards()}
-            />
-          )}
         </section>
         <TradersMat
           trader="two"
