@@ -43,7 +43,17 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
 
 export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
   return (
-    <button style={{ background: "none", border: "none", color: color }}>
+    <button
+      style={{
+        background: "grey",
+        border: "none",
+        borderRadius: "50%",
+        color: color,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       {icon === "X" && <XCircleFill size={size} onClick={clickFn} />}
       {icon === "<" && <ArrowLeftCircleFill size={size} onClick={clickFn} />}
     </button>

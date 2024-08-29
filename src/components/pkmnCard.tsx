@@ -93,7 +93,14 @@ export const PkmnCardTrader = ({
   trader,
 }: IPkmnCardTraderProps) => {
   return (
-    <>
+    <div
+      style={{
+        width: cardWidth,
+        aspectRatio: "1/1",
+        backgroundColor: "#ffcb05",
+        borderRadius: "10px",
+      }}
+    >
       <div
         style={{
           aspectRatio: "4/3",
@@ -105,26 +112,26 @@ export const PkmnCardTrader = ({
           backgroundPosition: "top",
           backgroundSize: "100% auto",
         }}
+      ></div>
+      <div
+        style={{
+          // height: "100%",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          paddingBottom: "0.2rem",
+          margin: "0.3rem 0 0.2rem 0",
+        }}
       >
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            paddingBottom: "0.2rem",
-          }}
-        >
-          <CardTypeButton type={chosenType} card={card} />
-          <IconButton
-            icon={"X"}
-            size={25}
-            color={"inherit"}
-            clickFn={() => removeCard({ id, trader })}
-          />
-        </div>
+        <CardTypeButton type={chosenType} card={card} />
+        <IconButton
+          icon={"X"}
+          size={25}
+          color={"inherit"}
+          clickFn={() => removeCard({ id, trader })}
+        />
       </div>
-    </>
+    </div>
   );
 };
