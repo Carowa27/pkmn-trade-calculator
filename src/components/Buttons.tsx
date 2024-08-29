@@ -1,3 +1,4 @@
+import { IPkmnCard } from "@/app/dataFromApi";
 import { XCircleFill, ArrowLeftCircleFill } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -10,7 +11,15 @@ interface IIconProps {
   color: string;
   clickFn: () => void;
 }
-
+interface ISavedCardProps {
+  card: IPkmnCard;
+  type: string;
+}
+interface ICardTypeProps {
+  card: IPkmnCard;
+  type: string;
+  clickFn?: ({}: ISavedCardProps) => void;
+}
 export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
   return (
     <button
@@ -37,6 +46,30 @@ export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
     <button style={{ background: "none", border: "none", color: color }}>
       {icon === "X" && <XCircleFill size={size} onClick={clickFn} />}
       {icon === "<" && <ArrowLeftCircleFill size={size} onClick={clickFn} />}
+    </button>
+  );
+};
+
+export const CardTypeButton = ({ card, type, clickFn }: ICardTypeProps) => {
+  console.log(card.name, type);
+  return (
+    <button
+      style={{
+        background: "lightgrey",
+        height: "2rem",
+        width: "max-content",
+        display: "flex",
+        alignItems: "center",
+        alignSelf: "end",
+        justifyContent: "center",
+        border: "2px solid grey",
+        borderRadius: "10px",
+        padding: "0.2rem 0.5rem",
+        color: "black",
+      }}
+      onClick={() => clickFn !== undefined && clickFn({ card, type })}
+    >
+      {type}
     </button>
   );
 };

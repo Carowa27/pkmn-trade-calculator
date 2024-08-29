@@ -1,32 +1,129 @@
 import { IPkmnCard } from "@/app/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
+import { CardTypeButton, IconButton } from "./Buttons";
+import { IRemoveCardProps } from "@/app/page";
 
-interface pkmnCardProps {
+interface IPkmnCardProps {
   card: IPkmnCard;
-  saveCard?: (card: IPkmnCard) => void;
+  saveCard: ({ card, type }: ISavedCard) => void;
   cardWidth: string;
 }
+interface ISavedCard {
+  card: IPkmnCard;
+  type: string;
+}
+interface IPkmnCardTraderProps {
+  card: IPkmnCard;
+  removeCard: ({}: IRemoveCardProps) => void;
+  cardWidth: string;
+  chosenType: string;
+  id: number;
+  trader: "one" | "two";
+}
 
-export const PkmnCard = ({ card, saveCard, cardWidth }: pkmnCardProps) => {
+export const PkmnCardSearch = ({
+  card,
+  saveCard,
+  cardWidth,
+}: IPkmnCardProps) => {
   return (
     <>
       <div
         style={{
-          aspectRatio: "3/4",
+          aspectRatio: "4/3",
           width: cardWidth,
-        }}
-        onClick={() => {
-          saveCard !== undefined && saveCard(card);
+          // maxHeight: "150px",
+          overflow: "hidden",
+          borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+          backgroundImage: ` url(${card.images.small})`,
+          backgroundPosition: "top",
+          backgroundSize: "100% auto",
         }}
       >
-        <img
+        <div
           style={{
-            width: "100%",
-            borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+            height: "100%",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            paddingBottom: "0.2rem",
           }}
-          src={card.images.small}
-          alt={card.name}
-        />
+        >
+          {card.tcgplayer?.prices["1stEdition"] && (
+            <CardTypeButton type="1st" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices["1stEditionHolofoil"] && (
+            <CardTypeButton type="1st Holo" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices["1stEditionNormal"] && (
+            <CardTypeButton type="1st Normal" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices.holofoil && (
+            <CardTypeButton type="Holo" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices.normal && (
+            <CardTypeButton type="Normal" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices.reverseHolofoil && (
+            <CardTypeButton type="rev Holo" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices.unlimited && (
+            <CardTypeButton type="Unlimit" card={card} clickFn={saveCard} />
+          )}
+          {card.tcgplayer?.prices.unlimitedHolofoil && (
+            <CardTypeButton
+              type="Unlimit Holo"
+              card={card}
+              clickFn={saveCard}
+            />
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const PkmnCardTrader = ({
+  card,
+  cardWidth,
+  chosenType,
+  id,
+  removeCard,
+  trader,
+}: IPkmnCardTraderProps) => {
+  return (
+    <>
+      <div
+        style={{
+          aspectRatio: "4/3",
+          width: cardWidth,
+          // maxHeight: "150px",
+          overflow: "hidden",
+          borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+          backgroundImage: ` url(${card.images.small})`,
+          backgroundPosition: "top",
+          backgroundSize: "100% auto",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            paddingBottom: "0.2rem",
+          }}
+        >
+          <CardTypeButton type={chosenType} card={card} />
+          <IconButton
+            icon={"X"}
+            size={25}
+            color={"inherit"}
+            clickFn={() => removeCard({ id, trader })}
+          />
+        </div>
       </div>
     </>
   );

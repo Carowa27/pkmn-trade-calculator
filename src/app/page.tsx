@@ -14,27 +14,34 @@ import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
-
+interface ISavedCard {
+  card: IPkmnCard;
+  type: string;
+}
+export interface IRemoveCardProps {
+  id: number;
+  trader: "one" | "two";
+}
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notificationMessage, setNotificationMessage] =
     useState<string>("lorem");
-  const [traderOne, setTraderOne] = useState<IPkmnCard[]>([]);
-  const [traderTwo, setTraderTwo] = useState<IPkmnCard[]>([]);
+  const [traderOne, setTraderOne] = useState<ISavedCard[]>([]);
+  const [traderTwo, setTraderTwo] = useState<ISavedCard[]>([]);
   const [diffSum, setDiffSum] = useState<string>("");
   const [traderToChange, setTraderToChange] = useState<"one" | "two">("one");
   const changeShowModal = () => {
     setShowModal(false);
   };
-  const changeTraderOnesCards = (cardToAdd: IPkmnCard) => {
-    let newList: IPkmnCard[] = traderOne;
+  const changeTraderOnesCards = (cardToAdd: ISavedCard) => {
+    let newList: ISavedCard[] = traderOne;
     newList.push(cardToAdd);
     setTraderOne(newList);
     sessionStorage.setItem("tr1", JSON.stringify(traderOne));
   };
-  const changeTraderTwosCards = (cardToAdd: IPkmnCard) => {
-    let newList: IPkmnCard[] = traderTwo;
+  const changeTraderTwosCards = (cardToAdd: ISavedCard) => {
+    let newList: ISavedCard[] = traderTwo;
     newList.push(cardToAdd);
     setTraderTwo(newList);
     sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
@@ -51,26 +58,35 @@ export const Home = () => {
   const changeNotificationMessage = (message: string) => {
     setNotificationMessage(message);
   };
+  const removeCard = ({ id, trader }: IRemoveCardProps) => {
+    console.log(
+      "remove card with id",
+      id,
+      trader === "one" ? traderOne[id] : traderTwo[id]
+    );
+  };
   const sumTraderOne = () => {
     let sum = 0;
-    traderOne.map((card) => {
-      const cardPrice = card.tcgplayer?.prices.normal?.market
-        ? card.tcgplayer?.prices.normal?.market
-        : card.cardmarket.prices.averageSellPrice
-        ? card.cardmarket.prices.averageSellPrice
-        : 0;
+    traderOne.map((item) => {
+      const cardPrice = 5;
+      // item.card.tcgplayer?.prices.normal?.market
+      //   ? item.card.tcgplayer?.prices.normal?.market
+      //   : item.card.cardmarket.prices.averageSellPrice
+      //   ? item.card.cardmarket.prices.averageSellPrice
+      //   : 0;
       sum = sum + cardPrice;
     });
     return sum;
   };
   const sumTraderTwo = () => {
     let sum = 0;
-    traderTwo.map((card) => {
-      const cardPrice = card.tcgplayer?.prices.normal?.market
-        ? card.tcgplayer?.prices.normal?.market
-        : card.cardmarket.prices.averageSellPrice
-        ? card.cardmarket.prices.averageSellPrice
-        : 0;
+    traderTwo.map((item) => {
+      const cardPrice = 5;
+      // item.card.tcgplayer?.prices.normal?.market
+      //   ? item.card.tcgplayer?.prices.normal?.market
+      //   : item.card.cardmarket.prices.averageSellPrice
+      //   ? item.card.cardmarket.prices.averageSellPrice
+      //   : 0;
       sum = sum + cardPrice;
     });
     return sum;
@@ -132,6 +148,7 @@ export const Home = () => {
           sumTraderOne={sumTraderOne}
           sumTraderTwo={sumTraderTwo}
           windowSize={windowSize}
+          removeCard={removeCard}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("one");
           }}
@@ -206,6 +223,7 @@ export const Home = () => {
           sumTraderOne={sumTraderOne}
           sumTraderTwo={sumTraderTwo}
           windowSize={windowSize}
+          removeCard={removeCard}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("two");
           }}

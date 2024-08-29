@@ -1,10 +1,15 @@
 import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { PrimaryButton } from "./Buttons";
-import { PkmnCard } from "./pkmnCard";
+import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
 import { IPkmnCard } from "@/app/dataFromApi";
+import { IRemoveCardProps } from "@/app/page";
 
 interface IHeaderProps {
   clearAllCards: () => void;
+}
+interface ISavedCard {
+  card: IPkmnCard;
+  type: string;
 }
 
 interface ITradersMat {
@@ -13,8 +18,9 @@ interface ITradersMat {
   sumTraderTwo: () => number;
   windowSize: () => ScrSize | undefined;
   btnFn: () => void;
-  cards: IPkmnCard[];
+  cards: ISavedCard[];
   clearCards: () => void;
+  removeCard: ({}: IRemoveCardProps) => void;
 }
 export const Header = ({ clearAllCards }: IHeaderProps) => {
   return (
@@ -43,6 +49,7 @@ export const TradersMat = ({
   btnFn,
   cards,
   clearCards,
+  removeCard,
 }: ITradersMat) => {
   return (
     <div
@@ -92,12 +99,16 @@ export const TradersMat = ({
           paddingTop: "1rem",
         }}
       >
-        {cards?.map((card, i) => {
+        {cards?.map((item, i) => {
           return (
-            <PkmnCard
-              card={card}
+            <PkmnCardTrader
+              card={item.card}
               cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
-              key={card.id + "-" + i}
+              key={item.card.id + "-" + i}
+              chosenType={item.type}
+              removeCard={removeCard}
+              id={i}
+              trader={trader}
             />
           );
         })}

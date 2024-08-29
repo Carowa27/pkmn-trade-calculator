@@ -3,15 +3,18 @@ import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
-import { PkmnCard } from "./pkmnCard";
+import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
 import { Pagination } from "./Pagination";
 import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
-
+interface ISavedCard {
+  card: IPkmnCard;
+  type: string;
+}
 interface ModalProps {
   searchFor: "set" | "card";
   changeShowModal: () => void;
-  changeTradersCards: (card: IPkmnCard) => void;
+  changeTradersCards: (card: ISavedCard) => void;
 }
 
 export const SearchModal = ({
@@ -205,7 +208,7 @@ export const SearchModal = ({
                 <>
                   {cardList?.map((card, i) => {
                     return (
-                      <PkmnCard
+                      <PkmnCardSearch
                         card={card}
                         saveCard={changeTradersCards}
                         cardWidth={`${
