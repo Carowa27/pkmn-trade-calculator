@@ -25,7 +25,7 @@ export const SearchModal = ({
   const [noHits, setNoHits] = useState<boolean>(false);
   const [savedCard, setSavedCard] = useState<IPkmnCard>();
   const [savedSet, setSavedSet] = useState<IPkmnSet>();
-  const [search, setSearch] = useState<string>(searchFor);
+  const [search, setSearch] = useState<"card" | "set">(searchFor);
   const [pageNr, setPageNr] = useState<number>(1);
   const [pageInfo, setPageInfo] = useState<{
     page: number;
@@ -126,17 +126,34 @@ export const SearchModal = ({
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
               margin: "20px",
             }}
           >
+            {search === "card" && (
+              <div style={{ marginRight: "1rem" }}>
+                <IconButton
+                  icon="<"
+                  clickFn={() => (setSearch("set"), setSavedSet(undefined))}
+                  size={25}
+                  color="inherit"
+                />
+              </div>
+            )}
             <div>{search === "set" ? <h2>Set</h2> : <h2>Card</h2>}</div>
-            <IconButton
-              icon={"X"}
-              clickFn={changeShowModal}
-              size={25}
-              color="inherit"
-            />
+            {savedSet !== undefined && (
+              <div style={{ marginLeft: "1rem" }}>
+                <span style={{ fontWeight: "bolder" }}>Set: </span>
+                <span>{savedSet && savedSet.name}</span>
+              </div>
+            )}
+            <div style={{ marginLeft: "auto" }}>
+              <IconButton
+                icon={"X"}
+                clickFn={changeShowModal}
+                size={25}
+                color="inherit"
+              />
+            </div>
           </section>
           <section
             className="modalBody"

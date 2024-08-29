@@ -1,11 +1,11 @@
-import { XLg } from "react-bootstrap-icons";
+import { XLg, CaretLeftFill } from "react-bootstrap-icons";
 
 interface IBtnProps {
   btnText: string;
   clickFn: () => void;
 }
 interface IIconProps {
-  icon: "X" | "";
+  icon: "X" | "<";
   size: number;
   color: string;
   clickFn: () => void;
@@ -36,6 +36,7 @@ export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
   return (
     <button style={{ background: "none", border: "none", color: color }}>
       {icon === "X" && <XLg size={size} onClick={clickFn} />}
+      {icon === "<" && <CaretLeftFill size={size} onClick={clickFn} />}
     </button>
   );
 };
