@@ -49,7 +49,7 @@ export const TradersMat = ({
       >
         <PrimaryButton btnText="Search" clickFn={btnFn} />
         <p>
-          Sum:
+          Sum:{" "}
           {trader === "one"
             ? (Math.round(sumTraderOne() * 100) / 100).toFixed(2)
             : (Math.round(sumTraderTwo() * 100) / 100).toFixed(2)}
@@ -81,7 +81,7 @@ export const TradersMat = ({
         })}
       </div>
       <div style={{ marginTop: "auto" }}>
-        <PrimaryButton btnText="Clear all cards" clickFn={clearCards} />
+        <PrimaryButton btnText="Clear traders cards" clickFn={clearCards} />
       </div>
     </div>
   );
