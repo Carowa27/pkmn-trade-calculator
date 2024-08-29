@@ -10,8 +10,6 @@ interface IHeaderProps {
 }
 interface ITradersMatProps {
   trader: "one" | "two";
-  // sumTraderOne: ({}: ICardSumProps) => number;
-  // sumTraderTwo: () => number;
   sumTraderOne: number;
   sumTraderTwo: number;
   windowSize: () => ScrSize | undefined;
