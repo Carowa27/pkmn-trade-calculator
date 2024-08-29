@@ -4,3 +4,8 @@ export interface ISavedCard {
   card: IPkmnCard;
   type: string;
 }
+
+export interface IRemoveCard {
+  id: number;
+  trader: "one" | "two";
+}

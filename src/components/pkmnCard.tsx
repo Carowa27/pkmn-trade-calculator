@@ -1,8 +1,7 @@
 import { IPkmnCard } from "@/app/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
-import { IRemoveCardProps } from "@/app/page";
-import { ISavedCard } from "@/interfaces/interfaces";
+import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 
 interface IPkmnCardProps {
   card: IPkmnCard;
@@ -11,7 +10,7 @@ interface IPkmnCardProps {
 }
 interface IPkmnCardTraderProps {
   card: IPkmnCard;
-  removeCard: ({}: IRemoveCardProps) => void;
+  removeCard: ({}: IRemoveCard) => void;
   cardWidth: string;
   chosenType: string;
   id: number;

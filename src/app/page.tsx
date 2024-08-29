@@ -14,12 +14,8 @@ import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
-import { ISavedCard } from "@/interfaces/interfaces";
+import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 
-export interface IRemoveCardProps {
-  id: number;
-  trader: "one" | "two";
-}
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
@@ -56,7 +52,7 @@ export const Home = () => {
   const changeNotificationMessage = (message: string) => {
     setNotificationMessage(message);
   };
-  const removeCard = ({ id, trader }: IRemoveCardProps) => {
+  const removeCard = ({ id, trader }: IRemoveCard) => {
     console.log(
       "remove card with id",
       id,

@@ -2,8 +2,7 @@ import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { PrimaryButton } from "./Buttons";
 import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
 import { IPkmnCard } from "@/app/dataFromApi";
-import { IRemoveCardProps } from "@/app/page";
-import { ISavedCard } from "@/interfaces/interfaces";
+import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 
 interface IHeaderProps {
   clearAllCards: () => void;
@@ -16,7 +15,7 @@ interface ITradersMatProps {
   btnFn: () => void;
   cards: ISavedCard[];
   clearCards: () => void;
-  removeCard: ({}: IRemoveCardProps) => void;
+  removeCard: ({}: IRemoveCard) => void;
 }
 export const Header = ({ clearAllCards }: IHeaderProps) => {
   return (
