@@ -60,12 +60,6 @@ export const Home = () => {
       trader === "one" ? traderOne[id] : traderTwo[id]
     );
   };
-  console.log(
-    cardSum({
-      trader: "one",
-      traderOne: traderOne,
-    })
-  );
 
   useEffect(() => {
     if (sessionStorage.getItem("tr1") !== null) {
