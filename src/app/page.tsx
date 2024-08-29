@@ -4,7 +4,6 @@ import styles from "./page.module.css";
 import { IPkmnCard } from "./dataFromApi";
 import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
-import { PkmnCard } from "@/components/pkmnCard";
 import {
   ArrowDown,
   ArrowLeft,
@@ -44,6 +43,7 @@ export const Home = () => {
     sessionStorage.clear;
     setTraderOne([]);
     setTraderTwo([]);
+    setDiffSum("0");
   };
   const closeNotification = () => {
     setShowNotification(false);
@@ -88,7 +88,7 @@ export const Home = () => {
       .toFixed(2)
       .replaceAll("-", "");
     setDiffSum(diff);
-  }, [traderOne, traderTwo]);
+  }, [showModal]);
   return (
     <main
       style={{
