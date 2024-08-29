@@ -61,7 +61,6 @@ export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
 };
 
 export const CardTypeButton = ({ card, type, clickFn }: ICardTypeProps) => {
-  console.log(card.name, type);
   return (
     <button
       style={{

@@ -34,7 +34,6 @@ export const PkmnCardSearch = ({
         style={{
           aspectRatio: "4/3",
           width: cardWidth,
-          // maxHeight: "150px",
           overflow: "hidden",
           borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
           backgroundImage: ` url(${card.images.small})`,
@@ -103,7 +102,6 @@ export const PkmnCardTrader = ({
         style={{
           aspectRatio: "4/3",
           width: cardWidth,
-          // maxHeight: "150px",
           overflow: "hidden",
           borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
           backgroundImage: ` url(${card.images.small})`,
