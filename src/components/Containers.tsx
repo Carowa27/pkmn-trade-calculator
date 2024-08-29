@@ -56,13 +56,15 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
+          maxHeight: "90%",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
+          alignItems: "start",
           gap: "1rem",
           overflow: "hidden visible",
-          height: "90%",
           paddingRight: "0.5rem",
+          paddingTop: "1rem",
         }}
       >
         {cards?.map((card, i) => {
