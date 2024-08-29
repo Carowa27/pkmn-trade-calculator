@@ -20,7 +20,7 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
         fontWeight: "bold",
         fontSize: "large",
         width: "max-content",
-        padding: "0.25rem 1rem",
+        padding: "0.5rem 1rem",
         border: "lightgrey solid 1px",
         borderRadius: "10px",
         cursor: "pointer",
