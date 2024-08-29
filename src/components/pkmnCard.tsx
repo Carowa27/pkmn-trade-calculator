@@ -23,7 +23,13 @@ export const PkmnCardSearch = ({
   cardWidth,
 }: IPkmnCardProps) => {
   return (
-    <>
+    <div
+      style={{
+        width: cardWidth,
+        backgroundColor: "#ffcb05",
+        borderRadius: "10px",
+      }}
+    >
       <div
         style={{
           aspectRatio: "4/3",
@@ -35,48 +41,44 @@ export const PkmnCardSearch = ({
           backgroundPosition: "top",
           backgroundSize: "100% auto",
         }}
+      ></div>
+      <div
+        style={{
+          height: "auto",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          paddingBottom: "0.2rem",
+          margin: "0.4rem 0 0.3rem 0",
+        }}
       >
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            paddingBottom: "0.2rem",
-          }}
-        >
-          {card.tcgplayer?.prices["1stEdition"] && (
-            <CardTypeButton type="1st" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices["1stEditionHolofoil"] && (
-            <CardTypeButton type="1st Holo" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices["1stEditionNormal"] && (
-            <CardTypeButton type="1st Normal" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices.holofoil && (
-            <CardTypeButton type="Holo" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices.normal && (
-            <CardTypeButton type="Normal" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices.reverseHolofoil && (
-            <CardTypeButton type="rev Holo" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices.unlimited && (
-            <CardTypeButton type="Unlimit" card={card} clickFn={saveCard} />
-          )}
-          {card.tcgplayer?.prices.unlimitedHolofoil && (
-            <CardTypeButton
-              type="Unlimit Holo"
-              card={card}
-              clickFn={saveCard}
-            />
-          )}
-        </div>
+        {card.tcgplayer?.prices["1stEdition"] && (
+          <CardTypeButton type="1st" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices["1stEditionHolofoil"] && (
+          <CardTypeButton type="1st Holo" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices["1stEditionNormal"] && (
+          <CardTypeButton type="1st Normal" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices.holofoil && (
+          <CardTypeButton type="Holo" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices.normal && (
+          <CardTypeButton type="Normal" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices.reverseHolofoil && (
+          <CardTypeButton type="rev Holo" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices.unlimited && (
+          <CardTypeButton type="Unlimit" card={card} clickFn={saveCard} />
+        )}
+        {card.tcgplayer?.prices.unlimitedHolofoil && (
+          <CardTypeButton type="Unlimit Holo" card={card} clickFn={saveCard} />
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
@@ -111,7 +113,6 @@ export const PkmnCardTrader = ({
       ></div>
       <div
         style={{
-          // height: "100%",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
