@@ -1,4 +1,4 @@
-import { XLg, CaretLeftFill } from "react-bootstrap-icons";
+import { XCircleFill, ArrowLeftCircleFill } from "react-bootstrap-icons";
 
 interface IBtnProps {
   btnText: string;
@@ -35,8 +35,8 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
 export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
   return (
     <button style={{ background: "none", border: "none", color: color }}>
-      {icon === "X" && <XLg size={size} onClick={clickFn} />}
-      {icon === "<" && <CaretLeftFill size={size} onClick={clickFn} />}
+      {icon === "X" && <XCircleFill size={size} onClick={clickFn} />}
+      {icon === "<" && <ArrowLeftCircleFill size={size} onClick={clickFn} />}
     </button>
   );
 };
