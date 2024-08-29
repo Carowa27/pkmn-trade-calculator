@@ -2,6 +2,7 @@ import { IPkmnCard } from "@/app/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
 import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import { cardSum } from "@/functions/sumFunctions";
 
 interface IPkmnCardProps {
   card: IPkmnCard;
@@ -126,6 +127,9 @@ export const PkmnCardTrader = ({
           color={"inherit"}
           clickFn={() => removeCard({ id, trader })}
         />
+        <p style={{ color: "black", paddingTop: "0.5rem" }}>
+          Value: {cardSum({ card }) !== 0 ? cardSum({ card }) : "--"}$
+        </p>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
 import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import { cardSum } from "@/functions/sumFunctions";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -59,105 +60,13 @@ export const Home = () => {
       trader === "one" ? traderOne[id] : traderTwo[id]
     );
   };
-  const sumTraderOne = () => {
-    let sum = 0;
-    traderOne.map((item) => {
-      let cardPrice = 0;
-      if (item.card.tcgplayer !== undefined) {
-        if (item.type === "1st") {
-          cardPrice = item.card.tcgplayer.prices["1stEdition"]?.market || 0;
-        } else {
-          if (item.type === "1st Holo") {
-            cardPrice =
-              item.card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
-          } else {
-            if (item.type === "1st Normal") {
-              cardPrice =
-                item.card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
-            } else {
-              if (item.type === "Holo") {
-                cardPrice = item.card.tcgplayer.prices.holofoil?.market || 0;
-              } else {
-                if (item.type === "Normal") {
-                  cardPrice = item.card.tcgplayer.prices.normal?.market || 0;
-                } else {
-                  if (item.type === "rev Holo") {
-                    cardPrice =
-                      item.card.tcgplayer.prices.reverseHolofoil?.market || 0;
-                  } else {
-                    if (item.type === "Unlimit") {
-                      cardPrice =
-                        item.card.tcgplayer.prices.unlimited?.market || 0;
-                    } else {
-                      if (item.type === "Unlimit Holo") {
-                        cardPrice =
-                          item.card.tcgplayer.prices.unlimitedHolofoil
-                            ?.market || 0;
-                      } else {
-                        cardPrice = 0;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+  console.log(
+    cardSum({
+      trader: "one",
+      traderOne: traderOne,
+    })
+  );
 
-      sum = sum + cardPrice;
-    });
-    return sum;
-  };
-  const sumTraderTwo = () => {
-    let sum = 0;
-    traderTwo.map((item) => {
-      let cardPrice = 0;
-      if (item.card.tcgplayer !== undefined) {
-        if (item.type === "1st") {
-          cardPrice = item.card.tcgplayer.prices["1stEdition"]?.market || 0;
-        } else {
-          if (item.type === "1st Holo") {
-            cardPrice =
-              item.card.tcgplayer.prices["1stEditionHolofoil"]?.market || 0;
-          } else {
-            if (item.type === "1st Normal") {
-              cardPrice =
-                item.card.tcgplayer.prices["1stEditionNormal"]?.market || 0;
-            } else {
-              if (item.type === "Holo") {
-                cardPrice = item.card.tcgplayer.prices.holofoil?.market || 0;
-              } else {
-                if (item.type === "Normal") {
-                  cardPrice = item.card.tcgplayer.prices.normal?.market || 0;
-                } else {
-                  if (item.type === "rev Holo") {
-                    cardPrice =
-                      item.card.tcgplayer.prices.reverseHolofoil?.market || 0;
-                  } else {
-                    if (item.type === "Unlimit") {
-                      cardPrice =
-                        item.card.tcgplayer.prices.unlimited?.market || 0;
-                    } else {
-                      if (item.type === "Unlimit Holo") {
-                        cardPrice =
-                          item.card.tcgplayer.prices.unlimitedHolofoil
-                            ?.market || 0;
-                      } else {
-                        cardPrice = 0;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      sum = sum + cardPrice;
-    });
-    return sum;
-  };
   useEffect(() => {
     if (sessionStorage.getItem("tr1") !== null) {
       setTraderOne(JSON.parse(sessionStorage.getItem("tr1")!));
@@ -167,7 +76,19 @@ export const Home = () => {
     }
   }, []);
   useEffect(() => {
-    const diff = (Math.round((sumTraderOne() - sumTraderTwo()) * 100) / 100)
+    const diff = (
+      Math.round(
+        (cardSum({
+          trader: "one",
+          traderOne: traderOne,
+        }) -
+          cardSum({
+            trader: "two",
+            traderTwo: traderTwo,
+          })) *
+          100
+      ) / 100
+    )
       .toFixed(2)
       .replaceAll("-", "");
     setDiffSum(diff);
@@ -212,8 +133,14 @@ export const Home = () => {
       >
         <TradersMat
           trader="one"
-          sumTraderOne={sumTraderOne}
-          sumTraderTwo={sumTraderTwo}
+          sumTraderOne={cardSum({
+            trader: "one",
+            traderOne: traderOne,
+          })}
+          sumTraderTwo={cardSum({
+            trader: "two",
+            traderTwo: traderTwo,
+          })}
           windowSize={windowSize}
           removeCard={removeCard}
           btnFn={() => {
@@ -223,7 +150,14 @@ export const Home = () => {
           clearCards={() => {
             setTraderOne([]),
               setDiffSum(
-                Math.round(sumTraderTwo()).toFixed(2).replaceAll("-", "")
+                Math.round(
+                  cardSum({
+                    trader: "two",
+                    traderTwo: traderTwo,
+                  })
+                )
+                  .toFixed(2)
+                  .replaceAll("-", "")
               );
           }}
         />
@@ -249,9 +183,23 @@ export const Home = () => {
                 display: "flex",
                 justifyContent: "start",
                 color: `${
-                  sumTraderOne() === sumTraderTwo()
+                  cardSum({
+                    trader: "one",
+                    traderOne: traderOne,
+                  }) ===
+                  cardSum({
+                    trader: "two",
+                    traderTwo: traderTwo,
+                  })
                     ? "darkgreen"
-                    : sumTraderOne() > sumTraderTwo()
+                    : cardSum({
+                        trader: "one",
+                        traderOne: traderOne,
+                      }) >
+                      cardSum({
+                        trader: "one",
+                        traderTwo: traderTwo,
+                      })
                     ? "darkorange"
                     : "darkred"
                 }`,
@@ -269,9 +217,23 @@ export const Home = () => {
                 display: "flex",
                 justifyContent: "end",
                 color: `${
-                  sumTraderOne() === sumTraderTwo()
+                  cardSum({
+                    trader: "one",
+                    traderOne: traderOne,
+                  }) ===
+                  cardSum({
+                    trader: "two",
+                    traderTwo: traderTwo,
+                  })
                     ? "darkgreen"
-                    : sumTraderOne() < sumTraderTwo()
+                    : cardSum({
+                        trader: "one",
+                        traderOne: traderOne,
+                      }) <
+                      cardSum({
+                        trader: "two",
+                        traderTwo: traderTwo,
+                      })
                     ? "darkorange"
                     : "darkred"
                 }`,
@@ -287,8 +249,14 @@ export const Home = () => {
         </section>
         <TradersMat
           trader="two"
-          sumTraderOne={sumTraderOne}
-          sumTraderTwo={sumTraderTwo}
+          sumTraderOne={cardSum({
+            trader: "one",
+            traderOne: traderOne,
+          })}
+          sumTraderTwo={cardSum({
+            trader: "two",
+            traderTwo: traderTwo,
+          })}
           windowSize={windowSize}
           removeCard={removeCard}
           btnFn={() => {
@@ -298,7 +266,14 @@ export const Home = () => {
           clearCards={() => {
             setTraderTwo([]),
               setDiffSum(
-                Math.round(sumTraderOne()).toFixed(2).replaceAll("-", "")
+                Math.round(
+                  cardSum({
+                    trader: "one",
+                    traderOne: traderOne,
+                  })
+                )
+                  .toFixed(2)
+                  .replaceAll("-", "")
               );
           }}
         />

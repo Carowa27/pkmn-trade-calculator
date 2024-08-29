@@ -3,14 +3,17 @@ import { PrimaryButton } from "./Buttons";
 import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
 import { IPkmnCard } from "@/app/dataFromApi";
 import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import { ICardSumProps } from "@/functions/sumFunctions";
 
 interface IHeaderProps {
   clearAllCards: () => void;
 }
 interface ITradersMatProps {
   trader: "one" | "two";
-  sumTraderOne: () => number;
-  sumTraderTwo: () => number;
+  // sumTraderOne: ({}: ICardSumProps) => number;
+  // sumTraderTwo: () => number;
+  sumTraderOne: number;
+  sumTraderTwo: number;
   windowSize: () => ScrSize | undefined;
   btnFn: () => void;
   cards: ISavedCard[];
@@ -75,8 +78,8 @@ export const TradersMat = ({
         <p>
           Sum:{" "}
           {trader === "one"
-            ? (Math.round(sumTraderOne() * 100) / 100).toFixed(2)
-            : (Math.round(sumTraderTwo() * 100) / 100).toFixed(2)}
+            ? (Math.round(sumTraderOne * 100) / 100).toFixed(2)
+            : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
           $
         </p>
       </div>
