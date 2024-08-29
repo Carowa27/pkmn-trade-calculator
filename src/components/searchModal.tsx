@@ -162,7 +162,7 @@ export const SearchModal = ({
               width: `${windowSize() === "S" ? "90%" : "100%"}`,
               display: "flex",
               justifyContent: "center",
-              height: `${windowSize() === "S" ? "85%" : "78%"}`,
+              height: `${windowSize() === "S" ? "85%" : "85%"}`,
             }}
           >
             <div
