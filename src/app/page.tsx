@@ -123,62 +123,19 @@ export const Home = () => {
           gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
+          margin: "2rem",
         }}
       >
         <TradersMat
-          trader={"one"}
+          trader="one"
           sumTraderOne={sumTraderOne}
           sumTraderTwo={sumTraderTwo}
           windowSize={windowSize}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "2rem",
-              margin: "1rem",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <PrimaryButton
-              btnText="Search"
-              clickFn={() => {
-                setShowModal(!showModal), setTraderToChange("one");
-              }}
-            />
-            <div
-              style={{
-                color: "white",
-                paddingRight: "3rem",
-              }}
-            >
-              <p>Sum: {(Math.round(sumTraderOne() * 100) / 100).toFixed(2)}$</p>
-            </div>
-          </div>
-          <div
-            style={{
-              width: "95%",
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-evenly",
-              gap: "1rem",
-              overflow: "hidden visible",
-              height: "90%",
-              paddingRight: "0.5rem",
-            }}
-          >
-            {traderOne?.map((card, i) => {
-              return (
-                <PkmnCard
-                  card={card}
-                  cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
-                  key={card.id + "-" + i}
-                />
-              );
-            })}
-          </div>
-        </TradersMat>
+          btnFn={() => {
+            setShowModal(!showModal), setTraderToChange("one");
+          }}
+          cards={traderOne}
+        />
         <section
           style={{
             height: `${windowSize() === "S" ? "min-content" : "100%"}`,
@@ -244,59 +201,15 @@ export const Home = () => {
           )}
         </section>
         <TradersMat
-          trader={"two"}
+          trader="two"
           sumTraderOne={sumTraderOne}
           sumTraderTwo={sumTraderTwo}
           windowSize={windowSize}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "2rem",
-              margin: "1rem",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <PrimaryButton
-              btnText="Search"
-              clickFn={() => (
-                setShowModal(!showModal), setTraderToChange("two")
-              )}
-            />
-            <div
-              style={{
-                color: "white",
-                paddingRight: "3rem",
-              }}
-            >
-              <p>Sum: {(Math.round(sumTraderTwo() * 100) / 100).toFixed(2)}$</p>
-            </div>
-          </div>
-          <div
-            style={{
-              width: "90%",
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-evenly",
-              gap: "1rem",
-              overflow: "hidden visible",
-              height: "90%",
-              paddingRight: "0.5rem",
-            }}
-          >
-            {traderTwo?.map((card, i) => {
-              return (
-                <PkmnCard
-                  card={card}
-                  cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
-                  key={card.id + "-" + i}
-                />
-              );
-            })}
-          </div>
-        </TradersMat>
+          btnFn={() => {
+            setShowModal(!showModal), setTraderToChange("two");
+          }}
+          cards={traderTwo}
+        />
         {windowSize() === "S" && (
           <PrimaryButton
             btnText="Clear all cards"

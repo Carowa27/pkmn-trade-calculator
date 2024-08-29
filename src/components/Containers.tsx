@@ -1,33 +1,29 @@
 import { ScrSize } from "@/functions/windowSizes";
-import { ReactNode } from "react";
+import { PrimaryButton } from "./Buttons";
+import { PkmnCard } from "./pkmnCard";
+import { IPkmnCard } from "@/app/dataFromApi";
 
 interface ITradersMat {
-  children: ReactNode;
-  trader: string;
-  sumTraderOne: () => void;
-  sumTraderTwo: () => void;
+  trader: "one" | "two";
+  sumTraderOne: () => number;
+  sumTraderTwo: () => number;
   windowSize: () => ScrSize | undefined;
+  btnFn: () => void;
+  cards: IPkmnCard[];
 }
 
 export const TradersMat = ({
-  children,
   trader,
   sumTraderOne,
   sumTraderTwo,
   windowSize,
+  btnFn,
+  cards,
 }: ITradersMat) => {
-  const traderOne = sumTraderOne() > sumTraderTwo();
-  const traderTwo = sumTraderOne() < sumTraderTwo();
   return (
     <div
       style={{
-        border: `2px solid ${
-          sumTraderOne() === sumTraderTwo()
-            ? "darkgreen"
-            : `${trader === "one" ? traderOne : traderTwo}`
-            ? "darkorange"
-            : "darkred"
-        }`,
+        backgroundColor: "#8AA39988",
         borderRadius: "10px",
         width: `${windowSize() === "S" ? "90vw" : "45vw"}`,
         height: `${windowSize() === "S" ? "36vh" : "100%"}`,
@@ -36,7 +32,49 @@ export const TradersMat = ({
         alignItems: "center",
       }}
     >
-      {children}
+      <div
+        style={{
+          width: "100%",
+          height: "2rem",
+          margin: "1rem",
+          paddingRight: "1.5rem",
+          paddingLeft: "1.5rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <PrimaryButton btnText="Search" clickFn={btnFn} />
+        <p>
+          Sum:
+          {trader === "one"
+            ? (Math.round(sumTraderOne() * 100) / 100).toFixed(2)
+            : (Math.round(sumTraderTwo() * 100) / 100).toFixed(2)}
+          $
+        </p>
+      </div>
+      <div
+        style={{
+          width: "95%",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          gap: "1rem",
+          overflow: "hidden visible",
+          height: "90%",
+          paddingRight: "0.5rem",
+        }}
+      >
+        {cards?.map((card, i) => {
+          return (
+            <PkmnCard
+              card={card}
+              cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
+              key={card.id + "-" + i}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
