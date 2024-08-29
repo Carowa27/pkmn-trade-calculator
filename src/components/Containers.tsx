@@ -10,6 +10,7 @@ interface ITradersMat {
   windowSize: () => ScrSize | undefined;
   btnFn: () => void;
   cards: IPkmnCard[];
+  clearCards: () => void;
 }
 
 export const TradersMat = ({
@@ -19,6 +20,7 @@ export const TradersMat = ({
   windowSize,
   btnFn,
   cards,
+  clearCards,
 }: ITradersMat) => {
   return (
     <div
@@ -30,6 +32,8 @@ export const TradersMat = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        // justifyContent: "space-between",
+        paddingBottom: "1rem",
       }}
     >
       <div
@@ -56,7 +60,7 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
-          maxHeight: "90%",
+          maxHeight: "85%",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -76,6 +80,9 @@ export const TradersMat = ({
             />
           );
         })}
+      </div>
+      <div style={{ marginTop: "auto" }}>
+        <PrimaryButton btnText="Clear all cards" clickFn={clearCards} />
       </div>
     </div>
   );

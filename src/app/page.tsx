@@ -88,7 +88,7 @@ export const Home = () => {
       .toFixed(2)
       .replaceAll("-", "");
     setDiffSum(diff);
-  }, [showModal]);
+  }, [showModal, traderOne, traderTwo]);
   return (
     <main
       style={{
@@ -135,6 +135,12 @@ export const Home = () => {
             setShowModal(!showModal), setTraderToChange("one");
           }}
           cards={traderOne}
+          clearCards={() => {
+            setTraderOne([]),
+              setDiffSum(
+                Math.round(sumTraderTwo()).toFixed(2).replaceAll("-", "")
+              );
+          }}
         />
         <section
           style={{
@@ -209,6 +215,12 @@ export const Home = () => {
             setShowModal(!showModal), setTraderToChange("two");
           }}
           cards={traderTwo}
+          clearCards={() => {
+            setTraderTwo([]),
+              setDiffSum(
+                Math.round(sumTraderOne()).toFixed(2).replaceAll("-", "")
+              );
+          }}
         />
         {windowSize() === "S" && (
           <PrimaryButton
