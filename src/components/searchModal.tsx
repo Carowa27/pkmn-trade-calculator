@@ -3,14 +3,12 @@ import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./pkmnSet";
-import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
+import { PkmnCardSearch } from "./pkmnCard";
 import { Pagination } from "./Pagination";
 import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
-interface ISavedCard {
-  card: IPkmnCard;
-  type: string;
-}
+import { ISavedCard } from "@/interfaces/interfaces";
+
 interface ModalProps {
   searchFor: "set" | "card";
   changeShowModal: () => void;

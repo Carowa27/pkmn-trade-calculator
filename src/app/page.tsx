@@ -14,10 +14,8 @@ import { NotificationWindow } from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
-interface ISavedCard {
-  card: IPkmnCard;
-  type: string;
-}
+import { ISavedCard } from "@/interfaces/interfaces";
+
 export interface IRemoveCardProps {
   id: number;
   trader: "one" | "two";
