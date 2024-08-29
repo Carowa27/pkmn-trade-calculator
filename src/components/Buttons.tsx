@@ -19,8 +19,10 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
         color: "white",
         fontWeight: "bold",
         fontSize: "large",
+        width: "max-content",
         padding: "0.25rem 1rem",
         border: "lightgrey solid 1px",
+        borderRadius: "10px",
         cursor: "pointer",
       }}
       onClick={clickFn}
