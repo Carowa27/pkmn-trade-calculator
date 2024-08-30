@@ -1,7 +1,6 @@
-import { IPkmnCard } from "@/app/dataFromApi";
 import { IconButton, PrimaryButton } from "./Buttons";
-import { PkmnCard, PkmnCardTrader } from "./pkmnCard";
-import { IRemoveCard, ITraderCard } from "@/interfaces/interfaces";
+import { PkmnCard } from "./pkmnCard";
+import { IRemoveCard } from "@/interfaces/interfaces";
 import { windowSize } from "@/functions/windowSizes";
 
 interface INotificationProps {
@@ -126,10 +125,7 @@ export const NotificationModalWindow = ({
             className="notificationBody"
             style={{ marginBottom: "1rem" }}
           >
-            <p style={{ margin: "1rem 0" }}>
-              {/* "1rem 0.5rem 1.5rem 0.2rem" }}> */}
-              {notificationMessage}
-            </p>
+            <p style={{ margin: "1rem 0" }}>{notificationMessage}</p>
             {itemToRemove && (
               <PkmnCard
                 card={itemToRemove.card}
@@ -144,14 +140,11 @@ export const NotificationModalWindow = ({
             <PrimaryButton btnText={"Cancel"} clickFn={closeNotification} />
             <PrimaryButton
               btnText={"OK"}
-              clickFn={() =>
-                // console.log(itemToRemove)
-                {
-                  itemToRemove && removeFn
-                    ? removeFn(itemToRemove)
-                    : clearFn && clearFn();
-                }
-              }
+              clickFn={() => {
+                itemToRemove && removeFn
+                  ? removeFn(itemToRemove)
+                  : clearFn && clearFn();
+              }}
             />
           </article>
         </section>

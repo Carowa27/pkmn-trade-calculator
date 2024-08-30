@@ -1,9 +1,7 @@
 import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { PrimaryButton } from "./Buttons";
-import { PkmnCardTrader, PkmnCardSearch } from "./pkmnCard";
-import { IPkmnCard } from "@/app/dataFromApi";
-import { IRemoveCard, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
-import { ICardSumProps } from "@/functions/sumFunctions";
+import { PkmnCardTrader } from "./pkmnCard";
+import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 
 interface IHeaderProps {
   clearAllCards: () => void;

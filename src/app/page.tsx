@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import { IPkmnCard } from "./dataFromApi";
 import { useEffect, useState } from "react";
 import { SearchModal } from "../components/searchModal";
 import {
