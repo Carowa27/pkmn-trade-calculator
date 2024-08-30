@@ -32,6 +32,11 @@ export const Home = () => {
   const [diffSum, setDiffSum] = useState<string>("");
   const [traderToChange, setTraderToChange] = useState<"one" | "two">("one");
   const [cardToRemove, setCardToRemove] = useState<IRemoveCard>();
+  const [cardsToClear, setCardsToClear] = useState<
+    "trader one" | "trader two" | "all cards"
+  >("trader one");
+  const [showClearNotification, setShowClearNotification] =
+    useState<boolean>(false);
 
   const changeShowModal = () => {
     setShowModal(false);
@@ -48,11 +53,12 @@ export const Home = () => {
     setTraderTwo(newList);
     sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
   };
-  const clearTraderCards = () => {
+  const clearAllCards = () => {
     sessionStorage.clear;
     setTraderOne([]);
     setTraderTwo([]);
     setDiffSum("0");
+    setShowClearNotification(false);
   };
   const closeNotification = () => {
     setShowNotification(false);
@@ -113,7 +119,11 @@ export const Home = () => {
         height: "100vh",
       }}
     >
-      <Header clearAllCards={clearTraderCards} />
+      <Header
+        clearAllCards={() => (
+          setCardsToClear("all cards"), setShowClearNotification(true)
+        )}
+      />
       {showNotification && (
         <NotificationWindow
           closeNotification={closeNotification}
@@ -129,6 +139,42 @@ export const Home = () => {
           }`}
           removeFn={removeCard}
           itemToRemove={cardToRemove!}
+        />
+      )}
+      {showClearNotification && (
+        <NotificationModalWindow
+          closeNotification={() => setShowClearNotification(false)}
+          notificationHeader={"Are You Sure"}
+          notificationMessage={`Are you sure you want to clear ${cardsToClear}?`}
+          clearFn={() => {
+            cardsToClear === "trader one"
+              ? (setTraderOne([]),
+                setDiffSum(
+                  Math.round(
+                    cardSum({
+                      trader: "two",
+                      traderTwo: traderTwo,
+                    })
+                  )
+                    .toFixed(2)
+                    .replaceAll("-", "")
+                ),
+                setShowClearNotification(false))
+              : cardsToClear === "trader two"
+              ? (setTraderTwo([]),
+                setDiffSum(
+                  Math.round(
+                    cardSum({
+                      trader: "two",
+                      traderTwo: traderTwo,
+                    })
+                  )
+                    .toFixed(2)
+                    .replaceAll("-", "")
+                ),
+                setShowClearNotification(false))
+              : clearAllCards();
+          }}
         />
       )}
       {showModal && (
@@ -170,17 +216,7 @@ export const Home = () => {
           }}
           cards={traderOne}
           clearCards={() => {
-            setTraderOne([]),
-              setDiffSum(
-                Math.round(
-                  cardSum({
-                    trader: "two",
-                    traderTwo: traderTwo,
-                  })
-                )
-                  .toFixed(2)
-                  .replaceAll("-", "")
-              );
+            setCardsToClear("trader one"), setShowClearNotification(true);
           }}
         />
         <section
@@ -285,24 +321,16 @@ export const Home = () => {
             setShowModal(!showModal), setTraderToChange("two");
           }}
           cards={traderTwo}
-          clearCards={() => {
-            setTraderTwo([]),
-              setDiffSum(
-                Math.round(
-                  cardSum({
-                    trader: "one",
-                    traderOne: traderOne,
-                  })
-                )
-                  .toFixed(2)
-                  .replaceAll("-", "")
-              );
-          }}
+          clearCards={() => (
+            setCardsToClear("trader two"), setShowClearNotification(true)
+          )}
         />
         {windowSize() === "S" && (
           <PrimaryButton
             btnText="Clear all cards"
-            clickFn={() => clearTraderCards()}
+            clickFn={() => (
+              setCardsToClear("all cards"), setShowClearNotification(true)
+            )}
           />
         )}
       </div>

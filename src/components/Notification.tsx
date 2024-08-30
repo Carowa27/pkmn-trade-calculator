@@ -13,8 +13,9 @@ interface INotificationProps {
 interface INotificationModalProps {
   notificationMessage: string;
   notificationHeader?: string;
-  itemToRemove: IRemoveCard;
-  removeFn: ({}: IRemoveCard) => void;
+  itemToRemove?: IRemoveCard;
+  removeFn?: ({}: IRemoveCard) => void;
+  clearFn?: () => void;
   closeNotification: () => void;
 }
 
@@ -78,6 +79,7 @@ export const NotificationModalWindow = ({
   itemToRemove,
   closeNotification,
   removeFn,
+  clearFn,
 }: INotificationModalProps) => {
   return (
     <>
@@ -128,10 +130,12 @@ export const NotificationModalWindow = ({
               {/* "1rem 0.5rem 1.5rem 0.2rem" }}> */}
               {notificationMessage}
             </p>
-            <PkmnCard
-              card={itemToRemove.card}
-              cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
-            />
+            {itemToRemove && (
+              <PkmnCard
+                card={itemToRemove.card}
+                cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
+              />
+            )}
           </article>
           <article
             className="notificationFoot"
@@ -142,7 +146,11 @@ export const NotificationModalWindow = ({
               btnText={"OK"}
               clickFn={() =>
                 // console.log(itemToRemove)
-                removeFn(itemToRemove)
+                {
+                  itemToRemove && removeFn
+                    ? removeFn(itemToRemove)
+                    : clearFn && clearFn();
+                }
               }
             />
           </article>
