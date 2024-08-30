@@ -1,28 +1,32 @@
 import { IPkmnCard } from "@/app/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
-import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import { IRemoveCard, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 
-interface IPkmnCardProps {
+interface IPkmnCardSearchProps {
   card: IPkmnCard;
   saveCard: ({ card, type }: ISavedCard) => void;
   cardWidth: string;
 }
 interface IPkmnCardTraderProps {
   card: IPkmnCard;
-  removeCard: ({}: IRemoveCard) => void;
+  removeCard: ({}: ITraderCard) => void;
   cardWidth: string;
   chosenType: string;
   id: number;
   trader: "one" | "two";
+}
+interface IPkmnCardProps {
+  card: IPkmnCard;
+  cardWidth: string;
 }
 
 export const PkmnCardSearch = ({
   card,
   saveCard,
   cardWidth,
-}: IPkmnCardProps) => {
+}: IPkmnCardSearchProps) => {
   return (
     <div
       style={{
@@ -126,6 +130,7 @@ export const PkmnCardTrader = ({
           size={25}
           color={"inherit"}
           clickFn={() => removeCard({ id, trader })}
+          filled
         />
         <p style={{ color: "black", paddingTop: "0.5rem" }}>
           Value:{" "}
@@ -134,5 +139,32 @@ export const PkmnCardTrader = ({
         </p>
       </div>
     </div>
+  );
+};
+
+export const PkmnCard = ({ card, cardWidth }: IPkmnCardProps) => {
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          style={{
+            aspectRatio: "3/4",
+            width: cardWidth,
+            height: "auto",
+            overflow: "hidden",
+            borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+            backgroundPosition: "top",
+            backgroundSize: "100% auto",
+          }}
+          src={card.images.small}
+        />
+      </div>
+    </>
   );
 };

@@ -10,22 +10,29 @@ import {
   ArrowRight,
   ArrowUp,
 } from "react-bootstrap-icons";
-import { NotificationWindow } from "@/components/Notification";
+import {
+  NotificationModalWindow,
+  NotificationWindow,
+} from "@/components/Notification";
 import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
-import { IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
+  const [showDeleteNotification, setShowDeleteNotification] =
+    useState<boolean>(false);
   const [notificationMessage, setNotificationMessage] =
     useState<string>("lorem");
   const [traderOne, setTraderOne] = useState<ISavedCard[]>([]);
   const [traderTwo, setTraderTwo] = useState<ISavedCard[]>([]);
   const [diffSum, setDiffSum] = useState<string>("");
   const [traderToChange, setTraderToChange] = useState<"one" | "two">("one");
+  const [cardToRemove, setCardToRemove] = useState<IRemoveCard>();
+
   const changeShowModal = () => {
     setShowModal(false);
   };
@@ -50,15 +57,25 @@ export const Home = () => {
   const closeNotification = () => {
     setShowNotification(false);
   };
-  const changeNotificationMessage = (message: string) => {
-    setNotificationMessage(message);
+  const findCardToRemove = ({ id, trader }: ITraderCard) => {
+    const card = trader === "one" ? traderOne[id].card : traderTwo[id].card;
+    setCardToRemove({ card, trader });
+    openRemoveCard();
   };
-  const removeCard = ({ id, trader }: IRemoveCard) => {
-    console.log(
-      "remove card with id",
-      id,
-      trader === "one" ? traderOne[id] : traderTwo[id]
-    );
+  const openRemoveCard = () => {
+    setShowDeleteNotification(true);
+  };
+  const removeCard = ({ card, trader }: IRemoveCard) => {
+    const newArray =
+      trader === "one"
+        ? traderOne.filter((item) => item.card !== card)
+        : traderTwo.filter((item) => item.card !== card);
+    if (trader === "one") {
+      setTraderOne(newArray);
+    } else {
+      setTraderTwo(newArray);
+    }
+    setShowDeleteNotification(false);
   };
 
   useEffect(() => {
@@ -103,6 +120,17 @@ export const Home = () => {
           notificationMessage={notificationMessage}
         />
       )}
+      {showDeleteNotification && (
+        <NotificationModalWindow
+          closeNotification={() => setShowDeleteNotification(false)}
+          notificationHeader={"Are You Sure"}
+          notificationMessage={`Are you sure you want to remove ${
+            cardToRemove !== undefined && cardToRemove.card.name
+          }`}
+          removeFn={removeCard}
+          itemToRemove={cardToRemove!}
+        />
+      )}
       {showModal && (
         <SearchModal
           searchFor="set"
@@ -136,7 +164,7 @@ export const Home = () => {
             traderTwo: traderTwo,
           })}
           windowSize={windowSize}
-          removeCard={removeCard}
+          removeCard={findCardToRemove}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("one");
           }}
@@ -252,7 +280,7 @@ export const Home = () => {
             traderTwo: traderTwo,
           })}
           windowSize={windowSize}
-          removeCard={removeCard}
+          removeCard={findCardToRemove}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("two");
           }}

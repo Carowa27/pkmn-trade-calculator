@@ -10,6 +10,7 @@ interface IIconProps {
   size: number;
   color: string;
   clickFn: () => void;
+  filled: boolean;
 }
 interface ISavedCardProps {
   card: IPkmnCard;
@@ -41,11 +42,17 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
   );
 };
 
-export const IconButton = ({ icon, clickFn, size, color }: IIconProps) => {
+export const IconButton = ({
+  icon,
+  clickFn,
+  size,
+  color,
+  filled,
+}: IIconProps) => {
   return (
     <button
       style={{
-        background: "grey",
+        background: `${filled ? "grey" : "none"}`,
         border: "none",
         borderRadius: "50%",
         color: color,

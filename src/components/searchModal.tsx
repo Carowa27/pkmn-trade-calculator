@@ -137,6 +137,7 @@ export const SearchModal = ({
                   clickFn={() => (setSearch("set"), setSavedSet(undefined))}
                   size={25}
                   color="inherit"
+                  filled
                 />
               </div>
             )}
@@ -153,6 +154,7 @@ export const SearchModal = ({
                 clickFn={changeShowModal}
                 size={25}
                 color="inherit"
+                filled
               />
             </div>
           </section>

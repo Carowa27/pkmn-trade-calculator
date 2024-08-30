@@ -5,7 +5,11 @@ export interface ISavedCard {
   type: string;
 }
 
-export interface IRemoveCard {
+export interface ITraderCard {
   id: number;
+  trader: "one" | "two";
+}
+export interface IRemoveCard {
+  card: IPkmnCard;
   trader: "one" | "two";
 }
