@@ -53,7 +53,9 @@ export const Home = () => {
     sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
   };
   const clearAllCards = () => {
-    sessionStorage.clear;
+    // sessionStorage.clear;
+    sessionStorage.setItem("tr1", JSON.stringify([]));
+    sessionStorage.setItem("tr2", JSON.stringify([]));
     setTraderOne([]);
     setTraderTwo([]);
     setDiffSum("0");
@@ -148,6 +150,7 @@ export const Home = () => {
           clearFn={() => {
             cardsToClear === "trader one"
               ? (setTraderOne([]),
+                sessionStorage.setItem("tr1", JSON.stringify([])),
                 setDiffSum(
                   Math.round(
                     cardSum({
@@ -161,6 +164,7 @@ export const Home = () => {
                 setShowClearNotification(false))
               : cardsToClear === "trader two"
               ? (setTraderTwo([]),
+                sessionStorage.setItem("tr2", JSON.stringify([])),
                 setDiffSum(
                   Math.round(
                     cardSum({
