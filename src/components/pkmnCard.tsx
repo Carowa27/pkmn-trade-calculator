@@ -1,9 +1,10 @@
 import { IPkmnCard } from "@/app/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
-import { IRemoveCard, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
+import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
+import { releaseYearCardColor } from "@/functions/releaseYearFn";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -32,7 +33,7 @@ export const PkmnCardSearch = ({
     <div
       style={{
         width: cardWidth,
-        backgroundColor: "#ffcb05",
+        backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
       }}
     >
@@ -100,7 +101,7 @@ export const PkmnCardTrader = ({
       style={{
         width: cardWidth,
         aspectRatio: "1/1",
-        backgroundColor: "#ffcb05",
+        backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
         marginTop: "0.5rem",
       }}

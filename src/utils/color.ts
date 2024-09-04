@@ -11,5 +11,5 @@ export const color = {
   border: "",
 
   pkmnCardYellow: "#ffcb05",
-  pkmnCardGrey: "",
+  pkmnCardGrey: "#CBCBCB",
 };
