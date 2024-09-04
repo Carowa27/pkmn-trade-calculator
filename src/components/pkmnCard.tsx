@@ -5,6 +5,7 @@ import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { releaseYearCardColor } from "@/functions/releaseYearFn";
+import { CurrencyDollar } from "react-bootstrap-icons";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -145,7 +146,7 @@ export const PkmnCardTrader = ({
       >
         <h5 style={{ color: color.black }}>{chosenType}</h5>
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
-          Value:{" "}
+          {windowSize() !== "S" && "Value: "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $
         </p>
