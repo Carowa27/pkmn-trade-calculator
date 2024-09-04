@@ -1,5 +1,11 @@
 import { IPkmnCard } from "@/app/dataFromApi";
-import { XCircleFill, ArrowLeftCircleFill } from "react-bootstrap-icons";
+import {
+  XCircleFill,
+  ArrowLeftCircleFill,
+  X,
+  ArrowLeft,
+  ArrowLeftShort,
+} from "react-bootstrap-icons";
 
 interface IBtnProps {
   btnText: string;
@@ -52,17 +58,19 @@ export const IconButton = ({
   return (
     <button
       style={{
-        background: `${filled ? "grey" : "none"}`,
-        border: "none",
-        borderRadius: "50%",
-        color: color,
+        background: `${filled ? "lightgrey" : "none"}`,
+        border: `${filled ? "2px solid grey" : "none"}`,
+        height: "2rem",
+        width: "2rem",
+        borderRadius: "10px",
+        color: `${filled ? "black" : color}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      {icon === "X" && <XCircleFill size={size} onClick={clickFn} />}
-      {icon === "<" && <ArrowLeftCircleFill size={size} onClick={clickFn} />}
+      {icon === "X" && <X size={size} onClick={clickFn} />}
+      {icon === "<" && <ArrowLeftShort size={size} onClick={clickFn} />}
     </button>
   );
 };
