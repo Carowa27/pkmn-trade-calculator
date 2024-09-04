@@ -5,6 +5,7 @@ import {
   X,
   ArrowLeft,
   ArrowLeftShort,
+  Search,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -12,7 +13,7 @@ interface IBtnProps {
   clickFn: () => void;
 }
 interface IIconProps {
-  icon: "X" | "<";
+  icon: "X" | "<" | "search";
   size: number;
   color: string;
   clickFn: () => void;
@@ -71,6 +72,7 @@ export const IconButton = ({
     >
       {icon === "X" && <X size={size} onClick={clickFn} />}
       {icon === "<" && <ArrowLeftShort size={size} onClick={clickFn} />}
+      {icon === "search" && <Search size={size} onClick={clickFn} />}
     </button>
   );
 };

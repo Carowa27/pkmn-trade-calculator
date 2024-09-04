@@ -1,5 +1,5 @@
 import { ScrSize, windowSize } from "@/functions/windowSizes";
-import { PrimaryButton } from "./Buttons";
+import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./pkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 
@@ -64,13 +64,19 @@ export const TradersMat = ({
           height: "2rem",
           margin: "1rem",
           paddingRight: "1.5rem",
-          paddingLeft: "1.5rem",
+          paddingLeft: "1rem",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <PrimaryButton btnText="Search" clickFn={btnFn} />
+        <IconButton
+          icon={"search"}
+          size={25}
+          color={"white"}
+          clickFn={btnFn}
+          filled={false}
+        />
         <p>
           Sum:{" "}
           {trader === "one"
