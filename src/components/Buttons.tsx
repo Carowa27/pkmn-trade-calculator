@@ -1,20 +1,11 @@
 import { IPkmnCard } from "@/app/dataFromApi";
 import { color } from "@/utils/color";
 import {
-  XCircleFill,
-  ArrowLeftCircleFill,
   X,
-  ArrowLeft,
   ArrowLeftShort,
   Search,
-  SortAlphaDown,
-  SortAlphaUp,
-  ArrowDown,
   CurrencyDollar,
-  ArrowUp,
   Calendar3,
-  AlphabetUppercase,
-  ArrowDownUp,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
