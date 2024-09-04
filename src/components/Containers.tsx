@@ -2,6 +2,7 @@ import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./pkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
+import { color } from "@/utils/color";
 
 interface IHeaderProps {
   clearAllCards: () => void;
@@ -73,7 +74,7 @@ export const TradersMat = ({
         <IconButton
           icon={"search"}
           size={25}
-          color={"white"}
+          colorIcon={color.white}
           clickFn={btnFn}
           filled={false}
         />

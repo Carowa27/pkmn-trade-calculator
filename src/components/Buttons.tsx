@@ -1,4 +1,5 @@
 import { IPkmnCard } from "@/app/dataFromApi";
+import { color } from "@/utils/color";
 import {
   XCircleFill,
   ArrowLeftCircleFill,
@@ -15,7 +16,7 @@ interface IBtnProps {
 interface IIconProps {
   icon: "X" | "<" | "search";
   size: number;
-  color: string;
+  colorIcon: string;
   clickFn: () => void;
   filled: boolean;
 }
@@ -33,7 +34,7 @@ export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
     <button
       style={{
         background: "grey",
-        color: "white",
+        color: color.white,
         fontWeight: "bold",
         fontSize: "large",
         width: "max-content",
@@ -53,7 +54,7 @@ export const IconButton = ({
   icon,
   clickFn,
   size,
-  color,
+  colorIcon,
   filled,
 }: IIconProps) => {
   return (
@@ -64,7 +65,7 @@ export const IconButton = ({
         height: "2rem",
         width: "2rem",
         borderRadius: "10px",
-        color: `${filled ? "black" : color}`,
+        color: `${filled ? color.black : colorIcon}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -91,7 +92,7 @@ export const CardTypeButton = ({ card, type, clickFn }: ICardTypeProps) => {
         border: "2px solid grey",
         borderRadius: "10px",
         padding: "0.2rem 0.5rem",
-        color: "black",
+        color: color.black,
       }}
       onClick={() => clickFn !== undefined && clickFn({ card, type })}
     >

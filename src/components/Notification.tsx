@@ -2,6 +2,7 @@ import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCard } from "./pkmnCard";
 import { IRemoveCard } from "@/interfaces/interfaces";
 import { windowSize } from "@/functions/windowSizes";
+import { color } from "@/utils/color";
 
 interface INotificationProps {
   notificationMessage: string;
@@ -42,7 +43,7 @@ export const NotificationWindow = ({
         <section
           style={{
             background: "lightgrey",
-            color: "black",
+            color: color.black,
             borderRadius: "10px",
             padding: "1rem",
             margin: "1rem",
@@ -60,7 +61,7 @@ export const NotificationWindow = ({
                 icon={"X"}
                 clickFn={closeNotification}
                 size={20}
-                color="black"
+                colorIcon={color.black}
                 filled
               />
             </div>
@@ -99,7 +100,7 @@ export const NotificationModalWindow = ({
           style={{
             minWidth: "20vw",
             background: "lightgrey",
-            color: "black",
+            color: color.black,
             borderRadius: "10px",
             padding: "1rem",
             margin: "1rem",
@@ -116,7 +117,7 @@ export const NotificationModalWindow = ({
                 icon={"X"}
                 clickFn={closeNotification}
                 size={25}
-                color="black"
+                colorIcon={color.black}
                 filled={false}
               />
             </div>

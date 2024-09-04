@@ -3,6 +3,7 @@ import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
 import { IRemoveCard, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
+import { color } from "@/utils/color";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -128,11 +129,11 @@ export const PkmnCardTrader = ({
         <IconButton
           icon={"X"}
           size={25}
-          color={"inherit"}
+          colorIcon={"inherit"}
           clickFn={() => removeCard({ id, trader })}
           filled
         />
-        <p style={{ color: "black", paddingTop: "0.5rem" }}>
+        <p style={{ color: color.black, paddingTop: "0.5rem" }}>
           Value:{" "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $

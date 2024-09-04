@@ -136,7 +136,7 @@ export const SearchModal = ({
                   icon="<"
                   clickFn={() => (setSearch("set"), setSavedSet(undefined))}
                   size={25}
-                  color="inherit"
+                  colorIcon="inherit"
                   filled
                 />
               </div>
@@ -153,7 +153,7 @@ export const SearchModal = ({
                 icon={"X"}
                 clickFn={changeShowModal}
                 size={25}
-                color="inherit"
+                colorIcon="inherit"
                 filled
               />
             </div>
