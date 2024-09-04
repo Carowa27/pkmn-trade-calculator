@@ -102,6 +102,7 @@ export const PkmnCardTrader = ({
         aspectRatio: "1/1",
         backgroundColor: "#ffcb05",
         borderRadius: "10px",
+        marginTop: "0.5rem",
       }}
     >
       <div
@@ -113,8 +114,24 @@ export const PkmnCardTrader = ({
           backgroundImage: ` url(${card.images.small})`,
           backgroundPosition: "top",
           backgroundSize: "100% auto",
+          display: "flex",
+          justifyContent: "end",
         }}
-      ></div>
+      >
+        <div
+          style={{
+            padding: "0.15rem 0.1rem 0 0 ",
+          }}
+        >
+          <IconButton
+            icon={"X"}
+            size={25}
+            colorIcon={"inherit"}
+            clickFn={() => removeCard({ id, trader })}
+            filled
+          />
+        </div>
+      </div>
       <div
         style={{
           display: "flex",
@@ -126,13 +143,6 @@ export const PkmnCardTrader = ({
         }}
       >
         <CardTypeButton type={chosenType} card={card} />
-        <IconButton
-          icon={"X"}
-          size={25}
-          colorIcon={"inherit"}
-          clickFn={() => removeCard({ id, trader })}
-          filled
-        />
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
           Value:{" "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
