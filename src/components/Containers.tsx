@@ -155,7 +155,6 @@ export const TradersMat = ({
                   : color.false
               }`}
               clickFn={() => {
-                console.log("clicked");
                 if (sortBy === "nameAZ") {
                   changeSortBy("nameZA");
                 } else {
