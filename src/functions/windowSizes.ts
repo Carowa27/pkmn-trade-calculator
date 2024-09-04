@@ -21,7 +21,7 @@ export const windowSize = () => {
 
   if (!innerWidth) {
     console.warn("windowSize is being called outside of a browser environment");
-    return ScrSize.S;
+    return ScrSize.XXL;
   }
 
   if (innerWidth <= sBr) {
