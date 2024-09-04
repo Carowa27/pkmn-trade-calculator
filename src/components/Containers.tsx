@@ -3,6 +3,8 @@ import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./pkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { color } from "@/utils/color";
+import { useState } from "react";
+import { sortCards } from "@/functions/sortFunctions";
 
 interface IHeaderProps {
   clearAllCards: () => void;
@@ -46,6 +48,26 @@ export const TradersMat = ({
   clearCards,
   removeCard,
 }: ITradersMatProps) => {
+  const [sortBy, setSortBy] = useState<
+    | "valueHighLow"
+    | "valueLowHigh"
+    | "nameAZ"
+    | "nameZA"
+    | "releaseOldNew"
+    | "releaseNewOld"
+  >();
+  const changeSortBy = (
+    param:
+      | "valueHighLow"
+      | "valueLowHigh"
+      | "nameAZ"
+      | "nameZA"
+      | "releaseOldNew"
+      | "releaseNewOld"
+  ) => {
+    setSortBy(param);
+    sortCards({ cards, sortBy: param });
+  };
   return (
     <div
       style={{
@@ -63,7 +85,7 @@ export const TradersMat = ({
         style={{
           width: "100%",
           height: "2rem",
-          margin: "1rem",
+          margin: "1rem 1rem 0.7rem 1rem",
           paddingRight: "1.5rem",
           paddingLeft: "1rem",
           display: "flex",
@@ -85,6 +107,82 @@ export const TradersMat = ({
             : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
           $
         </p>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "end",
+          paddingRight: "1.5rem",
+          gap: "1.5rem",
+        }}
+      >
+        {cards.length !== 0 && cards !== undefined && (
+          <>
+            <p
+              style={{
+                fontSize: 20,
+                display: "flex",
+                alignSelf: "center",
+                justifySelf: "center",
+              }}
+            >
+              Sort
+            </p>
+            <IconButton
+              icon={"sortValue"}
+              size={20}
+              colorIcon={`${
+                sortBy === "valueHighLow" || sortBy === "valueLowHigh"
+                  ? color.white
+                  : color.false
+              }`}
+              clickFn={() => {
+                if (sortBy === "valueHighLow") {
+                  changeSortBy("valueLowHigh");
+                } else {
+                  changeSortBy("valueHighLow");
+                }
+              }}
+              filled={false}
+            />
+            <IconButton
+              icon={"sortName"}
+              size={20}
+              colorIcon={`${
+                sortBy === "nameAZ" || sortBy === "nameZA"
+                  ? color.white
+                  : color.false
+              }`}
+              clickFn={() => {
+                console.log("clicked");
+                if (sortBy === "nameAZ") {
+                  changeSortBy("nameZA");
+                } else {
+                  changeSortBy("nameAZ");
+                }
+              }}
+              filled={false}
+            />
+            <IconButton
+              icon={"sortRelease"}
+              size={18}
+              colorIcon={`${
+                sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
+                  ? color.white
+                  : color.false
+              }`}
+              clickFn={() => {
+                if (sortBy === "releaseOldNew") {
+                  changeSortBy("releaseNewOld");
+                } else {
+                  changeSortBy("releaseOldNew");
+                }
+              }}
+              filled={false}
+            />
+          </>
+        )}
       </div>
       <div
         style={{

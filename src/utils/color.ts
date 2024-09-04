@@ -5,6 +5,8 @@ export const color = {
   orange: "darkorange",
   green: "darkgreen",
 
+  false: "#D3D3D333",
+
   primaryText: "",
 
   primaryBackground: "",

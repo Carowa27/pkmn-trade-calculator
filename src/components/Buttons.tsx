@@ -7,6 +7,14 @@ import {
   ArrowLeft,
   ArrowLeftShort,
   Search,
+  SortAlphaDown,
+  SortAlphaUp,
+  ArrowDown,
+  CurrencyDollar,
+  ArrowUp,
+  Calendar3,
+  AlphabetUppercase,
+  ArrowDownUp,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -14,7 +22,7 @@ interface IBtnProps {
   clickFn: () => void;
 }
 interface IIconProps {
-  icon: "X" | "<" | "search";
+  icon: "X" | "<" | "search" | "sortName" | "sortValue" | "sortRelease";
   size: number;
   colorIcon: string;
   clickFn: () => void;
@@ -70,10 +78,56 @@ export const IconButton = ({
         alignItems: "center",
         justifyContent: "center",
       }}
+      onClick={clickFn}
     >
-      {icon === "X" && <X size={size} onClick={clickFn} />}
-      {icon === "<" && <ArrowLeftShort size={size} onClick={clickFn} />}
-      {icon === "search" && <Search size={size} onClick={clickFn} />}
+      {icon === "X" && <X size={size} />}
+      {icon === "<" && <ArrowLeftShort size={size} />}
+      {icon === "search" && <Search size={size} />}
+      {icon === "sortName" && (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            height: "2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: `1px solid ${colorIcon}`,
+            borderRadius: "10px",
+          }}
+        >
+          <h4 style={{ fontSize: 20 }}>A</h4>
+        </div>
+      )}
+      {icon === "sortValue" && (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            height: "2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: `1px solid ${colorIcon}`,
+            borderRadius: "10px",
+          }}
+        >
+          <CurrencyDollar size={size} />
+        </div>
+      )}
+      {icon === "sortRelease" && (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            height: "2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: `1px solid ${colorIcon}`,
+            borderRadius: "10px",
+          }}
+        >
+          <Calendar3 size={size} />
+        </div>
+      )}
     </button>
   );
 };
