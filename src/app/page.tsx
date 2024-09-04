@@ -18,6 +18,7 @@ import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
 import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
+import { color } from "@/utils/color";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -252,7 +253,7 @@ export const Home = () => {
                     trader: "two",
                     traderTwo: traderTwo,
                   })
-                    ? "darkgreen"
+                    ? color.green
                     : cardSum({
                         trader: "one",
                         traderOne: traderOne,
@@ -261,8 +262,8 @@ export const Home = () => {
                         trader: "one",
                         traderTwo: traderTwo,
                       })
-                    ? "darkorange"
-                    : "darkred"
+                    ? color.orange
+                    : color.red
                 }`,
               }}
             >
@@ -286,7 +287,7 @@ export const Home = () => {
                     trader: "two",
                     traderTwo: traderTwo,
                   })
-                    ? "darkgreen"
+                    ? color.green
                     : cardSum({
                         trader: "one",
                         traderOne: traderOne,
@@ -295,8 +296,8 @@ export const Home = () => {
                         trader: "two",
                         traderTwo: traderTwo,
                       })
-                    ? "darkorange"
-                    : "darkred"
+                    ? color.orange
+                    : color.red
                 }`,
               }}
             >
