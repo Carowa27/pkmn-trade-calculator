@@ -24,11 +24,10 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
     <header
       style={{
         height: "3vh",
-        margin: "1rem",
-        marginRight: "2rem",
+        margin: `${windowSize() === "S" ? "1rem" : "1rem 2rem 1rem 2rem"}`,
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: `${windowSize() === "S" ? "center" : "space-between"}`,
       }}
     >
       <h1>Mad's Trade Calculator</h1>
