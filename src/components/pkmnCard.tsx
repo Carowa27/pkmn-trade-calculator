@@ -143,7 +143,7 @@ export const PkmnCardTrader = ({
           margin: "0.3rem 0 0.2rem 0",
         }}
       >
-        <CardTypeButton type={chosenType} card={card} />
+        <h5 style={{ color: color.black }}>{chosenType}</h5>
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
           Value:{" "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
