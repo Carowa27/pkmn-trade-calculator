@@ -23,7 +23,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
   return (
     <header
       style={{
-        height: "5vh",
+        height: "3vh",
         margin: "1rem",
         marginRight: "2rem",
         display: "flex",
@@ -31,7 +31,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         justifyContent: "space-between",
       }}
     >
-      <h1>MonTrader Calculator</h1>
+      <h1>Mad's Trade Calculator</h1>
       {windowSize() !== "S" && (
         <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
       )}
@@ -74,7 +74,7 @@ export const TradersMat = ({
         backgroundColor: "#8AA39988",
         borderRadius: "10px",
         width: `${windowSize() === "S" ? "90vw" : "45vw"}`,
-        height: `${windowSize() === "S" ? "36vh" : "85vh"}`,
+        height: `${windowSize() === "S" ? "39vh" : "85vh"}`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -200,7 +200,7 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
-          maxHeight: `${windowSize() === "S" ? "64%" : "85%"}`,
+          maxHeight: `${windowSize() === "S" ? "67%" : "85%"}`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",

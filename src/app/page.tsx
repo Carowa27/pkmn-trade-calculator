@@ -194,13 +194,13 @@ export const Home = () => {
       )}
       <div
         style={{
-          height: `${windowSize() === "S" ? "90%" : "95vh"}`,
+          height: `${windowSize() === "S" ? "97vh" : "95vh"}`,
           display: "flex",
           flexDirection: `${windowSize() === "S" ? "column" : "row"}`,
-          gap: "1rem",
+          // gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
-          margin: "2rem",
+          margin: "0 2rem 1rem 2rem",
         }}
       >
         <TradersMat
