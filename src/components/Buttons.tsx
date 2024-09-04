@@ -6,6 +6,8 @@ import {
   Search,
   CurrencyDollar,
   Calendar3,
+  Trash3Fill,
+  Trash3,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -13,7 +15,14 @@ interface IBtnProps {
   clickFn: () => void;
 }
 interface IIconProps {
-  icon: "X" | "<" | "search" | "sortName" | "sortValue" | "sortRelease";
+  icon:
+    | "X"
+    | "<"
+    | "trash"
+    | "search"
+    | "sortName"
+    | "sortValue"
+    | "sortRelease";
   size: number;
   colorIcon: string;
   clickFn: () => void;
@@ -74,6 +83,7 @@ export const IconButton = ({
       {icon === "X" && <X size={size} />}
       {icon === "<" && <ArrowLeftShort size={size} />}
       {icon === "search" && <Search size={size} />}
+      {icon === "trash" && <Trash3Fill size={size} />}
       {icon === "sortName" && (
         <div
           style={{

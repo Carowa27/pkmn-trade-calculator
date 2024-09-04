@@ -74,11 +74,10 @@ export const TradersMat = ({
         backgroundColor: "#8AA39988",
         borderRadius: "10px",
         width: `${windowSize() === "S" ? "90vw" : "45vw"}`,
-        height: `${windowSize() === "S" ? "36vh" : "100%"}`,
+        height: `${windowSize() === "S" ? "36vh" : "85vh"}`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        paddingBottom: "1rem",
       }}
     >
       <div
@@ -114,6 +113,7 @@ export const TradersMat = ({
           display: "flex",
           justifyContent: "end",
           paddingRight: "1.5rem",
+          marginBottom: `${windowSize() === "S" ? "0.5rem" : "1rem"}`,
           gap: "1.5rem",
         }}
       >
@@ -186,7 +186,7 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
-          maxHeight: "85%",
+          maxHeight: `${windowSize() === "S" ? "55%" : "85%"}`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -194,7 +194,8 @@ export const TradersMat = ({
           gap: "1rem",
           overflow: "hidden visible",
           paddingRight: "0.5rem",
-          paddingTop: "1rem",
+          paddingTop: "0.5rem",
+          marginTop: `${windowSize() === "S" ? "0" : "0.5rem"}`,
         }}
       >
         {cards?.map((item, i) => {
@@ -211,8 +212,28 @@ export const TradersMat = ({
           );
         })}
       </div>
-      <div style={{ marginTop: "auto" }}>
-        <PrimaryButton btnText="Clear traders cards" clickFn={clearCards} />
+      <div
+        style={{
+          marginTop: "auto",
+          marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
+          width: "100%",
+          height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
+          display: "flex",
+          justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
+          alignItems: `${windowSize() === "S" ? "center" : "center"}`,
+        }}
+      >
+        {windowSize() === "S" ? (
+          <IconButton
+            icon={"trash"}
+            size={36}
+            colorIcon={color.white}
+            clickFn={clearCards}
+            filled={false}
+          />
+        ) : (
+          <PrimaryButton btnText="Clear traders cards" clickFn={clearCards} />
+        )}
       </div>
     </div>
   );

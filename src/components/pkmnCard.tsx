@@ -104,7 +104,6 @@ export const PkmnCardTrader = ({
         aspectRatio: "1/1",
         backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
-        marginTop: "0.5rem",
       }}
     >
       <div
