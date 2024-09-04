@@ -83,7 +83,21 @@ export const IconButton = ({
       {icon === "X" && <X size={size} />}
       {icon === "<" && <ArrowLeftShort size={size} />}
       {icon === "search" && <Search size={size} />}
-      {icon === "trash" && <Trash3Fill size={size} />}
+      {icon === "trash" && (
+        <div
+          style={{
+            aspectRatio: "1/1",
+            height: "2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: `1px solid ${colorIcon}`,
+            borderRadius: "10px",
+          }}
+        >
+          <Trash3Fill size={size} />
+        </div>
+      )}
       {icon === "sortName" && (
         <div
           style={{

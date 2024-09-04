@@ -111,14 +111,19 @@ export const TradersMat = ({
         style={{
           width: "100%",
           display: "flex",
-          justifyContent: "end",
-          paddingRight: "1.5rem",
-          marginBottom: `${windowSize() === "S" ? "0.5rem" : "1rem"}`,
+          justifyContent: `${windowSize() === "S" ? "space-between" : "end"}`,
+          padding: "0 1.5rem",
+          marginBottom: "1rem",
           gap: "1.5rem",
         }}
       >
         {cards.length !== 0 && cards !== undefined && (
-          <>
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+            }}
+          >
             <p
               style={{
                 fontSize: 20,
@@ -180,13 +185,22 @@ export const TradersMat = ({
               }}
               filled={false}
             />
-          </>
+          </div>
+        )}
+        {windowSize() === "S" && (
+          <IconButton
+            icon={"trash"}
+            size={25}
+            colorIcon={color.white}
+            clickFn={clearCards}
+            filled={false}
+          />
         )}
       </div>
       <div
         style={{
           width: "95%",
-          maxHeight: `${windowSize() === "S" ? "55%" : "85%"}`,
+          maxHeight: `${windowSize() === "S" ? "64%" : "85%"}`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -212,29 +226,21 @@ export const TradersMat = ({
           );
         })}
       </div>
-      <div
-        style={{
-          marginTop: "auto",
-          marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
-          width: "100%",
-          height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
-          display: "flex",
-          justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
-          alignItems: `${windowSize() === "S" ? "center" : "center"}`,
-        }}
-      >
-        {windowSize() === "S" ? (
-          <IconButton
-            icon={"trash"}
-            size={36}
-            colorIcon={color.white}
-            clickFn={clearCards}
-            filled={false}
-          />
-        ) : (
+      {windowSize() !== "S" && (
+        <div
+          style={{
+            marginTop: "auto",
+            marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
+            width: "100%",
+            height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
+            display: "flex",
+            justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
+            alignItems: `${windowSize() === "S" ? "center" : "center"}`,
+          }}
+        >
           <PrimaryButton btnText="Clear traders cards" clickFn={clearCards} />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
