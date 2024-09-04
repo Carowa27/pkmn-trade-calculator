@@ -136,7 +136,7 @@ export const PkmnCardTrader = ({
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "space-evenly",
           paddingBottom: "0.2rem",
