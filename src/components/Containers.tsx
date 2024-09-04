@@ -33,7 +33,9 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
     >
       <h1>Mad's Trade Calculator</h1>
       {windowSize() !== "S" && (
-        <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+        <div style={{ marginTop: "1.5rem" }}>
+          <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+        </div>
       )}
     </header>
   );
@@ -111,9 +113,9 @@ export const TradersMat = ({
         style={{
           width: "100%",
           display: "flex",
-          justifyContent: `${windowSize() === "S" ? "space-between" : "end"}`,
+          justifyContent: "space-between",
           padding: "0 1.5rem",
-          marginBottom: "1rem",
+          marginBottom: `${windowSize() === "S" ? "1rem" : "0.5rem"}`,
           gap: "1.5rem",
         }}
       >
@@ -130,6 +132,7 @@ export const TradersMat = ({
                 display: "flex",
                 alignSelf: "center",
                 justifySelf: "center",
+                paddingBottom: "0.4rem",
               }}
             >
               Sort
@@ -187,7 +190,7 @@ export const TradersMat = ({
             />
           </div>
         )}
-        {windowSize() === "S" && (
+        {windowSize() === "S" ? (
           <IconButton
             icon={"trash"}
             size={25}
@@ -195,6 +198,20 @@ export const TradersMat = ({
             clickFn={clearCards}
             filled={false}
           />
+        ) : (
+          // <div
+          //   style={{
+          //     marginTop: "auto",
+          //     marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
+          //     width: "100%",
+          //     height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
+          //     display: "flex",
+          //     justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
+          //     alignItems: `${windowSize() === "S" ? "center" : "center"}`,
+          //   }}
+          // >
+          <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
+          // </div>
         )}
       </div>
       <div
@@ -226,21 +243,6 @@ export const TradersMat = ({
           );
         })}
       </div>
-      {windowSize() !== "S" && (
-        <div
-          style={{
-            marginTop: "auto",
-            marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
-            width: "100%",
-            height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
-            display: "flex",
-            justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
-            alignItems: `${windowSize() === "S" ? "center" : "center"}`,
-          }}
-        >
-          <PrimaryButton btnText="Clear traders cards" clickFn={clearCards} />
-        </div>
-      )}
     </div>
   );
 };
