@@ -119,6 +119,7 @@ export const Home = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "100vh",
+        background: color.black,
       }}
     >
       <Header
