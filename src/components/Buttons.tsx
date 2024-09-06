@@ -13,6 +13,7 @@ import {
 interface IBtnProps {
   btnText: string;
   clickFn: () => void;
+  filled?: boolean;
 }
 interface IIconProps {
   icon:
@@ -26,7 +27,7 @@ interface IIconProps {
   size: number;
   colorIcon: string;
   clickFn: () => void;
-  filled: boolean;
+  filled?: boolean;
 }
 interface ISavedCardProps {
   card: IPkmnCard;
@@ -36,18 +37,19 @@ interface ICardTypeProps {
   card: IPkmnCard;
   type: string;
   clickFn?: ({}: ISavedCardProps) => void;
+  filled?: boolean;
 }
-export const PrimaryButton = ({ btnText, clickFn }: IBtnProps) => {
+export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
   return (
     <button
       style={{
-        background: "grey",
+        background: `${filled ? color.buttonBackground : "none"}`,
         color: color.white,
         fontWeight: "bold",
         fontSize: "large",
         width: "max-content",
         padding: "0.5rem 1rem",
-        border: "lightgrey solid 1px",
+        border: color.buttonBorder,
         borderRadius: "10px",
         cursor: "pointer",
       }}
@@ -68,8 +70,8 @@ export const IconButton = ({
   return (
     <button
       style={{
-        background: `${filled ? "lightgrey" : "none"}`,
-        border: `${filled ? "2px solid grey" : "none"}`,
+        background: `${filled ? color.buttonBackground : "none"}`,
+        border: `${filled ? color.buttonBorder : colorIcon}`,
         height: "2rem",
         width: "2rem",
         borderRadius: "10px",
@@ -147,18 +149,23 @@ export const IconButton = ({
   );
 };
 
-export const CardTypeButton = ({ card, type, clickFn }: ICardTypeProps) => {
+export const CardTypeButton = ({
+  card,
+  type,
+  clickFn,
+  filled,
+}: ICardTypeProps) => {
   return (
     <button
       style={{
-        background: "lightgrey",
+        background: `${filled ? color.buttonBackground : "none"}`,
         height: "2rem",
         width: "max-content",
         display: "flex",
         alignItems: "center",
         alignSelf: "end",
         justifyContent: "center",
-        border: "2px solid grey",
+        border: color.buttonBorder,
         borderRadius: "10px",
         padding: "0.2rem 0.5rem",
         color: color.black,
