@@ -51,7 +51,7 @@ export const PkmnCardSearch = ({
       ></div>
       <div
         style={{
-          height: "auto",
+          height: !card.tcgplayer && !card.cardmarket ? "20%" : "auto",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
@@ -83,6 +83,15 @@ export const PkmnCardSearch = ({
         )}
         {card.tcgplayer?.prices.unlimitedHolofoil && (
           <CardTypeButton type="Unlimit Holo" card={card} clickFn={saveCard} />
+        )}
+        {!card.tcgplayer && !card.cardmarket && (
+          <h5
+            style={{
+              color: color.black,
+            }}
+          >
+            No info found
+          </h5>
         )}
       </div>
     </div>
