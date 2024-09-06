@@ -189,28 +189,20 @@ export const TradersMat = ({
             />
           </div>
         )}
-        {windowSize() === "S" ? (
-          <IconButton
-            icon={"trash"}
-            size={25}
-            colorIcon={color.white}
-            clickFn={clearCards}
-            filled={false}
-          />
-        ) : (
-          // <div
-          //   style={{
-          //     marginTop: "auto",
-          //     marginRight: `${windowSize() === "S" ? "1.5rem" : ""}`,
-          //     width: "100%",
-          //     height: `${windowSize() === "S" ? "7rem" : "5rem"}`,
-          //     display: "flex",
-          //     justifyContent: `${windowSize() === "S" ? "end" : "center"}`,
-          //     alignItems: `${windowSize() === "S" ? "center" : "center"}`,
-          //   }}
-          // >
-          <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
-          // </div>
+        {cards.length !== 0 && (
+          <>
+            {windowSize() === "S" ? (
+              <IconButton
+                icon={"trash"}
+                size={25}
+                colorIcon={color.white}
+                clickFn={clearCards}
+                filled={false}
+              />
+            ) : (
+              <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
+            )}
+          </>
         )}
       </div>
       <div
