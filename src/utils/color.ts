@@ -11,7 +11,7 @@ export const color = {
 
   primaryBackground: "",
   buttonBackground: "lightgrey",
-  buttonBorder: "red solid 1px",
+  buttonBorder: "grey solid 1px",
 
   pkmnCardYellow: "#ffcb05",
   pkmnCardGrey: "#CBCBCB",

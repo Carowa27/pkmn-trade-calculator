@@ -67,84 +67,52 @@ export const IconButton = ({
   colorIcon,
   filled,
 }: IIconProps) => {
+  console.log(
+    icon,
+    filled
+      ? color.buttonBorder
+      : icon === "X" || icon === "<"
+      ? color.buttonBorder
+      : colorIcon
+  );
   return (
     <button
       style={{
+        aspectRatio: "1/1",
+        height: "2.5rem",
         background: `${filled ? color.buttonBackground : "none"}`,
-        border: `${filled ? color.buttonBorder : colorIcon}`,
-        height: "2rem",
-        width: "2rem",
+        border: `${
+          filled || icon === "X" || icon === "<"
+            ? color.buttonBorder
+            : icon === "search"
+            ? "none"
+            : `${colorIcon} 1px solid`
+        }`,
         borderRadius: "10px",
         color: `${filled ? color.black : colorIcon}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        cursor: "pointer",
       }}
       onClick={clickFn}
     >
-      {icon === "X" && <X size={size} />}
-      {icon === "<" && <ArrowLeftShort size={size} />}
-      {icon === "search" && <Search size={size} />}
-      {icon === "trash" && (
-        <div
-          style={{
-            aspectRatio: "1/1",
-            height: "2.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: `1px solid ${colorIcon}`,
-            borderRadius: "10px",
-          }}
-        >
-          <Trash3Fill size={size} />
-        </div>
-      )}
-      {icon === "sortName" && (
-        <div
-          style={{
-            aspectRatio: "1/1",
-            height: "2.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: `1px solid ${colorIcon}`,
-            borderRadius: "10px",
-          }}
-        >
-          <h4 style={{ fontSize: 20 }}>A</h4>
-        </div>
-      )}
-      {icon === "sortValue" && (
-        <div
-          style={{
-            aspectRatio: "1/1",
-            height: "2.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: `1px solid ${colorIcon}`,
-            borderRadius: "10px",
-          }}
-        >
-          <CurrencyDollar size={size} />
-        </div>
-      )}
-      {icon === "sortRelease" && (
-        <div
-          style={{
-            aspectRatio: "1/1",
-            height: "2.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: `1px solid ${colorIcon}`,
-            borderRadius: "10px",
-          }}
-        >
-          <Calendar3 size={size} />
-        </div>
-      )}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: "10px",
+        }}
+      >
+        {icon === "X" && <X size={size} />}
+        {icon === "<" && <ArrowLeftShort size={size} />}
+        {icon === "search" && <Search size={size} />}
+        {icon === "trash" && <Trash3Fill size={size} />}
+        {icon === "sortName" && <h4 style={{ fontSize: 20 }}>A</h4>}
+        {icon === "sortValue" && <CurrencyDollar size={size} />}
+        {icon === "sortRelease" && <Calendar3 size={size} />}{" "}
+      </div>
     </button>
   );
 };
