@@ -4,7 +4,10 @@ import { CardTypeButton, IconButton } from "./Buttons";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
-import { cardColor, releaseYearCardColor } from "@/functions/releaseYearFn";
+import {
+  rarityCardColor,
+  releaseYearCardColor,
+} from "@/functions/releaseYearFn";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -34,7 +37,6 @@ export const PkmnCardSearch = ({
       style={{
         width: cardWidth,
         height: "17.5rem",
-        backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
       }}
     >
@@ -56,7 +58,7 @@ export const PkmnCardSearch = ({
           style={{
             width: "100%",
             backgroundColor: color.typeBackground,
-            borderTop: `${cardColor(
+            borderTop: `${rarityCardColor(
               card.set.releaseDate,
               card.rarity
             )} 3px solid`,

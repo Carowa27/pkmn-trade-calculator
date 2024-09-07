@@ -15,7 +15,7 @@ export const releaseYearCardColor = (release: string) => {
     return color.pkmnCardYellow;
   }
 };
-export const cardColor = (release: string, rarity: string) => {
+export const rarityCardColor = (release: string, rarity: string) => {
   const releaseDate = release.split("/");
   const releaseDateNr = releaseDate.map((d) => parseInt(d, 10 || 0));
   const year = releaseDateNr[0];
