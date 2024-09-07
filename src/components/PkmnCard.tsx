@@ -33,6 +33,13 @@ export const PkmnCardSearch = ({
     <div
       style={{
         width: cardWidth,
+        height:
+          card.rarity === "Common" ||
+          card.rarity === "Uncommon" ||
+          card.rarity === "Rare" ||
+          card.rarity === "Double Rare"
+            ? "12.3rem"
+            : "20.4rem",
         backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
       }}
@@ -40,10 +47,18 @@ export const PkmnCardSearch = ({
       <div
         style={{
           aspectRatio: "4/3",
+          height:
+            card.rarity === "Common" ||
+            card.rarity === "Uncommon" ||
+            card.rarity === "Rare" ||
+            card.rarity === "Double Rare"
+              ? "9.375rem"
+              : "17.5rem",
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
           backgroundImage: ` url(${card.images.small})`,
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "top",
           backgroundSize: "100% auto",
         }}
