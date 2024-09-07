@@ -126,8 +126,8 @@ export const SearchModal = ({
       >
         <article
           style={{
-            width: `${windowSize() === "S" ? "90vw" : "70vw"}`,
-            height: `${windowSize() === "S" ? "90vh" : "80vh"}`,
+            width: windowSize() === "S" ? "90vw" : "70vw",
+            height: windowSize() === "S" ? "90vh" : "80vh",
             background: "grey",
             borderRadius: "20px",
             border: "2px solid lightgrey",
@@ -173,22 +173,22 @@ export const SearchModal = ({
             className="modalBody"
             style={{
               margin: "1.25rem 1.25rem 0.25rem 1.25rem",
-              width: `${windowSize() === "S" ? "90%" : "100%"}`,
+              width: windowSize() === "S" ? "90%" : "100%",
               display: "flex",
               justifyContent: "center",
-              height: `${windowSize() === "S" ? "85%" : "85%"}`,
+              height: windowSize() === "S" ? "85%" : "85%",
             }}
           >
             <div
               style={{
-                width: "90%",
+                width: windowSize() === "S" ? "100%" : "90%",
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "space-evenly",
                 gap: "1rem",
                 overflow: "hidden visible",
                 height: "100%",
-                paddingRight: "0.5rem",
+                paddingRight: windowSize() === "S" ? 0 : "0.5rem",
               }}
             >
               {noHits || isLoading ? (

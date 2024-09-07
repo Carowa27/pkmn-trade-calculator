@@ -13,8 +13,9 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
         <div
           className="two"
           style={{
+            aspectRatio: "1/1",
             border: "2px white solid",
-            height: "100%",
+            height: `${windowSize() === "S" ? "9rem" : "11rem"}`,
             borderRadius: "10px",
           }}
         >
@@ -31,7 +32,8 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
+                alignItems: "center",
+                justifyContent: "space-evenly",
                 border: "2px white solid",
                 borderRadius: "10px",
                 height: "100%",
@@ -40,41 +42,34 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
               onClick={() => saveSet(set)}
             >
               <div
-                className="five"
+                className="six"
                 style={{
-                  height: `${windowSize() === "S" ? "2rem" : "5rem"}`,
-                  alignContent: "center",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                <div
-                  className="six"
+                <img
                   style={{
-                    maxWidth: `${windowSize() === "S" ? "5rem" : "12.5rem"}`,
-                    maxHeight: `${windowSize() === "S" ? "2rem" : "5rem"}`,
-                    display: "flex",
-                    justifyContent: "center",
+                    maxWidth: "100%",
+                    height: `${windowSize() === "S" ? "2rem" : "3rem"}`,
                   }}
-                >
-                  <img
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: `${windowSize() === "S" ? "2rem" : "5rem"}`,
-                    }}
-                    src={set.images.symbol}
-                    alt={set.name}
-                  />
-                </div>
+                  src={set.images.symbol}
+                  alt={set.name}
+                />
               </div>
               <h4
                 style={{
-                  maxWidth: `${windowSize() === "S" ? "5rem" : "9rem"}`,
+                  maxWidth: "100%",
                   textWrap: "wrap",
-                  justifyContent: "end",
-                  justifySelf: "end",
+                  textAlign: "center",
                   paddingTop: "0.5rem",
                 }}
               >
-                {set.name}
+                {set.name.includes("Trainer Gallery")
+                  ? set.name.replace("Trainer Gallery", "TG")
+                  : set.name.includes("Galarian Gallery")
+                  ? set.name.replace("Galarian Gallery", "GG")
+                  : set.name}
               </h4>
             </div>
           </div>
