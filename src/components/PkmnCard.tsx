@@ -4,7 +4,7 @@ import { CardTypeButton, IconButton } from "./Buttons";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
-import { releaseYearCardColor } from "@/functions/releaseYearFn";
+import { cardColor, releaseYearCardColor } from "@/functions/releaseYearFn";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -56,9 +56,10 @@ export const PkmnCardSearch = ({
           style={{
             width: "100%",
             backgroundColor: color.typeBackground,
-            borderTop: `${releaseYearCardColor(
-              card.set.releaseDate
-            )} 2px solid`,
+            borderTop: `${cardColor(
+              card.set.releaseDate,
+              card.rarity
+            )} 3px solid`,
             height: !card.tcgplayer?.prices ? "20%" : "auto",
             display: "flex",
             flexWrap: "wrap",

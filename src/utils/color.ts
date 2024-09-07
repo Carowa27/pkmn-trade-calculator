@@ -13,7 +13,7 @@ export const color = {
   buttonBackground: "lightgrey",
   buttonBorder: "grey solid 1px",
 
-  pkmnCardYellow: "#ffcb05",
+  pkmnCardYellow: "#F6D96B",
   pkmnCardGrey: "#a4a4a4",
   pkmnCardGold: "#D5A23C",
 
