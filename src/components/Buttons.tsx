@@ -114,7 +114,6 @@ export const CardTypeButton = ({
   clickFn,
   filled,
 }: ICardTypeProps) => {
-  console.log(type);
   const backgroundColor = () => {
     let typeColor = "";
     if (type === "1st") {
