@@ -21,6 +21,11 @@ export const SearchModal = ({
   changeTradersCards,
 }: ModalProps) => {
   const [setList, setSetList] = useState<IPkmnSet[]>();
+  const [pageInfoSet, setPageInfoSet] = useState<{
+    page: number;
+    pageSize: number;
+    totalCount: number;
+  }>();
   const [cardList, setCardList] = useState<IPkmnCard[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [noHits, setNoHits] = useState<boolean>(false);
@@ -46,7 +51,7 @@ export const SearchModal = ({
       if (res) {
         setSetList(res.data as IPkmnSet[]);
         setIsLoading(false);
-        setPageInfo({
+        setPageInfoSet({
           page: res.page,
           pageSize: res.pageSize,
           totalCount: res.totalCount,
@@ -232,14 +237,22 @@ export const SearchModal = ({
             className="modalFooter"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            {pageInfo ? (
+            {pageInfo && search === "card" && (
               <Pagination
                 page={pageInfo.page}
                 pageSize={pageInfo.pageSize}
                 totalCount={pageInfo.totalCount}
                 updateSearch={updateSearch}
               />
-            ) : null}
+            )}
+            {pageInfoSet && search === "set" && (
+              <Pagination
+                page={pageInfoSet.page}
+                pageSize={pageInfoSet.pageSize}
+                totalCount={pageInfoSet.totalCount}
+                updateSearch={updateSearch}
+              />
+            )}
           </section>
         </article>
       </section>
