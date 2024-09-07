@@ -24,7 +24,6 @@ export const SearchModal = ({
   const [cardList, setCardList] = useState<IPkmnCard[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [noHits, setNoHits] = useState<boolean>(false);
-  const [savedCard, setSavedCard] = useState<IPkmnCard>();
   const [savedSet, setSavedSet] = useState<IPkmnSet>();
   const [search, setSearch] = useState<"card" | "set">(searchFor);
   const [pageNr, setPageNr] = useState<number>(1);
@@ -168,7 +167,7 @@ export const SearchModal = ({
           <section
             className="modalBody"
             style={{
-              margin: "20px",
+              margin: "1.25rem 1.25rem 0.25rem 1.25rem",
               width: `${windowSize() === "S" ? "90%" : "100%"}`,
               display: "flex",
               justifyContent: "center",

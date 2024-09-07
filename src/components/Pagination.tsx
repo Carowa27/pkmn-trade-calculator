@@ -54,6 +54,7 @@ export const Pagination = ({
           totalCount > pageSize
             ? {
                 width: "100%",
+                height: "2rem",
                 display: "flex",
                 justifyContent: "center",
                 justifySelf: "center",
