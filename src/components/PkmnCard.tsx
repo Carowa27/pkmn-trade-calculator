@@ -55,8 +55,10 @@ export const PkmnCardSearch = ({
         <div
           style={{
             width: "100%",
-            backgroundColor: releaseYearCardColor(card.set.releaseDate),
-            borderTop: "grey 2px solid",
+            backgroundColor: color.typeBackground,
+            borderTop: `${releaseYearCardColor(
+              card.set.releaseDate
+            )} 2px solid`,
             height: !card.tcgplayer?.prices ? "20%" : "auto",
             display: "flex",
             flexWrap: "wrap",
