@@ -20,7 +20,7 @@ import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 
-export const Home = () => {
+const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [showDeleteNotification, setShowDeleteNotification] =

@@ -30,8 +30,8 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         justifyContent: `${windowSize() === "S" ? "center" : "space-between"}`,
       }}
     >
-      <h1>
-        Mad's Trade Calculator
+      <h2>
+        Mad&apos;s Trade Calculator
         <span
           style={{
             marginLeft: "1rem",
@@ -42,7 +42,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         >
           V 0.1.0
         </span>
-      </h1>
+      </h2>
 
       {windowSize() !== "S" && (
         <div style={{ marginTop: "1.5rem" }}>
