@@ -67,14 +67,6 @@ export const IconButton = ({
   colorIcon,
   filled,
 }: IIconProps) => {
-  console.log(
-    icon,
-    filled
-      ? color.buttonBorder
-      : icon === "X" || icon === "<"
-      ? color.buttonBorder
-      : colorIcon
-  );
   return (
     <button
       style={{
