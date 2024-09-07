@@ -7,7 +7,6 @@ import {
   CurrencyDollar,
   Calendar3,
   Trash3Fill,
-  Trash3,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -115,10 +114,48 @@ export const CardTypeButton = ({
   clickFn,
   filled,
 }: ICardTypeProps) => {
+  console.log(type);
+  const backgroundColor = () => {
+    let typeColor = "";
+    if (type === "1st") {
+      typeColor = color.typeFirst;
+    } else {
+      if (type === "1st Holo") {
+        typeColor = color.typeFirstHolo;
+      } else {
+        if (type === "1st Normal") {
+          typeColor = color.typeFirstNormal;
+        } else {
+          if (type === "Holo") {
+            typeColor = color.typeHolo;
+          } else {
+            if (type === "Normal") {
+              typeColor = color.typeNormal;
+            } else {
+              if (type === "rev Holo") {
+                typeColor = color.typeRevHolo;
+              } else {
+                if (type === "Unlimit") {
+                  typeColor = color.typeUnlimit;
+                } else {
+                  if (type === "Unlimit Holo") {
+                    typeColor = color.typeUnlimitHolo;
+                  } else {
+                    typeColor = "";
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return typeColor;
+  };
   return (
     <button
       style={{
-        background: `${filled ? color.buttonBackground : "none"}`,
+        background: backgroundColor(), //`${filled ? color.buttonBackground : "none"}`,
         height: "2rem",
         width: "max-content",
         display: "flex",
@@ -129,6 +166,7 @@ export const CardTypeButton = ({
         borderRadius: "10px",
         padding: "0.2rem 0.5rem",
         color: color.black,
+        cursor: "pointer",
       }}
       onClick={() => clickFn !== undefined && clickFn({ card, type })}
     >

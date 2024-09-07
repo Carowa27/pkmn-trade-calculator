@@ -33,27 +33,14 @@ export const PkmnCardSearch = ({
     <div
       style={{
         width: cardWidth,
-        height:
-          card.rarity === "Common" ||
-          card.rarity === "Uncommon" ||
-          card.rarity === "Rare" ||
-          card.rarity === "Double Rare"
-            ? "12.3rem"
-            : "20.4rem",
+        height: "17.5rem",
         backgroundColor: releaseYearCardColor(card.set.releaseDate),
         borderRadius: "10px",
       }}
     >
       <div
         style={{
-          aspectRatio: "4/3",
-          height:
-            card.rarity === "Common" ||
-            card.rarity === "Uncommon" ||
-            card.rarity === "Rare" ||
-            card.rarity === "Double Rare"
-              ? "9.375rem"
-              : "17.5rem",
+          height: "100%",
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
@@ -61,63 +48,77 @@ export const PkmnCardSearch = ({
           backgroundRepeat: "no-repeat",
           backgroundPosition: "top",
           backgroundSize: "100% auto",
-        }}
-      ></div>
-      <div
-        style={{
-          height: !card.tcgplayer?.prices ? "20%" : "auto",
           display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          paddingBottom: "0.2rem",
-          margin: "0.4rem 0 0.3rem 0",
+          alignItems: "end",
         }}
       >
-        {card.tcgplayer && card.tcgplayer.prices ? (
-          <>
-            {card.tcgplayer?.prices["1stEdition"]?.market ? (
-              <CardTypeButton type="1st" card={card} clickFn={saveCard} />
-            ) : null}
-            {card.tcgplayer?.prices["1stEditionHolofoil"] && (
-              <CardTypeButton type="1st Holo" card={card} clickFn={saveCard} />
-            )}
-            {card.tcgplayer?.prices["1stEditionNormal"] && (
-              <CardTypeButton
-                type="1st Normal"
-                card={card}
-                clickFn={saveCard}
-              />
-            )}
-            {card.tcgplayer?.prices.holofoil && (
-              <CardTypeButton type="Holo" card={card} clickFn={saveCard} />
-            )}
-            {card.tcgplayer?.prices.normal && (
-              <CardTypeButton type="Normal" card={card} clickFn={saveCard} />
-            )}
-            {card.tcgplayer?.prices.reverseHolofoil && (
-              <CardTypeButton type="rev Holo" card={card} clickFn={saveCard} />
-            )}
-            {card.tcgplayer?.prices.unlimited && (
-              <CardTypeButton type="Unlimit" card={card} clickFn={saveCard} />
-            )}
-            {card.tcgplayer?.prices.unlimitedHolofoil && (
-              <CardTypeButton
-                type="Unlimit Holo"
-                card={card}
-                clickFn={saveCard}
-              />
-            )}
-          </>
-        ) : (
-          <h5
-            style={{
-              color: color.black,
-            }}
-          >
-            No info found
-          </h5>
-        )}
+        <div
+          style={{
+            width: "100%",
+            backgroundColor: releaseYearCardColor(card.set.releaseDate),
+            borderTop: "grey 2px solid",
+            height: !card.tcgplayer?.prices ? "20%" : "auto",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            gap: "1rem",
+            padding: "0.4rem 0 0.5rem 0",
+          }}
+        >
+          {card.tcgplayer && card.tcgplayer.prices ? (
+            <>
+              {card.tcgplayer?.prices["1stEdition"]?.market ? (
+                <CardTypeButton type="1st" card={card} clickFn={saveCard} />
+              ) : null}
+              {card.tcgplayer?.prices["1stEditionHolofoil"] && (
+                <CardTypeButton
+                  type="1st Holo"
+                  card={card}
+                  clickFn={saveCard}
+                />
+              )}
+              {card.tcgplayer?.prices["1stEditionNormal"] && (
+                <CardTypeButton
+                  type="1st Normal"
+                  card={card}
+                  clickFn={saveCard}
+                />
+              )}
+              {card.tcgplayer?.prices.holofoil && (
+                <CardTypeButton type="Holo" card={card} clickFn={saveCard} />
+              )}
+              {card.tcgplayer?.prices.normal && (
+                <CardTypeButton type="Normal" card={card} clickFn={saveCard} />
+              )}
+              {card.tcgplayer?.prices.reverseHolofoil && (
+                <CardTypeButton
+                  type="rev Holo"
+                  card={card}
+                  clickFn={saveCard}
+                />
+              )}
+              {card.tcgplayer?.prices.unlimited && (
+                <CardTypeButton type="Unlimit" card={card} clickFn={saveCard} />
+              )}
+              {card.tcgplayer?.prices.unlimitedHolofoil && (
+                <CardTypeButton
+                  type="Unlimit Holo"
+                  card={card}
+                  clickFn={saveCard}
+                />
+              )}
+            </>
+          ) : (
+            <h5
+              style={{
+                color: color.black,
+              }}
+            >
+              No info found
+            </h5>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -15,4 +15,13 @@ export const color = {
 
   pkmnCardYellow: "#ffcb05",
   pkmnCardGrey: "#CBCBCB",
+
+  typeFirst: "lightgrey",
+  typeFirstHolo: "lightgrey",
+  typeFirstNormal: "lightgrey",
+  typeHolo: "lightgrey",
+  typeNormal: "lightgrey",
+  typeRevHolo: "lightgrey",
+  typeUnlimit: "lightgrey",
+  typeUnlimitHolo: "lightgrey",
 };
