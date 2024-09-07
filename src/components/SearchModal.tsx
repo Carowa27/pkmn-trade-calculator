@@ -38,7 +38,6 @@ export const SearchModal = ({
     setSearch("card");
     setPageNr(1);
   };
-  // console.log(savedSet);
   const getSets = async (page: number) => {
     await getSetsFromApi(page).then((res) => {
       if (!res || res.data.length === 0) {
@@ -66,7 +65,6 @@ export const SearchModal = ({
     }
   };
   const getCardsInSet = async (set: IPkmnSet, page: number) => {
-    console.log(set);
     await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, page).then((res) => {
       if (!res || res.data.length === 0) {
         setNoHits(true);
@@ -100,6 +98,13 @@ export const SearchModal = ({
       }
     }
   }, [search]);
+  useEffect(() => {
+    setCardList([]);
+    if (savedSet !== undefined) {
+      setIsLoading(true);
+      getCardsInSet(savedSet, 1);
+    }
+  }, [savedSet]);
   return (
     <>
       <section
