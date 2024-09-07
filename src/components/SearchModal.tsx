@@ -2,8 +2,8 @@ import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
-import { PkmnSet } from "./pkmnSet";
-import { PkmnCardSearch } from "./pkmnCard";
+import { PkmnSet } from "./PkmnSet";
+import { PkmnCardSearch } from "./PkmnCard";
 import { Pagination } from "./Pagination";
 import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
@@ -38,6 +38,7 @@ export const SearchModal = ({
     setSearch("card");
     setPageNr(1);
   };
+  // console.log(savedSet);
   const getSets = async (page: number) => {
     await getSetsFromApi(page).then((res) => {
       if (!res || res.data.length === 0) {
@@ -65,6 +66,7 @@ export const SearchModal = ({
     }
   };
   const getCardsInSet = async (set: IPkmnSet, page: number) => {
+    console.log(set);
     await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, page).then((res) => {
       if (!res || res.data.length === 0) {
         setNoHits(true);

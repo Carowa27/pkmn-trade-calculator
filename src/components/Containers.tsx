@@ -1,6 +1,6 @@
 import { ScrSize, windowSize } from "@/functions/windowSizes";
 import { IconButton, PrimaryButton } from "./Buttons";
-import { PkmnCardTrader } from "./pkmnCard";
+import { PkmnCardTrader } from "./PkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { color } from "@/utils/color";
 import { useState } from "react";

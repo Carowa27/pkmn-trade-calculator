@@ -1,5 +1,5 @@
 import { IconButton, PrimaryButton } from "./Buttons";
-import { PkmnCard } from "./pkmnCard";
+import { PkmnCard } from "./PkmnCard";
 import { IRemoveCard } from "@/interfaces/interfaces";
 import { windowSize } from "@/functions/windowSizes";
 import { color } from "@/utils/color";

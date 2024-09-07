@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
-import { SearchModal } from "../components/searchModal";
+import { SearchModal } from "../components/SearchModal";
 import {
   ArrowDown,
   ArrowLeft,
