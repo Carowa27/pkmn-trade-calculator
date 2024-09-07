@@ -5,7 +5,6 @@ import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { releaseYearCardColor } from "@/functions/releaseYearFn";
-import { CurrencyDollar } from "react-bootstrap-icons";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -30,7 +29,6 @@ export const PkmnCardSearch = ({
   saveCard,
   cardWidth,
 }: IPkmnCardSearchProps) => {
-  console.log(card);
   return (
     <div
       style={{
@@ -52,7 +50,7 @@ export const PkmnCardSearch = ({
       ></div>
       <div
         style={{
-          height: !card.tcgplayer && !card.cardmarket ? "20%" : "auto",
+          height: !card.tcgplayer?.prices ? "20%" : "auto",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
