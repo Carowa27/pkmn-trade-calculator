@@ -1,4 +1,5 @@
 export enum ScrSize {
+  XS = "XS",
   S = "S",
   M = "M",
   L = "L",
@@ -24,21 +25,45 @@ export const windowSize = () => {
     return ScrSize.XXL;
   }
 
-  if (innerWidth <= sBr) {
-    return ScrSize.S;
+  if (innerWidth < sBr) {
+    return ScrSize.XS;
   } else {
-    if (innerWidth <= mBr) {
-      return ScrSize.M;
-    } else {
-      if (innerWidth <= lBr) {
-        return ScrSize.L;
-      } else {
-        if (innerWidth <= xlBr) {
-          return ScrSize.XL;
+    if (innerWidth >= sBr) {
+      if (innerWidth >= mBr) {
+        if (innerWidth >= lBr) {
+          if (innerWidth >= xlBr) {
+            if (innerWidth >= xxlBr) {
+              return ScrSize.XXL;
+            }
+          } else {
+            return ScrSize.XL;
+          }
         } else {
-          return ScrSize.XXL;
+          return ScrSize.L;
         }
+      } else {
+        return ScrSize.M;
       }
+    } else {
+      return ScrSize.S;
     }
   }
+
+  // if (innerWidth <= sBr) {
+  //   return ScrSize.S;
+  // } else {
+  //   if (innerWidth <= mBr) {
+  //     return ScrSize.M;
+  //   } else {
+  //     if (innerWidth <= lBr) {
+  //       return ScrSize.L;
+  //     } else {
+  //       if (innerWidth <= xlBr) {
+  //         return ScrSize.XL;
+  //       } else {
+  //         return ScrSize.XXL;
+  //       }
+  //     }
+  //   }
+  // }
 };
