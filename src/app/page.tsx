@@ -202,9 +202,15 @@ const Home = () => {
           flexDirection: `${
             windowSize() === "S" || windowSize() === "XS" ? "column" : "row"
           }`,
-          // gap: "1rem",
+          gap: `${
+            windowSize() === "S" || windowSize() === "XS" ? "0.5rem" : ""
+          }`,
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: `${
+            windowSize() === "S" || windowSize() === "XS"
+              ? "start"
+              : "space-between"
+          }`,
           margin: "0 2rem 0.5rem 2rem",
         }}
       >

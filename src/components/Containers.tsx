@@ -101,7 +101,7 @@ export const TradersMat = ({
           windowSize() === "S" || windowSize() === "XS" ? "90vw" : "45vw"
         }`,
         height: `${
-          windowSize() === "S" || windowSize() === "XS" ? "39vh" : "85vh"
+          windowSize() === "S" || windowSize() === "XS" ? "35vh" : "85vh"
         }`,
         display: "flex",
         flexDirection: "column",
