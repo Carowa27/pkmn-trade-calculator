@@ -126,8 +126,18 @@ export const SearchModal = ({
       >
         <article
           style={{
-            width: windowSize() === "S" ? "90vw" : "70vw",
-            height: windowSize() === "S" ? "90vh" : "80vh",
+            width:
+              windowSize() === "S"
+                ? "90vw"
+                : windowSize() === "XS"
+                ? "95vw"
+                : "70vw",
+            height:
+              windowSize() === "S"
+                ? "90vh"
+                : windowSize() === "XS"
+                ? "94vh"
+                : "80vh",
             background: "grey",
             borderRadius: "20px",
             border: "2px solid lightgrey",
