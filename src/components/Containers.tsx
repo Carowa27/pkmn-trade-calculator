@@ -23,10 +23,11 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
   return (
     <header
       style={{
+        width: "100%",
         height: "3vh",
         margin: `${
           windowSize() === "S" || windowSize() === "XS"
-            ? "1rem"
+            ? "0.5rem 0rem"
             : "1rem 2rem 1rem 2rem"
         }`,
         display: "flex",

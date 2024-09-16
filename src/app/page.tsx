@@ -205,7 +205,7 @@ const Home = () => {
           // gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
-          margin: "0 2rem 1rem 2rem",
+          margin: "0 2rem 0.5rem 2rem",
         }}
       >
         <TradersMat
