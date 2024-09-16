@@ -4,10 +4,7 @@ import { CardTypeButton, IconButton } from "./Buttons";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
-import {
-  rarityCardColor,
-  releaseYearCardColor,
-} from "@/functions/releaseYearFn";
+import { rarityCardColor } from "@/functions/releaseYearFn";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
