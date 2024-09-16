@@ -1,3 +1,4 @@
+import { windowSize } from "@/functions/windowSizes";
 import { useEffect, useState } from "react";
 
 export const LoadingModule = () => {
@@ -12,7 +13,13 @@ export const LoadingModule = () => {
   }, []);
   return (
     <>
-      <h3>
+      <h3
+        style={
+          windowSize() === "XS" || windowSize() === "S"
+            ? { marginLeft: "1.25rem" }
+            : { marginLeft: "0" }
+        }
+      >
         Loading..
         {isThirdDot ? <>.</> : null}
       </h3>
