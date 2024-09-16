@@ -112,13 +112,25 @@ const Home = () => {
       .replaceAll("-", "");
     setDiffSum(diff);
   }, [showModal, traderOne, traderTwo]);
+
+  let screenHeight: number | null = null;
+  if (typeof window !== "undefined" && window !== null) {
+    screenHeight = window.innerHeight;
+  }
+
   return (
     <main
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100vh",
+        height: `${
+          windowSize() === "S" || windowSize() === "XS"
+            ? screenHeight
+              ? screenHeight + "px"
+              : "95vh"
+            : "100vh"
+        }`,
         background: color.black,
       }}
     >
@@ -127,6 +139,12 @@ const Home = () => {
           setCardsToClear("all cards"), setShowClearNotification(true)
         )}
       />
+      {/* <PrimaryButton
+        btnText="Clear all cards"
+        clickFn={() => (
+          setCardsToClear("all cards"), setShowClearNotification(true)
+        )}
+      /> */}
       {showNotification && (
         <NotificationWindow
           closeNotification={closeNotification}
@@ -346,15 +364,6 @@ const Home = () => {
             setCardsToClear("trader two"), setShowClearNotification(true)
           )}
         />
-        {windowSize() === "S" ||
-          (windowSize() === "XS" && (
-            <PrimaryButton
-              btnText="Clear all cards"
-              clickFn={() => (
-                setCardsToClear("all cards"), setShowClearNotification(true)
-              )}
-            />
-          ))}
       </div>
     </main>
   );

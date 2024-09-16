@@ -92,6 +92,12 @@ export const TradersMat = ({
     setSortBy(param);
     sortCards({ cards, sortBy: param });
   };
+
+  let screenHeight: number | null = null;
+  if (typeof window !== "undefined" && window !== null) {
+    screenHeight = window.innerHeight;
+  }
+
   return (
     <div
       style={{
@@ -101,7 +107,11 @@ export const TradersMat = ({
           windowSize() === "S" || windowSize() === "XS" ? "90vw" : "45vw"
         }`,
         height: `${
-          windowSize() === "S" || windowSize() === "XS" ? "35vh" : "85vh"
+          windowSize() === "S" || windowSize() === "XS"
+            ? screenHeight
+              ? screenHeight / 2 - 80 + "px"
+              : "35vh"
+            : "85vh"
         }`,
         display: "flex",
         flexDirection: "column",
