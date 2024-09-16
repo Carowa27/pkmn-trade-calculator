@@ -36,13 +36,12 @@ export const PkmnCardSearch = ({
     <div
       style={{
         width: cardWidth,
-        height: "17.5rem",
         borderRadius: "10px",
       }}
     >
       <div
         style={{
-          height: "100%",
+          aspectRatio: "3/4",
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
@@ -67,7 +66,7 @@ export const PkmnCardSearch = ({
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "space-evenly",
-            gap: "1rem",
+            gap: "0.5rem",
             padding: "0.4rem 0 0.5rem 0",
           }}
         >
