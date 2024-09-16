@@ -1,4 +1,4 @@
-import { IPkmnCard, IPkmnSet } from "@/app/dataFromApi";
+import { IPkmnCard, IPkmnSet } from "@/interfaces/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";

@@ -1,4 +1,4 @@
-import { IPkmnSet } from "@/app/dataFromApi";
+import { IPkmnSet } from "@/interfaces/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 
 interface pkmnSetProps {

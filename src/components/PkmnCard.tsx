@@ -1,4 +1,4 @@
-import { IPkmnCard } from "@/app/dataFromApi";
+import { IPkmnCard } from "@/interfaces/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";

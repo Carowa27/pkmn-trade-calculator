@@ -1,4 +1,4 @@
-import { IPkmnCard } from "@/app/dataFromApi";
+import { IPkmnCard } from "@/interfaces/dataFromApi";
 import { ISavedCard } from "@/interfaces/interfaces";
 
 export interface ICardSumProps {
