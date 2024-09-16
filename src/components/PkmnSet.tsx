@@ -71,6 +71,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                   textAlign: "center",
                   paddingTop: "0.5rem",
                   overflow: "hidden scroll",
+                  scrollbarWidth: "none",
                 }}
               >
                 {set.name.includes("Trainer Gallery")
