@@ -15,9 +15,16 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
           style={{
             aspectRatio: "1/1",
             border: "2px white solid",
-            height: `${windowSize() === "S" ? "9rem" : "11rem"}`,
+            height: `${
+              windowSize() === "S"
+                ? "9rem"
+                : windowSize() === "XS"
+                ? "8rem"
+                : "11rem"
+            }`,
             borderRadius: "10px",
           }}
+          title={set.name}
         >
           <div
             className="three"
@@ -63,12 +70,15 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                   textWrap: "wrap",
                   textAlign: "center",
                   paddingTop: "0.5rem",
+                  overflow: "hidden scroll",
                 }}
               >
                 {set.name.includes("Trainer Gallery")
                   ? set.name.replace("Trainer Gallery", "TG")
                   : set.name.includes("Galarian Gallery")
                   ? set.name.replace("Galarian Gallery", "GG")
+                  : set.name.includes("Black Star Promos")
+                  ? set.name.replace("Black Star Promos", "BSP")
                   : set.name}
               </h4>
             </div>

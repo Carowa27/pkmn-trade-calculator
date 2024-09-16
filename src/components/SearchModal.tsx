@@ -182,7 +182,8 @@ export const SearchModal = ({
           <section
             className="modalBody"
             style={{
-              margin: "1.25rem 1.25rem 0.25rem 1.25rem",
+              margin:
+                windowSize() === "XS" ? "0" : "1.25rem 1.25rem 0.25rem 1.25rem",
               width: windowSize() === "S" ? "90%" : "100%",
               display: "flex",
               justifyContent: "center",
@@ -191,14 +192,18 @@ export const SearchModal = ({
           >
             <div
               style={{
-                width: windowSize() === "S" ? "100%" : "90%",
+                width:
+                  windowSize() === "S" || windowSize() === "XS"
+                    ? "100%"
+                    : "90%",
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "space-evenly",
                 gap: "1rem",
                 overflow: "hidden visible",
                 height: "100%",
-                paddingRight: windowSize() === "S" ? 0 : "0.5rem",
+                paddingRight:
+                  windowSize() === "S" || windowSize() === "XS" ? 0 : "0.5rem",
               }}
             >
               {noHits || isLoading ? (
