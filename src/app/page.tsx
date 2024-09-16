@@ -139,12 +139,6 @@ const Home = () => {
           setCardsToClear("all cards"), setShowClearNotification(true)
         )}
       />
-      {/* <PrimaryButton
-        btnText="Clear all cards"
-        clickFn={() => (
-          setCardsToClear("all cards"), setShowClearNotification(true)
-        )}
-      /> */}
       {showNotification && (
         <NotificationWindow
           closeNotification={closeNotification}

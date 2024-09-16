@@ -23,7 +23,6 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
   return (
     <header
       style={{
-        width: "100%",
         height: "3vh",
         margin: `${
           windowSize() === "S" || windowSize() === "XS"
@@ -53,12 +52,11 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         </span>
       </h2>
 
-      {windowSize() !== "S" ||
-        (windowSize() === "XS" && (
-          <div style={{ marginTop: "1.5rem" }}>
-            <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
-          </div>
-        ))}
+      {windowSize() !== "S" && windowSize() !== "XS" && (
+        <div style={{ marginTop: "1.5rem" }}>
+          <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+        </div>
+      )}
     </header>
   );
 };
