@@ -133,106 +133,108 @@ export const TradersMat = ({
             : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
           $
         </p>
+        <IconButton
+          icon={"trash"}
+          size={25}
+          colorIcon={color.white}
+          clickFn={clearCards}
+          filled={false}
+        />
       </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "0 1.5rem",
-          marginBottom: `${
-            windowSize() === "S" || windowSize() === "XS" ? "1rem" : "0.5rem"
-          }`,
-          gap: "1.5rem",
-        }}
-      >
-        {cards.length !== 0 && cards !== undefined && (
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-            }}
-          >
-            <p
+      {windowSize() !== "S" && windowSize() !== "XS" && (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 1.5rem",
+            marginBottom: `${
+              windowSize() === "S" || windowSize() === "XS" ? "1rem" : "0.5rem"
+            }`,
+            gap: "1.5rem",
+          }}
+        >
+          {cards.length !== 0 && cards !== undefined && (
+            <div
               style={{
-                fontSize: 20,
                 display: "flex",
-                alignSelf: "center",
-                justifySelf: "center",
-                paddingBottom: "0.4rem",
+                gap: "1rem",
               }}
             >
-              Sort
-            </p>
-            <IconButton
-              icon={"sortValue"}
-              size={20}
-              colorIcon={`${
-                sortBy === "valueHighLow" || sortBy === "valueLowHigh"
-                  ? color.white
-                  : color.false
-              }`}
-              clickFn={() => {
-                if (sortBy === "valueHighLow") {
-                  changeSortBy("valueLowHigh");
-                } else {
-                  changeSortBy("valueHighLow");
-                }
-              }}
-              filled={false}
-            />
-            <IconButton
-              icon={"sortName"}
-              size={20}
-              colorIcon={`${
-                sortBy === "nameAZ" || sortBy === "nameZA"
-                  ? color.white
-                  : color.false
-              }`}
-              clickFn={() => {
-                if (sortBy === "nameAZ") {
-                  changeSortBy("nameZA");
-                } else {
-                  changeSortBy("nameAZ");
-                }
-              }}
-              filled={false}
-            />
-            <IconButton
-              icon={"sortRelease"}
-              size={18}
-              colorIcon={`${
-                sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
-                  ? color.white
-                  : color.false
-              }`}
-              clickFn={() => {
-                if (sortBy === "releaseOldNew") {
-                  changeSortBy("releaseNewOld");
-                } else {
-                  changeSortBy("releaseOldNew");
-                }
-              }}
-              filled={false}
-            />
-          </div>
-        )}
-        {cards.length !== 0 && (
-          <>
-            {windowSize() === "S" || windowSize() === "XS" ? (
+              <p
+                style={{
+                  fontSize: 20,
+                  display: "flex",
+                  alignSelf: "center",
+                  justifySelf: "center",
+                  paddingBottom: "0.4rem",
+                }}
+              >
+                Sort
+              </p>
               <IconButton
-                icon={"trash"}
-                size={25}
-                colorIcon={color.white}
-                clickFn={clearCards}
+                icon={"sortValue"}
+                size={20}
+                colorIcon={`${
+                  sortBy === "valueHighLow" || sortBy === "valueLowHigh"
+                    ? color.white
+                    : color.false
+                }`}
+                clickFn={() => {
+                  if (sortBy === "valueHighLow") {
+                    changeSortBy("valueLowHigh");
+                  } else {
+                    changeSortBy("valueHighLow");
+                  }
+                }}
                 filled={false}
               />
-            ) : (
-              <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
-            )}
-          </>
-        )}
-      </div>
+              <IconButton
+                icon={"sortName"}
+                size={20}
+                colorIcon={`${
+                  sortBy === "nameAZ" || sortBy === "nameZA"
+                    ? color.white
+                    : color.false
+                }`}
+                clickFn={() => {
+                  if (sortBy === "nameAZ") {
+                    changeSortBy("nameZA");
+                  } else {
+                    changeSortBy("nameAZ");
+                  }
+                }}
+                filled={false}
+              />
+              <IconButton
+                icon={"sortRelease"}
+                size={18}
+                colorIcon={`${
+                  sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
+                    ? color.white
+                    : color.false
+                }`}
+                clickFn={() => {
+                  if (sortBy === "releaseOldNew") {
+                    changeSortBy("releaseNewOld");
+                  } else {
+                    changeSortBy("releaseOldNew");
+                  }
+                }}
+                filled={false}
+              />
+            </div>
+          )}
+          {cards.length !== 0 && (
+            <>
+              {windowSize() !== "S" ||
+                (windowSize() !== "XS" && (
+                  <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
+                ))}
+            </>
+          )}
+        </div>
+      )}
       <div
         style={{
           width: "95%",
