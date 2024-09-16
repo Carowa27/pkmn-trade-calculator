@@ -143,7 +143,7 @@ export const PkmnCardTrader = ({
       style={{
         width: cardWidth,
         aspectRatio: "1/1",
-        backgroundColor: releaseYearCardColor(card.set.releaseDate),
+        backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
         borderRadius: "10px",
       }}
     >
@@ -188,7 +188,7 @@ export const PkmnCardTrader = ({
       >
         <h5 style={{ color: color.black }}>{chosenType}</h5>
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
-          {windowSize() !== "S" || (windowSize() === "XS" && "Value: ")}
+          {windowSize() !== "S" && windowSize() !== "XS" && "Value: "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $
         </p>
