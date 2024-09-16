@@ -24,10 +24,18 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
     <header
       style={{
         height: "3vh",
-        margin: `${windowSize() === "S" ? "1rem" : "1rem 2rem 1rem 2rem"}`,
+        margin: `${
+          windowSize() === "S" || windowSize() === "XS"
+            ? "1rem"
+            : "1rem 2rem 1rem 2rem"
+        }`,
         display: "flex",
         alignItems: "center",
-        justifyContent: `${windowSize() === "S" ? "center" : "space-between"}`,
+        justifyContent: `${
+          windowSize() === "S" || windowSize() === "XS"
+            ? "center"
+            : "space-between"
+        }`,
       }}
     >
       <h2>
@@ -44,11 +52,12 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         </span>
       </h2>
 
-      {windowSize() !== "S" && (
-        <div style={{ marginTop: "1.5rem" }}>
-          <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
-        </div>
-      )}
+      {windowSize() !== "S" ||
+        (windowSize() === "XS" && (
+          <div style={{ marginTop: "1.5rem" }}>
+            <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+          </div>
+        ))}
     </header>
   );
 };
@@ -87,8 +96,12 @@ export const TradersMat = ({
       style={{
         backgroundColor: "#8AA39988",
         borderRadius: "10px",
-        width: `${windowSize() === "S" ? "90vw" : "45vw"}`,
-        height: `${windowSize() === "S" ? "39vh" : "85vh"}`,
+        width: `${
+          windowSize() === "S" || windowSize() === "XS" ? "90vw" : "45vw"
+        }`,
+        height: `${
+          windowSize() === "S" || windowSize() === "XS" ? "39vh" : "85vh"
+        }`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -127,7 +140,9 @@ export const TradersMat = ({
           display: "flex",
           justifyContent: "space-between",
           padding: "0 1.5rem",
-          marginBottom: `${windowSize() === "S" ? "1rem" : "0.5rem"}`,
+          marginBottom: `${
+            windowSize() === "S" || windowSize() === "XS" ? "1rem" : "0.5rem"
+          }`,
           gap: "1.5rem",
         }}
       >
@@ -204,7 +219,7 @@ export const TradersMat = ({
         )}
         {cards.length !== 0 && (
           <>
-            {windowSize() === "S" ? (
+            {windowSize() === "S" || windowSize() === "XS" ? (
               <IconButton
                 icon={"trash"}
                 size={25}
@@ -221,7 +236,9 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
-          maxHeight: `${windowSize() === "S" ? "67%" : "85%"}`,
+          maxHeight: `${
+            windowSize() === "S" || windowSize() === "XS" ? "67%" : "85%"
+          }`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -230,14 +247,18 @@ export const TradersMat = ({
           overflow: "hidden visible",
           paddingRight: "0.5rem",
           paddingTop: "0.5rem",
-          marginTop: `${windowSize() === "S" ? "0" : "0.5rem"}`,
+          marginTop: `${
+            windowSize() === "S" || windowSize() === "XS" ? "0" : "0.5rem"
+          }`,
         }}
       >
         {cards?.map((item, i) => {
           return (
             <PkmnCardTrader
               card={item.card}
-              cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
+              cardWidth={`${
+                windowSize() === "S" || windowSize() === "XS" ? "6rem" : "8rem"
+              }`}
               key={item.card.id + "-" + i}
               chosenType={item.type}
               removeCard={removeCard}

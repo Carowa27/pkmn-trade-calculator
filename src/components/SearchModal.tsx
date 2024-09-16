@@ -238,7 +238,9 @@ export const SearchModal = ({
                         card={card}
                         saveCard={changeTradersCards}
                         cardWidth={`${
-                          windowSize() === "S" ? "8rem" : "12.5rem"
+                          windowSize() === "S" || windowSize() === "XS"
+                            ? "8rem"
+                            : "12.5rem"
                         }`}
                         key={card.id + "-" + i}
                       />

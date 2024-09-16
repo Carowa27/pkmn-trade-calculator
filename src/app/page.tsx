@@ -195,9 +195,13 @@ const Home = () => {
       )}
       <div
         style={{
-          height: `${windowSize() === "S" ? "97vh" : "95vh"}`,
+          height: `${
+            windowSize() === "S" || windowSize() === "XS" ? "97vh" : "95vh"
+          }`,
           display: "flex",
-          flexDirection: `${windowSize() === "S" ? "column" : "row"}`,
+          flexDirection: `${
+            windowSize() === "S" || windowSize() === "XS" ? "column" : "row"
+          }`,
           // gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
@@ -226,7 +230,11 @@ const Home = () => {
         />
         <section
           style={{
-            height: `${windowSize() === "S" ? "min-content" : "100%"}`,
+            height: `${
+              windowSize() === "S" || windowSize() === "XS"
+                ? "min-content"
+                : "100%"
+            }`,
             display: "flex",
             flexDirection: "column", //`${windowSize() === "S" ? "row" : "column"}`,
             alignItems: "center",
@@ -238,7 +246,9 @@ const Home = () => {
             style={{
               width: "70%",
               display: "flex",
-              flexDirection: `${windowSize() === "S" ? "row" : "column"}`,
+              flexDirection: `${
+                windowSize() === "S" || windowSize() === "XS" ? "row" : "column"
+              }`,
             }}
           >
             <div
@@ -268,7 +278,7 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize() === "S" ? (
+              {windowSize() === "S" || windowSize() === "XS" ? (
                 <ArrowUp size={40} />
               ) : (
                 <ArrowLeft size={40} />
@@ -302,7 +312,7 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize() === "S" ? (
+              {windowSize() === "S" || windowSize() === "XS" ? (
                 <ArrowDown size={40} />
               ) : (
                 <ArrowRight size={40} />
@@ -330,14 +340,15 @@ const Home = () => {
             setCardsToClear("trader two"), setShowClearNotification(true)
           )}
         />
-        {windowSize() === "S" && (
-          <PrimaryButton
-            btnText="Clear all cards"
-            clickFn={() => (
-              setCardsToClear("all cards"), setShowClearNotification(true)
-            )}
-          />
-        )}
+        {windowSize() === "S" ||
+          (windowSize() === "XS" && (
+            <PrimaryButton
+              btnText="Clear all cards"
+              clickFn={() => (
+                setCardsToClear("all cards"), setShowClearNotification(true)
+              )}
+            />
+          ))}
       </div>
     </main>
   );

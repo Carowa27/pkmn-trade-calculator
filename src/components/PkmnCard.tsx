@@ -44,7 +44,9 @@ export const PkmnCardSearch = ({
           aspectRatio: "3/4",
           width: cardWidth,
           overflow: "hidden",
-          borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+          borderRadius: `${
+            windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+          }`,
           backgroundImage: ` url(${card.images.small})`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "top",
@@ -150,7 +152,9 @@ export const PkmnCardTrader = ({
           aspectRatio: "4/3",
           width: cardWidth,
           overflow: "hidden",
-          borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+          borderRadius: `${
+            windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+          }`,
           backgroundImage: ` url(${card.images.small})`,
           backgroundPosition: "top",
           backgroundSize: "100% auto",
@@ -184,7 +188,7 @@ export const PkmnCardTrader = ({
       >
         <h5 style={{ color: color.black }}>{chosenType}</h5>
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
-          {windowSize() !== "S" && "Value: "}
+          {windowSize() !== "S" || (windowSize() === "XS" && "Value: ")}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $
         </p>
@@ -209,7 +213,9 @@ export const PkmnCard = ({ card, cardWidth }: IPkmnCardProps) => {
             width: cardWidth,
             height: "auto",
             overflow: "hidden",
-            borderRadius: `${windowSize() === "S" ? "5px" : "10px"}`,
+            borderRadius: `${
+              windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+            }`,
             backgroundPosition: "top",
             backgroundSize: "100% auto",
           }}
