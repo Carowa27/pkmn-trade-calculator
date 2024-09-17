@@ -142,13 +142,16 @@ export const TradersMat = ({
             : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
           $
         </p>
-        <IconButton
-          icon={"trash"}
-          size={25}
-          colorIcon={color.white}
-          clickFn={clearCards}
-          filled={false}
-        />
+        {(globalValue?.breakpoint === "S" ||
+          globalValue?.breakpoint === "XS") && (
+          <IconButton
+            icon={"trash"}
+            size={25}
+            colorIcon={color.white}
+            clickFn={clearCards}
+            filled={false}
+          />
+        )}
       </div>
       {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
         <div
