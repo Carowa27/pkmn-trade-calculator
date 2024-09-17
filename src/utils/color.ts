@@ -10,7 +10,7 @@ export const color = {
   primaryText: "",
 
   primaryBackground: "",
-  buttonBackground: "lightgrey",
+  buttonBackground: "#F7F8FF",
   buttonBorder: "grey solid 1px",
 
   pkmnCardYellow: "#FFCB05",
