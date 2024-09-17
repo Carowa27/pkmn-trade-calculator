@@ -115,7 +115,7 @@ const Home = () => {
   }, [showModal, traderOne, traderTwo]);
   useEffect(() => {
     if (globalValue !== undefined) {
-      console.log(globalValue?.screen.height, "if");
+      console.log("home", globalValue?.breakpoint, globalValue?.screen);
     } else {
       console.log("else undef");
     }
