@@ -130,6 +130,7 @@ export const SearchModal = ({
       >
         <article
           style={{
+            padding: "0.5rem",
             width:
               globalValue?.breakpoint === "S"
                 ? "90vw"
@@ -137,14 +138,16 @@ export const SearchModal = ({
                 ? "95vw"
                 : "70vw",
             height:
-              globalValue?.breakpoint === "S"
-                ? "90vh"
-                : globalValue?.breakpoint === "XS"
-                ? "94vh"
+              globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS"
+                ? globalValue.screen.height - 20 + "px"
                 : "80vh",
             background: "grey",
             borderRadius: "20px",
             border: "2px solid lightgrey",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
           <section
@@ -152,7 +155,7 @@ export const SearchModal = ({
             style={{
               display: "flex",
               alignItems: "center",
-              margin: "20px",
+              margin: "10px",
             }}
           >
             {search === "card" && (
@@ -193,7 +196,13 @@ export const SearchModal = ({
               width: globalValue?.breakpoint === "S" ? "90%" : "100%",
               display: "flex",
               justifyContent: "center",
-              height: globalValue?.breakpoint === "S" ? "85%" : "85%",
+              height:
+                globalValue?.breakpoint === "XS" ||
+                globalValue?.breakpoint === "S" ||
+                globalValue?.breakpoint === "M" ||
+                globalValue?.breakpoint === "L"
+                  ? "80%"
+                  : "85%",
             }}
           >
             <div
@@ -263,7 +272,10 @@ export const SearchModal = ({
           </section>
           <section
             className="modalFooter"
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             {pageInfo && search === "card" && (
               <Pagination
