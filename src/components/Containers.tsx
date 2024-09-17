@@ -106,10 +106,10 @@ export const TradersMat = ({
         }`,
         height: `${
           globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
-            ? screen.height
-              ? screen.height / 2 - 60 + "px"
-              : "35vh"
-            : "85vh"
+            ? globalValue?.screen.height &&
+              globalValue?.screen.height / 2 - 60 + "px"
+            : globalValue?.screen.height &&
+              globalValue?.screen.height - 80 + "px"
         }`,
         display: "flex",
         flexDirection: "column",
