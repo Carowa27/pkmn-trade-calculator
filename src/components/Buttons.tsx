@@ -19,6 +19,7 @@ interface IBtnProps {
 interface IIconProps {
   icon:
     | "X"
+    | "X-mini"
     | "<"
     | "trash"
     | "search"
@@ -65,7 +66,7 @@ export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
     <button
       style={{
         aspectRatio: "1/1",
-        height: "2.5rem",
+        height: icon === "X-mini" ? "auto" : "2.5rem",
         background: "none",
         border: "none",
         borderRadius: "10px",
@@ -86,6 +87,7 @@ export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
         }}
       >
         {icon === "X" && <XLg size={25} />}
+        {icon === "X-mini" && <X size={20} />}
         {icon === "<" && <ArrowLeftShort size={25} />}
         {icon === "search" && <Search size={25} />}
         {icon === "trash" && <Trash3Fill size={25} />}

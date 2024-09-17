@@ -167,32 +167,47 @@ export const PkmnCardTrader = ({
           justifyContent: "end",
         }}
       >
-        <div
+        {/* <div
           style={{
             padding: "0.15rem 0.1rem 0 0 ",
           }}
         >
           <IconButton
             icon={"X"}
-            size={25}
-            colorIcon={"inherit"}
+            colorIcon={"black"}
             clickFn={() => removeCard({ id, trader })}
-            filled
           />
-        </div>
+        </div> */}
       </div>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "space-evenly",
           paddingBottom: "0.2rem",
           margin: "0.3rem 0 0.2rem 0",
         }}
       >
-        <h5 style={{ color: color.black }}>{chosenType}</h5>
-        <p style={{ color: color.black, paddingTop: "0.5rem" }}>
+        <p
+          style={{
+            padding: "0 0.2rem 0 0.7rem",
+            width: "100%",
+            color: color.black,
+            fontWeight: "bold",
+            fontSize: "smaller",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          {chosenType}
+          <IconButton
+            icon={"X-mini"}
+            colorIcon={"inherit"}
+            clickFn={() => removeCard({ id, trader })}
+          />
+        </p>
+        <p style={{ color: color.black, padding: "0.5rem 0.2rem 0 0.7rem" }}>
           {globalValue?.breakpoint !== "S" &&
             globalValue?.breakpoint !== "XS" &&
             "Value: "}
