@@ -125,13 +125,7 @@ export const TradersMat = ({
           alignItems: "center",
         }}
       >
-        <IconButton
-          icon={"search"}
-          size={25}
-          colorIcon={color.white}
-          clickFn={btnFn}
-          filled={false}
-        />
+        <IconButton icon={"search"} colorIcon={color.white} clickFn={btnFn} />
         <p>
           Sum:{" "}
           {trader === "one"
@@ -143,10 +137,8 @@ export const TradersMat = ({
           globalValue?.breakpoint === "XS") && (
           <IconButton
             icon={"trash"}
-            size={25}
             colorIcon={color.white}
             clickFn={clearCards}
-            filled={false}
           />
         )}
       </div>
@@ -181,7 +173,6 @@ export const TradersMat = ({
               </p>
               <IconButton
                 icon={"sortValue"}
-                size={20}
                 colorIcon={`${
                   sortBy === "valueHighLow" || sortBy === "valueLowHigh"
                     ? color.white
@@ -194,11 +185,9 @@ export const TradersMat = ({
                     changeSortBy("valueHighLow");
                   }
                 }}
-                filled={false}
               />
               <IconButton
                 icon={"sortName"}
-                size={20}
                 colorIcon={`${
                   sortBy === "nameAZ" || sortBy === "nameZA"
                     ? color.white
@@ -211,11 +200,9 @@ export const TradersMat = ({
                     changeSortBy("nameAZ");
                   }
                 }}
-                filled={false}
               />
               <IconButton
                 icon={"sortRelease"}
-                size={18}
                 colorIcon={`${
                   sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
                     ? color.white
@@ -228,7 +215,6 @@ export const TradersMat = ({
                     changeSortBy("releaseOldNew");
                   }
                 }}
-                filled={false}
               />
             </div>
           )}

@@ -7,6 +7,8 @@ import {
   CurrencyDollar,
   Calendar3,
   Trash3Fill,
+  SortAlphaDown,
+  XLg,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -23,10 +25,8 @@ interface IIconProps {
     | "sortName"
     | "sortValue"
     | "sortRelease";
-  size: number;
   colorIcon: string;
   clickFn: () => void;
-  filled?: boolean;
 }
 interface ISavedCardProps {
   card: IPkmnCard;
@@ -59,28 +59,17 @@ export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
   );
 };
 
-export const IconButton = ({
-  icon,
-  clickFn,
-  size,
-  colorIcon,
-  filled,
-}: IIconProps) => {
+export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
+  //always size 25
   return (
     <button
       style={{
         aspectRatio: "1/1",
         height: "2.5rem",
-        background: `${filled ? color.buttonBackground : "none"}`,
-        border: `${
-          filled || icon === "X" || icon === "<"
-            ? color.buttonBorder
-            : icon === "search"
-            ? "none"
-            : `${colorIcon} 1px solid`
-        }`,
+        background: "none",
+        border: "none",
         borderRadius: "10px",
-        color: `${filled ? color.black : colorIcon}`,
+        color: colorIcon,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -96,13 +85,13 @@ export const IconButton = ({
           borderRadius: "10px",
         }}
       >
-        {icon === "X" && <X size={size} />}
-        {icon === "<" && <ArrowLeftShort size={size} />}
-        {icon === "search" && <Search size={size} />}
-        {icon === "trash" && <Trash3Fill size={size} />}
-        {icon === "sortName" && <h4 style={{ fontSize: 20 }}>A</h4>}
-        {icon === "sortValue" && <CurrencyDollar size={size} />}
-        {icon === "sortRelease" && <Calendar3 size={size} />}{" "}
+        {icon === "X" && <XLg size={25} />}
+        {icon === "<" && <ArrowLeftShort size={25} />}
+        {icon === "search" && <Search size={25} />}
+        {icon === "trash" && <Trash3Fill size={25} />}
+        {icon === "sortName" && <SortAlphaDown size={25} />}
+        {icon === "sortValue" && <CurrencyDollar size={25} />}
+        {icon === "sortRelease" && <Calendar3 size={25} />}
       </div>
     </button>
   );

@@ -73,6 +73,7 @@ export const Pagination = ({
           }}
         >
           <SkipStartFill
+            size={25}
             onClick={() => (page !== 1 ? updateSearch(1) : null)}
           ></SkipStartFill>
         </p>
@@ -88,8 +89,14 @@ export const Pagination = ({
                         margin: 0,
                         paddingLeft: "10px",
                         paddingRight: "10px",
+                        fontSize: "20px",
                       }
-                    : { margin: 0, paddingLeft: "10px", paddingRight: "10px" }
+                    : {
+                        margin: 0,
+                        paddingLeft: "10px",
+                        paddingRight: "10px",
+                        fontSize: "20px",
+                      }
                 }
                 onClick={() => (page !== number ? updateSearch(number) : null)}
               >
@@ -107,6 +114,7 @@ export const Pagination = ({
           }}
         >
           <SkipEndFill
+            size={25}
             onClick={() =>
               page !== amountPages ? updateSearch(amountPages) : null
             }
