@@ -125,14 +125,9 @@ const Home = () => {
       style={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        height: `${
-          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
-            ? globalValue?.screen.height
-              ? globalValue?.screen.height + "px"
-              : "95vh"
-            : "100vh"
-        }`,
+        justifyContent: "start",
+        gap: "0.5rem",
+        height: `${globalValue?.screen.height + "px"}`,
         background: color.black,
       }}
     >
@@ -212,7 +207,7 @@ const Home = () => {
           height: `${
             globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
               ? "97vh"
-              : "95vh"
+              : "auto"
           }`,
           display: "flex",
           flexDirection: `${

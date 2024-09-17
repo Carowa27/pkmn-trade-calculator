@@ -48,7 +48,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
             fontWeight: "lighter",
           }}
         >
-          V 0.1.0
+          V 0.1.2 ( {globalValue?.breakpoint} )
         </span>
       </h2>
 
