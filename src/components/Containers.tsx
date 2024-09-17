@@ -14,7 +14,6 @@ interface ITradersMatProps {
   trader: "one" | "two";
   sumTraderOne: number;
   sumTraderTwo: number;
-  windowSize: (width: number) => ScrSize | undefined;
   btnFn: () => void;
   cards: ISavedCard[];
   clearCards: () => void;
@@ -55,7 +54,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
       </h2>
 
       {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
-        <div style={{ marginTop: "1.5rem" }}>
+        <div>
           <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
         </div>
       )}
@@ -66,7 +65,6 @@ export const TradersMat = ({
   trader,
   sumTraderOne,
   sumTraderTwo,
-  windowSize,
   btnFn,
   cards,
   clearCards,

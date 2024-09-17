@@ -244,7 +244,6 @@ const Home = () => {
             trader: "two",
             traderTwo: traderTwo,
           })}
-          windowSize={windowSize}
           removeCard={findCardToRemove}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("one");
@@ -362,7 +361,6 @@ const Home = () => {
             trader: "two",
             traderTwo: traderTwo,
           })}
-          windowSize={windowSize}
           removeCard={findCardToRemove}
           btnFn={() => {
             setShowModal(!showModal), setTraderToChange("two");
