@@ -13,18 +13,16 @@ export const color = {
   buttonBackground: "lightgrey",
   buttonBorder: "grey solid 1px",
 
-  pkmnCardYellow: "#F6D96B",
-  pkmnCardGrey: "#a4a4a4",
+  pkmnCardYellow: "#FFCB05",
+  pkmnCardGrey: "#d2d2d2",
   pkmnCardGold: "#D5A23C",
 
-  typeBackground: "#EEEEEE",
-
-  typeFirst: "lightgrey",
-  typeFirstHolo: "lightgrey",
-  typeFirstNormal: "lightgrey",
-  typeHolo: "lightgrey",
-  typeNormal: "lightgrey",
-  typeRevHolo: "lightgrey",
-  typeUnlimit: "lightgrey",
-  typeUnlimitHolo: "lightgrey",
+  typeFirst: "#F7F8FF",
+  typeFirstHolo: "#F7F8FF",
+  typeFirstNormal: "#F7F8FF",
+  typeHolo: "#F7F8FF",
+  typeNormal: "#F7F8FF",
+  typeRevHolo: "#F7F8FF",
+  typeUnlimit: "#F7F8FF",
+  typeUnlimitHolo: "#F7F8FF",
 };

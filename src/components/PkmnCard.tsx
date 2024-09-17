@@ -60,7 +60,7 @@ export const PkmnCardSearch = ({
         <div
           style={{
             width: "100%",
-            backgroundColor: color.typeBackground,
+            backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
             borderTop: `${rarityCardColor(
               card.set.releaseDate,
               card.rarity
@@ -149,7 +149,6 @@ export const PkmnCardTrader = ({
         backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
         borderRadius: "10px",
       }}
-      title={card.set.releaseDate}
     >
       <div
         style={{
@@ -187,6 +186,12 @@ export const PkmnCardTrader = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            height:
+              chosenType === "Unlimit Holo" &&
+              (globalValue?.breakpoint === "S" ||
+                globalValue?.breakpoint === "XS")
+                ? ""
+                : "32px",
           }}
         >
           {chosenType}
@@ -196,7 +201,21 @@ export const PkmnCardTrader = ({
             clickFn={() => removeCard({ id, trader })}
           />
         </p>
-        <p style={{ color: color.black, padding: "0.5rem 0.2rem 0 0.7rem" }}>
+        <p
+          style={{
+            color: color.black,
+            padding:
+              globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS"
+                ? "0.2rem 0.2rem 0 0.7rem"
+                : "0.5rem 0.2rem 0 0.7rem",
+            textAlign:
+              globalValue?.breakpoint === "XS" ||
+              globalValue?.breakpoint === "S"
+                ? "center"
+                : "left",
+          }}
+        >
           {globalValue?.breakpoint !== "S" &&
             globalValue?.breakpoint !== "XS" &&
             "Value: "}
