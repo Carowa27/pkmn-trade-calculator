@@ -1,11 +1,10 @@
-import { ScrSize, useWindowSize, windowSize } from "@/functions/windowSizes";
 import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./PkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { color } from "@/utils/color";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { sortCards } from "@/functions/sortFunctions";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IHeaderProps {
   clearAllCards: () => void;
