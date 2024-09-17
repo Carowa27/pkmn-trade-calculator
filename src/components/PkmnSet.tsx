@@ -1,5 +1,7 @@
 import { IPkmnSet } from "@/interfaces/dataFromApi";
 import { windowSize } from "@/functions/windowSizes";
+import { useContext } from "react";
+import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
 
 interface pkmnSetProps {
   set: IPkmnSet;
@@ -7,6 +9,7 @@ interface pkmnSetProps {
 }
 
 export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
+  const { globalValue } = useGlobalValue();
   return (
     <>
       <div>
@@ -16,9 +19,9 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
             aspectRatio: "1/1",
             border: "2px white solid",
             height: `${
-              windowSize() === "S"
+              globalValue?.breakpoint === "S"
                 ? "9rem"
-                : windowSize() === "XS"
+                : globalValue?.breakpoint === "XS"
                 ? "8rem"
                 : "11rem"
             }`,
@@ -58,7 +61,9 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 <img
                   style={{
                     maxWidth: "100%",
-                    height: `${windowSize() === "S" ? "2rem" : "3rem"}`,
+                    height: `${
+                      globalValue?.breakpoint === "S" ? "2rem" : "3rem"
+                    }`,
                   }}
                   src={set.images.symbol}
                   alt={set.name}

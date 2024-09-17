@@ -5,6 +5,8 @@ import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { rarityCardColor } from "@/functions/releaseYearFn";
+import { useContext } from "react";
+import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
@@ -29,6 +31,7 @@ export const PkmnCardSearch = ({
   saveCard,
   cardWidth,
 }: IPkmnCardSearchProps) => {
+  const { globalValue } = useGlobalValue();
   return (
     <div
       style={{
@@ -42,7 +45,9 @@ export const PkmnCardSearch = ({
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${
-            windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+              ? "5px"
+              : "10px"
           }`,
           backgroundImage: ` url(${card.images.small})`,
           backgroundRepeat: "no-repeat",
@@ -135,6 +140,7 @@ export const PkmnCardTrader = ({
   removeCard,
   trader,
 }: IPkmnCardTraderProps) => {
+  const { globalValue } = useGlobalValue();
   return (
     <div
       style={{
@@ -150,7 +156,9 @@ export const PkmnCardTrader = ({
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${
-            windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+              ? "5px"
+              : "10px"
           }`,
           backgroundImage: ` url(${card.images.small})`,
           backgroundPosition: "top",
@@ -185,7 +193,9 @@ export const PkmnCardTrader = ({
       >
         <h5 style={{ color: color.black }}>{chosenType}</h5>
         <p style={{ color: color.black, paddingTop: "0.5rem" }}>
-          {windowSize() !== "S" && windowSize() !== "XS" && "Value: "}
+          {globalValue?.breakpoint !== "S" &&
+            globalValue?.breakpoint !== "XS" &&
+            "Value: "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $
         </p>
@@ -195,6 +205,7 @@ export const PkmnCardTrader = ({
 };
 
 export const PkmnCard = ({ card, cardWidth }: IPkmnCardProps) => {
+  const { globalValue } = useGlobalValue();
   return (
     <>
       <div
@@ -211,7 +222,10 @@ export const PkmnCard = ({ card, cardWidth }: IPkmnCardProps) => {
             height: "auto",
             overflow: "hidden",
             borderRadius: `${
-              windowSize() === "S" || windowSize() === "XS" ? "5px" : "10px"
+              globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS"
+                ? "5px"
+                : "10px"
             }`,
             backgroundPosition: "top",
             backgroundSize: "100% auto",

@@ -2,7 +2,7 @@
 
 import { IPkmnCard, IPkmnSet } from "@/interfaces/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./PkmnSet";
 import { PkmnCardSearch } from "./PkmnCard";
@@ -10,6 +10,7 @@ import { Pagination } from "./Pagination";
 import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
 import { ISavedCard } from "@/interfaces/interfaces";
+import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -22,6 +23,7 @@ export const SearchModal = ({
   changeShowModal,
   changeTradersCards,
 }: ModalProps) => {
+  const { globalValue } = useGlobalValue();
   const [setList, setSetList] = useState<IPkmnSet[]>();
   const [pageInfoSet, setPageInfoSet] = useState<{
     page: number;
@@ -129,15 +131,15 @@ export const SearchModal = ({
         <article
           style={{
             width:
-              windowSize() === "S"
+              globalValue?.breakpoint === "S"
                 ? "90vw"
-                : windowSize() === "XS"
+                : globalValue?.breakpoint === "XS"
                 ? "95vw"
                 : "70vw",
             height:
-              windowSize() === "S"
+              globalValue?.breakpoint === "S"
                 ? "90vh"
-                : windowSize() === "XS"
+                : globalValue?.breakpoint === "XS"
                 ? "94vh"
                 : "80vh",
             background: "grey",
@@ -185,17 +187,20 @@ export const SearchModal = ({
             className="modalBody"
             style={{
               margin:
-                windowSize() === "XS" ? "0" : "1.25rem 1.25rem 0.25rem 1.25rem",
-              width: windowSize() === "S" ? "90%" : "100%",
+                globalValue?.breakpoint === "XS"
+                  ? "0"
+                  : "1.25rem 1.25rem 0.25rem 1.25rem",
+              width: globalValue?.breakpoint === "S" ? "90%" : "100%",
               display: "flex",
               justifyContent: "center",
-              height: windowSize() === "S" ? "85%" : "85%",
+              height: globalValue?.breakpoint === "S" ? "85%" : "85%",
             }}
           >
             <div
               style={{
                 width:
-                  windowSize() === "S" || windowSize() === "XS"
+                  globalValue?.breakpoint === "S" ||
+                  globalValue?.breakpoint === "XS"
                     ? "100%"
                     : "90%",
                 display: "flex",
@@ -205,7 +210,10 @@ export const SearchModal = ({
                 overflow: "hidden visible",
                 height: "100%",
                 paddingRight:
-                  windowSize() === "S" || windowSize() === "XS" ? 0 : "0.5rem",
+                  globalValue?.breakpoint === "S" ||
+                  globalValue?.breakpoint === "XS"
+                    ? 0
+                    : "0.5rem",
               }}
             >
               {noHits || isLoading ? (
@@ -240,7 +248,8 @@ export const SearchModal = ({
                         card={card}
                         saveCard={changeTradersCards}
                         cardWidth={`${
-                          windowSize() === "S" || windowSize() === "XS"
+                          globalValue?.breakpoint === "S" ||
+                          globalValue?.breakpoint === "XS"
                             ? "8rem"
                             : "12.5rem"
                         }`}

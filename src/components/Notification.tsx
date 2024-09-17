@@ -3,6 +3,8 @@ import { PkmnCard } from "./PkmnCard";
 import { IRemoveCard } from "@/interfaces/interfaces";
 import { windowSize } from "@/functions/windowSizes";
 import { color } from "@/utils/color";
+import { useContext } from "react";
+import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
 
 interface INotificationProps {
   notificationMessage: string;
@@ -81,6 +83,7 @@ export const NotificationModalWindow = ({
   removeFn,
   clearFn,
 }: INotificationModalProps) => {
+  const { globalValue } = useGlobalValue();
   return (
     <>
       <div
@@ -130,7 +133,9 @@ export const NotificationModalWindow = ({
             {itemToRemove && (
               <PkmnCard
                 card={itemToRemove.card}
-                cardWidth={`${windowSize() === "S" ? "6rem" : "8rem"}`}
+                cardWidth={`${
+                  globalValue?.breakpoint === "S" ? "6rem" : "8rem"
+                }`}
               />
             )}
           </article>

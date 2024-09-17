@@ -13,14 +13,15 @@ import {
   NotificationModalWindow,
   NotificationWindow,
 } from "@/components/Notification";
-import { useWindowSize, windowSize } from "@/functions/windowSizes";
+import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
-import { PrimaryButton } from "@/components/Buttons";
 import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
+import { useGlobalValue } from "@/components/GlobalValueProvider";
 
 const Home = () => {
+  const { globalValue } = useGlobalValue();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [showDeleteNotification, setShowDeleteNotification] =
@@ -112,11 +113,13 @@ const Home = () => {
       .replaceAll("-", "");
     setDiffSum(diff);
   }, [showModal, traderOne, traderTwo]);
-
-  let screen = { height: 0, width: 0 };
-  if (typeof window !== "undefined" && window !== null) {
-    screen = useWindowSize();
-  }
+  useEffect(() => {
+    if (globalValue !== undefined) {
+      console.log(globalValue?.screen.height, "if");
+    } else {
+      console.log("else undef");
+    }
+  }, [globalValue]);
   return (
     <main
       style={{
@@ -124,9 +127,9 @@ const Home = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: `${
-          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
-            ? screen.height
-              ? screen.height + "px"
+          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            ? globalValue?.screen.height
+              ? globalValue?.screen.height + "px"
               : "95vh"
             : "100vh"
         }`,
@@ -207,28 +210,24 @@ const Home = () => {
       <div
         style={{
           height: `${
-            windowSize(screen.width) === "S" ||
-            windowSize(screen.width) === "XS"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
               ? "97vh"
               : "95vh"
           }`,
           display: "flex",
           flexDirection: `${
-            windowSize(screen.width) === "S" ||
-            windowSize(screen.width) === "XS"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
               ? "column"
               : "row"
           }`,
           gap: `${
-            windowSize(screen.width) === "S" ||
-            windowSize(screen.width) === "XS"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
               ? "0.5rem"
               : ""
           }`,
           alignItems: "center",
           justifyContent: `${
-            windowSize(screen.width) === "S" ||
-            windowSize(screen.width) === "XS"
+            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
               ? "start"
               : "space-between"
           }`,
@@ -258,25 +257,25 @@ const Home = () => {
         <section
           style={{
             height: `${
-              windowSize(screen.width) === "S" ||
-              windowSize(screen.width) === "XS"
+              globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS"
                 ? "min-content"
                 : "100%"
             }`,
             display: "flex",
-            flexDirection: "column", //`${windowSize(screen.width) === "S" ? "row" : "column"}`,
+            flexDirection: "column", //`${globalValue?.breakpoint === "S" ? "row" : "column"}`,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          {/* {windowSize(screen.width) !== "S" && <div>circle</div>} */}
+          {/* {globalValue?.breakpoint !== "S" && <div>circle</div>} */}
           <div
             style={{
               width: "70%",
               display: "flex",
               flexDirection: `${
-                windowSize(screen.width) === "S" ||
-                windowSize(screen.width) === "XS"
+                globalValue?.breakpoint === "S" ||
+                globalValue?.breakpoint === "XS"
                   ? "row"
                   : "column"
               }`,
@@ -309,8 +308,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize(screen.width) === "S" ||
-              windowSize(screen.width) === "XS" ? (
+              {globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS" ? (
                 <ArrowUp size={40} />
               ) : (
                 <ArrowLeft size={40} />
@@ -344,8 +343,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize(screen.width) === "S" ||
-              windowSize(screen.width) === "XS" ? (
+              {globalValue?.breakpoint === "S" ||
+              globalValue?.breakpoint === "XS" ? (
                 <ArrowDown size={40} />
               ) : (
                 <ArrowRight size={40} />
