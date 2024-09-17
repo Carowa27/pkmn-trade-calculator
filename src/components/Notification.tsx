@@ -62,9 +62,7 @@ export const NotificationWindow = ({
               <IconButton
                 icon={"X"}
                 clickFn={closeNotification}
-                size={20}
                 colorIcon={color.black}
-                filled
               />
             </div>
           </article>
@@ -119,9 +117,7 @@ export const NotificationModalWindow = ({
               <IconButton
                 icon={"X"}
                 clickFn={closeNotification}
-                size={25}
                 colorIcon={color.black}
-                filled={false}
               />
             </div>
           </article>

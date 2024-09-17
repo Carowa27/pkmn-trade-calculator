@@ -149,6 +149,7 @@ export const PkmnCardTrader = ({
         backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
         borderRadius: "10px",
       }}
+      title={card.set.releaseDate}
     >
       <div
         style={{
@@ -166,19 +167,7 @@ export const PkmnCardTrader = ({
           display: "flex",
           justifyContent: "end",
         }}
-      >
-        {/* <div
-          style={{
-            padding: "0.15rem 0.1rem 0 0 ",
-          }}
-        >
-          <IconButton
-            icon={"X"}
-            colorIcon={"black"}
-            clickFn={() => removeCard({ id, trader })}
-          />
-        </div> */}
-      </div>
+      ></div>
       <div
         style={{
           display: "flex",

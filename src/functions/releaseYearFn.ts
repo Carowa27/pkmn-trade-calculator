@@ -31,7 +31,7 @@ export const rarityCardColor = (release: string, rarity: string) => {
       return color.pkmnCardGrey;
     }
   } else {
-    if (year == 2023) {
+    if (year === 2023) {
       if (month >= 0o3) {
         if (rarity === "Hyper Rare") {
           console.log("rare");
@@ -45,8 +45,13 @@ export const rarityCardColor = (release: string, rarity: string) => {
         return color.pkmnCardYellow;
       }
     } else {
-      console.log(year);
-      return color.pkmnCardYellow;
+      if (release === "2022/11/01") {
+        console.log(year);
+        return color.pkmnCardGrey;
+      } else {
+        console.log(year);
+        return color.pkmnCardYellow;
+      }
     }
   }
 };
