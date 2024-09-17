@@ -113,13 +113,7 @@ const Home = () => {
       .replaceAll("-", "");
     setDiffSum(diff);
   }, [showModal, traderOne, traderTwo]);
-  useEffect(() => {
-    if (globalValue !== undefined) {
-      console.log("home", globalValue?.breakpoint, globalValue?.screen);
-    } else {
-      console.log("else undef");
-    }
-  }, [globalValue]);
+
   return (
     <main
       style={{
