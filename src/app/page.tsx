@@ -13,7 +13,7 @@ import {
   NotificationModalWindow,
   NotificationWindow,
 } from "@/components/Notification";
-import { windowSize } from "@/functions/windowSizes";
+import { useWindowSize, windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { PrimaryButton } from "@/components/Buttons";
 import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
@@ -113,11 +113,10 @@ const Home = () => {
     setDiffSum(diff);
   }, [showModal, traderOne, traderTwo]);
 
-  let screenHeight: number | null = null;
+  let screen = { height: 0, width: 0 };
   if (typeof window !== "undefined" && window !== null) {
-    screenHeight = window.innerHeight;
+    screen = useWindowSize();
   }
-
   return (
     <main
       style={{
@@ -125,9 +124,9 @@ const Home = () => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: `${
-          windowSize() === "S" || windowSize() === "XS"
-            ? screenHeight
-              ? screenHeight + "px"
+          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
+            ? screen.height
+              ? screen.height + "px"
               : "95vh"
             : "100vh"
         }`,
@@ -208,18 +207,28 @@ const Home = () => {
       <div
         style={{
           height: `${
-            windowSize() === "S" || windowSize() === "XS" ? "97vh" : "95vh"
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
+              ? "97vh"
+              : "95vh"
           }`,
           display: "flex",
           flexDirection: `${
-            windowSize() === "S" || windowSize() === "XS" ? "column" : "row"
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
+              ? "column"
+              : "row"
           }`,
           gap: `${
-            windowSize() === "S" || windowSize() === "XS" ? "0.5rem" : ""
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
+              ? "0.5rem"
+              : ""
           }`,
           alignItems: "center",
           justifyContent: `${
-            windowSize() === "S" || windowSize() === "XS"
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
               ? "start"
               : "space-between"
           }`,
@@ -249,23 +258,27 @@ const Home = () => {
         <section
           style={{
             height: `${
-              windowSize() === "S" || windowSize() === "XS"
+              windowSize(screen.width) === "S" ||
+              windowSize(screen.width) === "XS"
                 ? "min-content"
                 : "100%"
             }`,
             display: "flex",
-            flexDirection: "column", //`${windowSize() === "S" ? "row" : "column"}`,
+            flexDirection: "column", //`${windowSize(screen.width) === "S" ? "row" : "column"}`,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          {/* {windowSize() !== "S" && <div>circle</div>} */}
+          {/* {windowSize(screen.width) !== "S" && <div>circle</div>} */}
           <div
             style={{
               width: "70%",
               display: "flex",
               flexDirection: `${
-                windowSize() === "S" || windowSize() === "XS" ? "row" : "column"
+                windowSize(screen.width) === "S" ||
+                windowSize(screen.width) === "XS"
+                  ? "row"
+                  : "column"
               }`,
             }}
           >
@@ -296,7 +309,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize() === "S" || windowSize() === "XS" ? (
+              {windowSize(screen.width) === "S" ||
+              windowSize(screen.width) === "XS" ? (
                 <ArrowUp size={40} />
               ) : (
                 <ArrowLeft size={40} />
@@ -330,7 +344,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {windowSize() === "S" || windowSize() === "XS" ? (
+              {windowSize(screen.width) === "S" ||
+              windowSize(screen.width) === "XS" ? (
                 <ArrowDown size={40} />
               ) : (
                 <ArrowRight size={40} />

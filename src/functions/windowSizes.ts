@@ -1,3 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+export const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    function updateWindowSize() {
+      if (typeof window !== "undefined" && window !== null) {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    }
+
+    updateWindowSize();
+
+    window.addEventListener("resize", updateWindowSize);
+
+    return () => window.removeEventListener("resize", updateWindowSize);
+  }, []);
+
+  return windowSize;
+};
+
 export enum ScrSize {
   XS = "XS",
   S = "S",
@@ -7,23 +33,12 @@ export enum ScrSize {
   XXL = "XXL",
 }
 
-let innerWidth: number | null = null;
-
-export const windowSize = () => {
+export const windowSize = (innerWidth: number) => {
   const sBr = 576;
   const mBr = 768;
   const lBr = 992;
   const xlBr = 1200;
   const xxlBr = 1400;
-
-  if (typeof window !== "undefined" && window !== null) {
-    innerWidth = window.innerWidth;
-  }
-
-  if (!innerWidth) {
-    console.warn("windowSize is being called outside of a browser environment");
-    return ScrSize.XXL;
-  }
 
   if (innerWidth < sBr) {
     return ScrSize.XS;
@@ -48,22 +63,4 @@ export const windowSize = () => {
       return ScrSize.S;
     }
   }
-
-  // if (innerWidth <= sBr) {
-  //   return ScrSize.S;
-  // } else {
-  //   if (innerWidth <= mBr) {
-  //     return ScrSize.M;
-  //   } else {
-  //     if (innerWidth <= lBr) {
-  //       return ScrSize.L;
-  //     } else {
-  //       if (innerWidth <= xlBr) {
-  //         return ScrSize.XL;
-  //       } else {
-  //         return ScrSize.XXL;
-  //       }
-  //     }
-  //   }
-  // }
 };

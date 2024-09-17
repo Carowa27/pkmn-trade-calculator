@@ -1,3 +1,5 @@
+"use client";
+
 import { IPkmnCard, IPkmnSet } from "@/interfaces/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
 import { useEffect, useState } from "react";

@@ -1,4 +1,4 @@
-import { ScrSize, windowSize } from "@/functions/windowSizes";
+import { ScrSize, useWindowSize, windowSize } from "@/functions/windowSizes";
 import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./PkmnCard";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
@@ -13,26 +13,30 @@ interface ITradersMatProps {
   trader: "one" | "two";
   sumTraderOne: number;
   sumTraderTwo: number;
-  windowSize: () => ScrSize | undefined;
+  windowSize: (width: number) => ScrSize | undefined;
   btnFn: () => void;
   cards: ISavedCard[];
   clearCards: () => void;
   removeCard: ({}: ITraderCard) => void;
 }
 export const Header = ({ clearAllCards }: IHeaderProps) => {
+  let screen = { height: 0, width: 0 };
+  if (typeof window !== "undefined" && window !== null) {
+    screen = useWindowSize();
+  }
   return (
     <header
       style={{
         height: "3vh",
         margin: `${
-          windowSize() === "S" || windowSize() === "XS"
+          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
             ? "0.5rem 0rem"
             : "1rem 2rem 1rem 2rem"
         }`,
         display: "flex",
         alignItems: "center",
         justifyContent: `${
-          windowSize() === "S" || windowSize() === "XS"
+          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
             ? "center"
             : "space-between"
         }`,
@@ -52,11 +56,12 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         </span>
       </h2>
 
-      {windowSize() !== "S" && windowSize() !== "XS" && (
-        <div style={{ marginTop: "1.5rem" }}>
-          <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
-        </div>
-      )}
+      {windowSize(screen.width) !== "S" &&
+        windowSize(screen.width) !== "XS" && (
+          <div style={{ marginTop: "1.5rem" }}>
+            <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+          </div>
+        )}
     </header>
   );
 };
@@ -91,23 +96,24 @@ export const TradersMat = ({
     sortCards({ cards, sortBy: param });
   };
 
-  let screenHeight: number | null = null;
+  let screen = { height: 0, width: 0 };
   if (typeof window !== "undefined" && window !== null) {
-    screenHeight = window.innerHeight;
+    screen = useWindowSize();
   }
-
   return (
     <div
       style={{
         backgroundColor: "#8AA39988",
         borderRadius: "10px",
         width: `${
-          windowSize() === "S" || windowSize() === "XS" ? "90vw" : "45vw"
+          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
+            ? "90vw"
+            : "45vw"
         }`,
         height: `${
-          windowSize() === "S" || windowSize() === "XS"
-            ? screenHeight
-              ? screenHeight / 2 - 80 + "px"
+          windowSize(screen.width) === "S" || windowSize(screen.width) === "XS"
+            ? screen.height
+              ? screen.height / 2 - 60 + "px"
               : "35vh"
             : "85vh"
         }`,
@@ -150,105 +156,112 @@ export const TradersMat = ({
           filled={false}
         />
       </div>
-      {windowSize() !== "S" && windowSize() !== "XS" && (
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "0 1.5rem",
-            marginBottom: `${
-              windowSize() === "S" || windowSize() === "XS" ? "1rem" : "0.5rem"
-            }`,
-            gap: "1.5rem",
-          }}
-        >
-          {cards.length !== 0 && cards !== undefined && (
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-              }}
-            >
-              <p
+      {windowSize(screen.width) !== "S" &&
+        windowSize(screen.width) !== "XS" && (
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "0 1.5rem",
+              marginBottom: `${
+                windowSize(screen.width) === "S" ||
+                windowSize(screen.width) === "XS"
+                  ? "1rem"
+                  : "0.5rem"
+              }`,
+              gap: "1.5rem",
+            }}
+          >
+            {cards.length !== 0 && cards !== undefined && (
+              <div
                 style={{
-                  fontSize: 20,
                   display: "flex",
-                  alignSelf: "center",
-                  justifySelf: "center",
-                  paddingBottom: "0.4rem",
+                  gap: "1rem",
                 }}
               >
-                Sort
-              </p>
-              <IconButton
-                icon={"sortValue"}
-                size={20}
-                colorIcon={`${
-                  sortBy === "valueHighLow" || sortBy === "valueLowHigh"
-                    ? color.white
-                    : color.false
-                }`}
-                clickFn={() => {
-                  if (sortBy === "valueHighLow") {
-                    changeSortBy("valueLowHigh");
-                  } else {
-                    changeSortBy("valueHighLow");
-                  }
-                }}
-                filled={false}
-              />
-              <IconButton
-                icon={"sortName"}
-                size={20}
-                colorIcon={`${
-                  sortBy === "nameAZ" || sortBy === "nameZA"
-                    ? color.white
-                    : color.false
-                }`}
-                clickFn={() => {
-                  if (sortBy === "nameAZ") {
-                    changeSortBy("nameZA");
-                  } else {
-                    changeSortBy("nameAZ");
-                  }
-                }}
-                filled={false}
-              />
-              <IconButton
-                icon={"sortRelease"}
-                size={18}
-                colorIcon={`${
-                  sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
-                    ? color.white
-                    : color.false
-                }`}
-                clickFn={() => {
-                  if (sortBy === "releaseOldNew") {
-                    changeSortBy("releaseNewOld");
-                  } else {
-                    changeSortBy("releaseOldNew");
-                  }
-                }}
-                filled={false}
-              />
-            </div>
-          )}
-          {cards.length !== 0 && (
-            <>
-              {windowSize() !== "S" ||
-                (windowSize() !== "XS" && (
-                  <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
-                ))}
-            </>
-          )}
-        </div>
-      )}
+                <p
+                  style={{
+                    fontSize: 20,
+                    display: "flex",
+                    alignSelf: "center",
+                    justifySelf: "center",
+                    paddingBottom: "0.4rem",
+                  }}
+                >
+                  Sort
+                </p>
+                <IconButton
+                  icon={"sortValue"}
+                  size={20}
+                  colorIcon={`${
+                    sortBy === "valueHighLow" || sortBy === "valueLowHigh"
+                      ? color.white
+                      : color.false
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "valueHighLow") {
+                      changeSortBy("valueLowHigh");
+                    } else {
+                      changeSortBy("valueHighLow");
+                    }
+                  }}
+                  filled={false}
+                />
+                <IconButton
+                  icon={"sortName"}
+                  size={20}
+                  colorIcon={`${
+                    sortBy === "nameAZ" || sortBy === "nameZA"
+                      ? color.white
+                      : color.false
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "nameAZ") {
+                      changeSortBy("nameZA");
+                    } else {
+                      changeSortBy("nameAZ");
+                    }
+                  }}
+                  filled={false}
+                />
+                <IconButton
+                  icon={"sortRelease"}
+                  size={18}
+                  colorIcon={`${
+                    sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
+                      ? color.white
+                      : color.false
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "releaseOldNew") {
+                      changeSortBy("releaseNewOld");
+                    } else {
+                      changeSortBy("releaseOldNew");
+                    }
+                  }}
+                  filled={false}
+                />
+              </div>
+            )}
+            {cards.length !== 0 && (
+              <>
+                {windowSize(screen.width) !== "S" ||
+                  (windowSize(screen.width) !== "XS" && (
+                    <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
+                  ))}
+              </>
+            )}
+          </div>
+        )}
       <div
         style={{
           width: "95%",
           maxHeight: `${
-            windowSize() === "S" || windowSize() === "XS" ? "67%" : "85%"
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
+              ? "67%"
+              : "85%"
           }`,
           display: "flex",
           flexWrap: "wrap",
@@ -259,7 +272,10 @@ export const TradersMat = ({
           paddingRight: "0.5rem",
           paddingTop: "0.5rem",
           marginTop: `${
-            windowSize() === "S" || windowSize() === "XS" ? "0" : "0.5rem"
+            windowSize(screen.width) === "S" ||
+            windowSize(screen.width) === "XS"
+              ? "0"
+              : "0.5rem"
           }`,
         }}
       >
@@ -268,7 +284,10 @@ export const TradersMat = ({
             <PkmnCardTrader
               card={item.card}
               cardWidth={`${
-                windowSize() === "S" || windowSize() === "XS" ? "6rem" : "8rem"
+                windowSize(screen.width) === "S" ||
+                windowSize(screen.width) === "XS"
+                  ? "6rem"
+                  : "8rem"
               }`}
               key={item.card.id + "-" + i}
               chosenType={item.type}
