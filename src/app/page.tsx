@@ -140,9 +140,9 @@ const Home = () => {
         <NotificationModalWindow
           closeNotification={() => setShowDeleteNotification(false)}
           notificationHeader={"Are You Sure"}
-          notificationMessage={`Are you sure you want to remove ${
+          notificationMessage={`Are you sure you want to remove <br/><b>${
             cardToRemove !== undefined && cardToRemove.card.name
-          }`}
+          }</b> - ${cardToRemove !== undefined && cardToRemove.card.set.name}`}
           removeFn={removeCard}
           itemToRemove={cardToRemove!}
         />

@@ -125,7 +125,10 @@ export const NotificationModalWindow = ({
             className="notificationBody"
             style={{ marginBottom: "1rem" }}
           >
-            <p style={{ margin: "1rem 0" }}>{notificationMessage}</p>
+            <p
+              style={{ margin: "1rem 0" }}
+              dangerouslySetInnerHTML={{ __html: notificationMessage }}
+            ></p>
             {itemToRemove && (
               <PkmnCard
                 card={itemToRemove.card}
