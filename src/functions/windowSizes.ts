@@ -39,7 +39,6 @@ export const windowSize = (innerWidth: number) => {
   const lBr = 992;
   const xlBr = 1200;
   const xxlBr = 1400;
-
   if (innerWidth < sBr) {
     return ScrSize.XS;
   } else {
@@ -49,18 +48,20 @@ export const windowSize = (innerWidth: number) => {
           if (innerWidth >= xlBr) {
             if (innerWidth >= xxlBr) {
               return ScrSize.XXL;
+            } else {
+              return ScrSize.XL;
             }
           } else {
-            return ScrSize.XL;
+            return ScrSize.L;
           }
         } else {
-          return ScrSize.L;
+          return ScrSize.M;
         }
       } else {
-        return ScrSize.M;
+        return ScrSize.S;
       }
     } else {
-      return ScrSize.S;
+      return ScrSize.XS;
     }
   }
 };
