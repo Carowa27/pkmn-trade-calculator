@@ -15,7 +15,7 @@ export const color = {
 
   pkmnCardYellow: "#FFCB05",
   pkmnCardGrey: "#d2d2d2",
-  pkmnCardGold: "#D5A23C",
+  pkmnCardGold: "#CFA130",
 
   typeFirst: "#F7F8FF",
   typeFirstHolo: "#F7F8FF",
