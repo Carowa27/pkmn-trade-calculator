@@ -1,6 +1,6 @@
 import { IPkmnCard } from "@/interfaces/dataFromApi";
 import { CardTypeButton, IconButton } from "./Buttons";
-import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
+import { Currency, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { rarityCardColor } from "@/functions/releaseYearFn";
@@ -206,25 +206,38 @@ export const PkmnCardTrader = ({
             padding:
               globalValue?.screen.breakpoint === "S" ||
               globalValue?.screen.breakpoint === "XS"
-                ? "0.2rem 0.2rem 0 0.7rem"
-                : "0.5rem 0.2rem 0 0.7rem",
+                ? "0.2rem 0rem 0 0"
+                : "0.5rem 0rem 0 0",
             textAlign:
               globalValue?.screen.breakpoint === "XS" ||
               globalValue?.screen.breakpoint === "S"
                 ? "center"
                 : "left",
+            alignSelf: "center",
           }}
         >
           {globalValue?.screen.breakpoint !== "S" &&
             globalValue?.screen.breakpoint !== "XS" &&
             "Value: "}
-          {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
+          {cardSum({ card, chosenType })
+            ? globalValue?.exchange.currency === Currency.USD
+              ? (Math.round(cardSum({ card, chosenType }) * 100) / 100).toFixed(
+                  2
+                )
+              : (
+                  Math.round(
+                    cardSum({ card, chosenType }) *
+                      globalValue?.exchange.rate! *
+                      100
+                  ) / 100
+                ).toFixed(2)
+            : "--"}
 
-          {globalValue?.currency === "USD" && "$"}
-          {globalValue?.currency === "EUR" && "€"}
-          {globalValue?.currency === "NOK" && "kr"}
-          {globalValue?.currency === "SEK" && "kr"}
-          {globalValue?.currency === "GBP" && "£"}
+          {globalValue?.exchange.currency === "USD" && "$"}
+          {globalValue?.exchange.currency === "EUR" && "€"}
+          {globalValue?.exchange.currency === "NOK" && "kr"}
+          {globalValue?.exchange.currency === "SEK" && "kr"}
+          {globalValue?.exchange.currency === "GBP" && "£"}
         </p>
       </div>
     </div>
