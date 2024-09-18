@@ -5,7 +5,7 @@ export const color = {
   orange: "#FAA613",
   green: "#688E26",
 
-  false: "#D3D3D333",
+  sortNotUsed: "#D3D3D380",
 
   primaryText: "",
 

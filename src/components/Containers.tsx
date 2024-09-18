@@ -182,7 +182,7 @@ export const TradersMat = ({
                 colorIcon={`${
                   sortBy === "valueHighLow" || sortBy === "valueLowHigh"
                     ? color.white
-                    : color.false
+                    : color.sortNotUsed
                 }`}
                 clickFn={() => {
                   if (sortBy === "valueHighLow") {
@@ -197,7 +197,7 @@ export const TradersMat = ({
                 colorIcon={`${
                   sortBy === "nameAZ" || sortBy === "nameZA"
                     ? color.white
-                    : color.false
+                    : color.sortNotUsed
                 }`}
                 clickFn={() => {
                   if (sortBy === "nameAZ") {
@@ -212,7 +212,7 @@ export const TradersMat = ({
                 colorIcon={`${
                   sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
                     ? color.white
-                    : color.false
+                    : color.sortNotUsed
                 }`}
                 clickFn={() => {
                   if (sortBy === "releaseOldNew") {
