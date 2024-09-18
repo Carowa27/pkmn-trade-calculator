@@ -27,3 +27,15 @@ export enum Currency {
   USD = "USD",
   GBP = "GBP",
 }
+
+export interface IRateApiResponse {
+  base: string;
+  disclaimer: string;
+  license: string;
+  rates: { SEK: number; NOK: number; EUR: number; USD: number; GBP: number };
+}
+
+export interface ISavedRates {
+  date: string;
+  rates: { SEK: number; NOK: number; EUR: number; USD: number; GBP: number };
+}

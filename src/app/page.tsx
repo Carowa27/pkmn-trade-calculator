@@ -14,12 +14,19 @@ import {
   NotificationWindow,
 } from "@/components/Notification";
 import { TradersMat } from "@/components/Containers";
-import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
+import {
+  ITraderCard,
+  IRemoveCard,
+  ISavedCard,
+  Currency,
+} from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { useGlobalValue } from "@/components/GlobalValueProvider";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { getRateFromApi } from "@/functions/moneyRateApiService";
+import { getToday } from "@/functions/dateFunctions";
 
 const Home = () => {
   const { globalValue } = useGlobalValue();
@@ -125,7 +132,17 @@ const Home = () => {
       .replaceAll("-", "");
     setDiffSum(diff);
   }, [showModal, traderOne, traderTwo, showDeleteNotification]);
-
+  useEffect(() => {
+    const savedRates = localStorage.getItem("moneyRatesForPkmnTrades");
+    const parsedRates = JSON.parse(savedRates!);
+    if (savedRates === null) {
+      getRateFromApi();
+    } else {
+      if (parsedRates.date !== getToday()) {
+        getRateFromApi();
+      }
+    }
+  }, []);
   return (
     <div
       style={{
