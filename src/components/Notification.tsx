@@ -1,10 +1,9 @@
 import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCard } from "./PkmnCard";
-import { IRemoveCard, ITraderCard } from "@/interfaces/interfaces";
-import { windowSize } from "@/functions/windowSizes";
+import { IRemoveCard } from "@/interfaces/interfaces";
 import { color } from "@/utils/color";
-import { useContext, useEffect } from "react";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useEffect } from "react";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface INotificationProps {
   notificationMessage: string;
