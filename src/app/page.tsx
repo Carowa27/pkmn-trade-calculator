@@ -215,24 +215,28 @@ const Home = () => {
       <main
         style={{
           height: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "97vh"
               : "auto"
           }`,
           display: "flex",
           flexDirection: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "column"
               : "row"
           }`,
           gap: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "0.5rem"
               : ""
           }`,
           alignItems: "center",
           justifyContent: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "start"
               : "space-between"
           }`,
@@ -261,8 +265,8 @@ const Home = () => {
         <section
           style={{
             height: `${
-              globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS"
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
                 ? "min-content"
                 : "100%"
             }`,
@@ -277,8 +281,8 @@ const Home = () => {
               width: "70%",
               display: "flex",
               flexDirection: `${
-                globalValue?.breakpoint === "S" ||
-                globalValue?.breakpoint === "XS"
+                globalValue?.screen.breakpoint === "S" ||
+                globalValue?.screen.breakpoint === "XS"
                   ? "row"
                   : "column"
               }`,
@@ -311,8 +315,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS" ? (
+              {globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS" ? (
                 <ArrowUp size={40} />
               ) : (
                 <ArrowLeft size={40} />
@@ -346,8 +350,8 @@ const Home = () => {
                 }`,
               }}
             >
-              {globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS" ? (
+              {globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS" ? (
                 <ArrowDown size={40} />
               ) : (
                 <ArrowRight size={40} />

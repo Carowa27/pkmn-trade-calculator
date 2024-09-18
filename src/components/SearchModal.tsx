@@ -132,14 +132,14 @@ export const SearchModal = ({
           style={{
             padding: "0.5rem",
             width:
-              globalValue?.breakpoint === "S"
+              globalValue?.screen.breakpoint === "S"
                 ? "90vw"
-                : globalValue?.breakpoint === "XS"
+                : globalValue?.screen.breakpoint === "XS"
                 ? "95vw"
                 : "70vw",
             height:
-              globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS"
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
                 ? globalValue.screen.height - 20 + "px"
                 : "80vh",
             background: "grey",
@@ -186,17 +186,17 @@ export const SearchModal = ({
             className="modalBody"
             style={{
               margin:
-                globalValue?.breakpoint === "XS"
+                globalValue?.screen.breakpoint === "XS"
                   ? "0"
                   : "1.25rem 1.25rem 0.25rem 1.25rem",
-              width: globalValue?.breakpoint === "S" ? "90%" : "100%",
+              width: globalValue?.screen.breakpoint === "S" ? "90%" : "100%",
               display: "flex",
               justifyContent: "center",
               height:
-                globalValue?.breakpoint === "XS" ||
-                globalValue?.breakpoint === "S" ||
-                globalValue?.breakpoint === "M" ||
-                globalValue?.breakpoint === "L"
+                globalValue?.screen.breakpoint === "XS" ||
+                globalValue?.screen.breakpoint === "S" ||
+                globalValue?.screen.breakpoint === "M" ||
+                globalValue?.screen.breakpoint === "L"
                   ? "80%"
                   : "85%",
             }}
@@ -204,23 +204,23 @@ export const SearchModal = ({
             <div
               style={{
                 width:
-                  globalValue?.breakpoint === "S" ||
-                  globalValue?.breakpoint === "XS"
+                  globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
                     ? "100%"
                     : "90%",
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "space-evenly",
                 gap:
-                  globalValue?.breakpoint === "S" ||
-                  globalValue?.breakpoint === "XS"
+                  globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
                     ? "00.5rem"
                     : "1rem",
                 overflow: "hidden visible",
                 height: "100%",
                 paddingRight:
-                  globalValue?.breakpoint === "S" ||
-                  globalValue?.breakpoint === "XS"
+                  globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
                     ? 0
                     : "0.5rem",
               }}
@@ -257,8 +257,8 @@ export const SearchModal = ({
                         card={card}
                         saveCard={changeTradersCards}
                         cardWidth={`${
-                          globalValue?.breakpoint === "S" ||
-                          globalValue?.breakpoint === "XS"
+                          globalValue?.screen.breakpoint === "S" ||
+                          globalValue?.screen.breakpoint === "XS"
                             ? `${globalValue.screen.width / 2 - 30}px`
                             : "12.5rem"
                         }`}

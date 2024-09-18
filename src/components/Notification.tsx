@@ -140,7 +140,7 @@ export const NotificationModalWindow = ({
               <PkmnCard
                 card={itemToRemove.card}
                 cardWidth={`${
-                  globalValue?.breakpoint === "S" ? "6rem" : "8rem"
+                  globalValue?.screen.breakpoint === "S" ? "6rem" : "8rem"
                 }`}
               />
             )}

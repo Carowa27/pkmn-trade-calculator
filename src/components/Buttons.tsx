@@ -183,7 +183,8 @@ export const CurrencyButton = ({ currency, clickFn }: ICurrencyProps) => {
     <div
       style={{
         margin:
-          globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS"
+          globalValue?.screen.breakpoint !== "S" &&
+          globalValue?.screen.breakpoint !== "XS"
             ? "0 2rem"
             : "",
         display: "flex",
@@ -191,9 +192,10 @@ export const CurrencyButton = ({ currency, clickFn }: ICurrencyProps) => {
         gap: "0.5rem",
       }}
     >
-      {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
-        <CurrencyExchange size={30} />
-      )}
+      {globalValue?.screen.breakpoint !== "S" &&
+        globalValue?.screen.breakpoint !== "XS" && (
+          <CurrencyExchange size={30} />
+        )}
       <button
         style={{
           cursor: "pointer",

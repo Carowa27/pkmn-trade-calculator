@@ -16,7 +16,8 @@ export const LoadingModule = () => {
     <>
       <h3
         style={
-          globalValue?.breakpoint === "XS" || globalValue?.breakpoint === "S"
+          globalValue?.screen.breakpoint === "XS" ||
+          globalValue?.screen.breakpoint === "S"
             ? { marginLeft: "1.25rem" }
             : { marginLeft: "0" }
         }

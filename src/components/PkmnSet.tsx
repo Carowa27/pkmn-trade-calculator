@@ -19,9 +19,9 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
             aspectRatio: "1/1",
             border: "2px white solid",
             height: `${
-              globalValue?.breakpoint === "S"
+              globalValue?.screen.breakpoint === "S"
                 ? "9rem"
-                : globalValue?.breakpoint === "XS"
+                : globalValue?.screen.breakpoint === "XS"
                 ? "8rem"
                 : "11rem"
             }`,
@@ -100,7 +100,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                   style={{
                     maxWidth: "100%",
                     height: `${
-                      globalValue?.breakpoint === "S" ? "2rem" : "3rem"
+                      globalValue?.screen.breakpoint === "S" ? "2rem" : "3rem"
                     }`,
                   }}
                   src={set.images.symbol}

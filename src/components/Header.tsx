@@ -18,14 +18,16 @@ export const Header = ({
       style={{
         height: "3vh",
         margin: `${
-          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
             ? "0.5rem 1rem"
             : "1rem 2rem 1rem 2rem"
         }`,
         display: "flex",
         alignItems: "center",
         justifyContent: `${
-          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
             ? "center"
             : "space-between"
         }`,
@@ -35,11 +37,12 @@ export const Header = ({
       <div style={{ marginLeft: "auto" }}>
         <CurrencyButton currency={currency} clickFn={() => changeCurrency()} />
       </div>
-      {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
-        <div style={{ marginLeft: "2rem" }}>
-          <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
-        </div>
-      )}
+      {globalValue?.screen.breakpoint !== "S" &&
+        globalValue?.screen.breakpoint !== "XS" && (
+          <div style={{ marginLeft: "2rem" }}>
+            <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
+          </div>
+        )}
     </header>
   );
 };

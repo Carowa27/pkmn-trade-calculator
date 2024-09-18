@@ -43,7 +43,8 @@ export const PkmnCardSearch = ({
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "5px"
               : "10px"
           }`,
@@ -153,7 +154,8 @@ export const PkmnCardTrader = ({
           width: cardWidth,
           overflow: "hidden",
           borderRadius: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "5px"
               : "10px"
           }`,
@@ -185,8 +187,8 @@ export const PkmnCardTrader = ({
             justifyContent: "space-between",
             height:
               chosenType === "Unlimit Holo" &&
-              (globalValue?.breakpoint === "S" ||
-                globalValue?.breakpoint === "XS")
+              (globalValue?.screen.breakpoint === "S" ||
+                globalValue?.screen.breakpoint === "XS")
                 ? ""
                 : "32px",
           }}
@@ -202,19 +204,19 @@ export const PkmnCardTrader = ({
           style={{
             color: color.black,
             padding:
-              globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS"
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
                 ? "0.2rem 0.2rem 0 0.7rem"
                 : "0.5rem 0.2rem 0 0.7rem",
             textAlign:
-              globalValue?.breakpoint === "XS" ||
-              globalValue?.breakpoint === "S"
+              globalValue?.screen.breakpoint === "XS" ||
+              globalValue?.screen.breakpoint === "S"
                 ? "center"
                 : "left",
           }}
         >
-          {globalValue?.breakpoint !== "S" &&
-            globalValue?.breakpoint !== "XS" &&
+          {globalValue?.screen.breakpoint !== "S" &&
+            globalValue?.screen.breakpoint !== "XS" &&
             "Value: "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
           $
@@ -242,8 +244,8 @@ export const PkmnCard = ({ card, cardWidth }: IPkmnCardProps) => {
             height: "auto",
             overflow: "hidden",
             borderRadius: `${
-              globalValue?.breakpoint === "S" ||
-              globalValue?.breakpoint === "XS"
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
                 ? "5px"
                 : "10px"
             }`,

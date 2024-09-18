@@ -59,12 +59,14 @@ export const TradersMat = ({
         backgroundBlendMode: "overlay",
         borderRadius: "10px",
         width: `${
-          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
             ? "90vw"
             : "45vw"
         }`,
         height: `${
-          globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
             ? globalValue?.screen.height &&
               globalValue?.screen.height / 2 - 60 + "px"
             : globalValue?.screen.height &&
@@ -95,8 +97,8 @@ export const TradersMat = ({
             : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
           $
         </p>
-        {(globalValue?.breakpoint === "S" ||
-          globalValue?.breakpoint === "XS") && (
+        {(globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS") && (
           <IconButton
             icon={"trash"}
             colorIcon={color.white}
@@ -104,94 +106,96 @@ export const TradersMat = ({
           />
         )}
       </div>
-      {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "0 1.5rem",
-            marginBottom: "0.5rem",
-            gap: "1.5rem",
-          }}
-        >
-          {cards.length !== 0 && cards !== undefined && (
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-              }}
-            >
-              <p
+      {globalValue?.screen.breakpoint !== "S" &&
+        globalValue?.screen.breakpoint !== "XS" && (
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "0 1.5rem",
+              marginBottom: "0.5rem",
+              gap: "1.5rem",
+            }}
+          >
+            {cards.length !== 0 && cards !== undefined && (
+              <div
                 style={{
-                  fontSize: 20,
                   display: "flex",
-                  alignSelf: "center",
-                  justifySelf: "center",
-                  paddingBottom: "0.4rem",
+                  gap: "1rem",
                 }}
               >
-                Sort
-              </p>
-              <IconButton
-                icon={"sortValue"}
-                colorIcon={`${
-                  sortBy === "valueHighLow" || sortBy === "valueLowHigh"
-                    ? color.white
-                    : color.sortNotUsed
-                }`}
-                clickFn={() => {
-                  if (sortBy === "valueHighLow") {
-                    changeSortBy("valueLowHigh");
-                  } else {
-                    changeSortBy("valueHighLow");
-                  }
-                }}
-              />
-              <IconButton
-                icon={"sortName"}
-                colorIcon={`${
-                  sortBy === "nameAZ" || sortBy === "nameZA"
-                    ? color.white
-                    : color.sortNotUsed
-                }`}
-                clickFn={() => {
-                  if (sortBy === "nameAZ") {
-                    changeSortBy("nameZA");
-                  } else {
-                    changeSortBy("nameAZ");
-                  }
-                }}
-              />
-              <IconButton
-                icon={"sortRelease"}
-                colorIcon={`${
-                  sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
-                    ? color.white
-                    : color.sortNotUsed
-                }`}
-                clickFn={() => {
-                  if (sortBy === "releaseOldNew") {
-                    changeSortBy("releaseNewOld");
-                  } else {
-                    changeSortBy("releaseOldNew");
-                  }
-                }}
-              />
-            </div>
-          )}
-          {cards.length !== 0 && (
-            <>
-              <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
-            </>
-          )}
-        </div>
-      )}
+                <p
+                  style={{
+                    fontSize: 20,
+                    display: "flex",
+                    alignSelf: "center",
+                    justifySelf: "center",
+                    paddingBottom: "0.4rem",
+                  }}
+                >
+                  Sort
+                </p>
+                <IconButton
+                  icon={"sortValue"}
+                  colorIcon={`${
+                    sortBy === "valueHighLow" || sortBy === "valueLowHigh"
+                      ? color.white
+                      : color.sortNotUsed
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "valueHighLow") {
+                      changeSortBy("valueLowHigh");
+                    } else {
+                      changeSortBy("valueHighLow");
+                    }
+                  }}
+                />
+                <IconButton
+                  icon={"sortName"}
+                  colorIcon={`${
+                    sortBy === "nameAZ" || sortBy === "nameZA"
+                      ? color.white
+                      : color.sortNotUsed
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "nameAZ") {
+                      changeSortBy("nameZA");
+                    } else {
+                      changeSortBy("nameAZ");
+                    }
+                  }}
+                />
+                <IconButton
+                  icon={"sortRelease"}
+                  colorIcon={`${
+                    sortBy === "releaseOldNew" || sortBy === "releaseNewOld"
+                      ? color.white
+                      : color.sortNotUsed
+                  }`}
+                  clickFn={() => {
+                    if (sortBy === "releaseOldNew") {
+                      changeSortBy("releaseNewOld");
+                    } else {
+                      changeSortBy("releaseOldNew");
+                    }
+                  }}
+                />
+              </div>
+            )}
+            {cards.length !== 0 && (
+              <>
+                <PrimaryButton btnText="Clear cards" clickFn={clearCards} />
+              </>
+            )}
+          </div>
+        )}
       <div
         style={{
           width: "95%",
           maxHeight: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "67%"
               : "85%"
           }`,
@@ -204,7 +208,8 @@ export const TradersMat = ({
           paddingRight: "0.5rem",
           paddingTop: "0.5rem",
           marginTop: `${
-            globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
               ? "0"
               : "0.5rem"
           }`,
@@ -215,8 +220,8 @@ export const TradersMat = ({
             <PkmnCardTrader
               card={item.card}
               cardWidth={`${
-                globalValue?.breakpoint === "S" ||
-                globalValue?.breakpoint === "XS"
+                globalValue?.screen.breakpoint === "S" ||
+                globalValue?.screen.breakpoint === "XS"
                   ? "6rem"
                   : "8rem"
               }`}

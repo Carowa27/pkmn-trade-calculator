@@ -21,7 +21,8 @@ export const Footer = () => {
       <div
         style={{
           width:
-            globalValue?.breakpoint === "XS" || globalValue?.breakpoint === "S"
+            globalValue?.screen.breakpoint === "XS" ||
+            globalValue?.screen.breakpoint === "S"
               ? "100%"
               : "75%",
           padding: "0 1rem",
@@ -55,7 +56,7 @@ export const Footer = () => {
           fontWeight: "lighter",
         }}
       >
-        V 0.1.4 ( {globalValue?.breakpoint} )
+        V 0.1.4 ( {globalValue?.screen.breakpoint} )
       </span>
     </footer>
   );
