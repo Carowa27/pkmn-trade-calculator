@@ -7,7 +7,7 @@ export const color = {
 
   sortNotUsed: "#D3D3D380",
 
-  primaryText: "##EFE7E8",
+  primaryText: "#EFE7E8",
 
   opacityBackground: "#00000080",
 

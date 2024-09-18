@@ -229,6 +229,15 @@ export const TradersMat = ({
           );
         })}
       </div>
+      <div
+        style={{
+          marginTop: "auto",
+          marginBottom: "0.5rem",
+          paddingTop: "0.5rem",
+        }}
+      >
+        <h1 style={{ color: `${color.primaryText}80` }}>Trader {trader}</h1>
+      </div>
     </div>
   );
 };
