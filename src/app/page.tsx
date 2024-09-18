@@ -13,12 +13,13 @@ import {
   NotificationModalWindow,
   NotificationWindow,
 } from "@/components/Notification";
-import { Header, TradersMat } from "@/components/Containers";
+import { TradersMat } from "@/components/Containers";
 import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { useGlobalValue } from "@/components/GlobalValueProvider";
 import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 
 const Home = () => {
   const { globalValue } = useGlobalValue();
