@@ -1,5 +1,7 @@
 import { IPkmnSet } from "@/interfaces/dataFromApi";
 import { useGlobalValue } from "./GlobalValueProvider";
+import pokeBall from "../../public/pokeBallBackground.webp";
+import { color } from "@/utils/color";
 
 interface pkmnSetProps {
   set: IPkmnSet;
@@ -23,7 +25,14 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 ? "8rem"
                 : "11rem"
             }`,
+            // testing, up for voting
             borderRadius: "10px",
+            backgroundColor: `${color.black}`,
+            backgroundImage: `url(${pokeBall.src})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundBlendMode: "overlay",
           }}
         >
           <div
