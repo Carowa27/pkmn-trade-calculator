@@ -13,7 +13,6 @@ import {
   NotificationModalWindow,
   NotificationWindow,
 } from "@/components/Notification";
-import { windowSize } from "@/functions/windowSizes";
 import { Header, TradersMat } from "@/components/Containers";
 import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
