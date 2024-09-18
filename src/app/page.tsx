@@ -55,7 +55,6 @@ const Home = () => {
     sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
   };
   const clearAllCards = () => {
-    // sessionStorage.clear;
     sessionStorage.setItem("tr1", JSON.stringify([]));
     sessionStorage.setItem("tr2", JSON.stringify([]));
     setTraderOne([]);
@@ -251,12 +250,11 @@ const Home = () => {
                 : "100%"
             }`,
             display: "flex",
-            flexDirection: "column", //`${globalValue?.breakpoint === "S" ? "row" : "column"}`,
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          {/* {globalValue?.breakpoint !== "S" && <div>circle</div>} */}
           <div
             style={{
               width: "70%",
