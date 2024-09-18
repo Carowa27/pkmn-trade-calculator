@@ -123,7 +123,7 @@ const Home = () => {
       .toFixed(2)
       .replaceAll("-", "");
     setDiffSum(diff);
-  }, [showModal, traderOne, traderTwo]);
+  }, [showModal, traderOne, traderTwo, showDeleteNotification]);
 
   return (
     <div
@@ -170,8 +170,8 @@ const Home = () => {
                 setDiffSum(
                   Math.round(
                     cardSum({
-                      trader: "two",
-                      traderTwo: traderTwo,
+                      trader: "one",
+                      traderTwo: traderOne,
                     })
                   )
                     .toFixed(2)
