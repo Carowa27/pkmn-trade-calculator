@@ -43,7 +43,9 @@ export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
   return (
     <button
       style={{
-        background: `${filled ? color.buttonBackground : "none"}`,
+        background: `${
+          filled ? color.buttonBackground : color.buttonBackground
+        }`,
         color: "inherit",
         fontWeight: "bold",
         fontSize: "large",
