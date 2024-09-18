@@ -27,7 +27,6 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
             }`,
             borderRadius: "10px",
           }}
-          title={set.name}
         >
           <div
             className="three"
@@ -48,6 +47,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 borderRadius: "10px",
                 height: "100%",
                 padding: "1rem 1rem 0.5rem 1rem",
+                cursor: "pointer",
               }}
               onClick={() => saveSet(set)}
             >

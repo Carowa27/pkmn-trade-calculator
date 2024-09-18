@@ -73,6 +73,9 @@ export const Pagination = ({
           }}
         >
           <SkipStartFill
+            style={{
+              cursor: "pointer",
+            }}
             size={25}
             onClick={() => (page !== 1 ? updateSearch(1) : null)}
           ></SkipStartFill>
@@ -90,12 +93,14 @@ export const Pagination = ({
                         paddingLeft: "10px",
                         paddingRight: "10px",
                         fontSize: "20px",
+                        cursor: "pointer",
                       }
                     : {
                         margin: 0,
                         paddingLeft: "10px",
                         paddingRight: "10px",
                         fontSize: "20px",
+                        cursor: "pointer",
                       }
                 }
                 onClick={() => (page !== number ? updateSearch(number) : null)}
@@ -114,6 +119,9 @@ export const Pagination = ({
           }}
         >
           <SkipEndFill
+            style={{
+              cursor: "pointer",
+            }}
             size={25}
             onClick={() =>
               page !== amountPages ? updateSearch(amountPages) : null
