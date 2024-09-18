@@ -3,7 +3,7 @@ import { PkmnCard } from "./PkmnCard";
 import { IRemoveCard, ITraderCard } from "@/interfaces/interfaces";
 import { windowSize } from "@/functions/windowSizes";
 import { color } from "@/utils/color";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
 
 interface INotificationProps {
@@ -27,6 +27,11 @@ export const NotificationWindow = ({
   notificationFooter,
   closeNotification,
 }: INotificationProps) => {
+  useEffect(() => {
+    setTimeout(() => {
+      closeNotification();
+    }, 1500);
+  });
   return (
     <>
       <div
@@ -35,10 +40,11 @@ export const NotificationWindow = ({
           width: "100%",
           position: "absolute",
           top: 0,
-          backgroundColor: "#000000E6",
+          backgroundColor: "#00000080",
           display: "flex",
           alignItems: "end",
           justifyContent: "end",
+          zIndex: "300",
         }}
         // onClick={changeShowModal}
       >
@@ -47,7 +53,6 @@ export const NotificationWindow = ({
             background: "lightgrey",
             color: color.black,
             borderRadius: "10px",
-            padding: "1rem",
             margin: "1rem",
             border: "2px solid darkgrey",
           }}
@@ -57,10 +62,13 @@ export const NotificationWindow = ({
             className="notificationBody"
             style={{ display: "flex", alignItems: "start" }}
           >
-            {notificationMessage}
-            <div style={{ paddingLeft: "1rem" }}>
+            <span
+              style={{ padding: "1rem" }}
+              dangerouslySetInnerHTML={{ __html: notificationMessage }}
+            ></span>
+            <div style={{ padding: "0.5rem 0.5rem 0 0" }}>
               <IconButton
-                icon={"X"}
+                icon={"X-mini"}
                 clickFn={closeNotification}
                 colorIcon={color.black}
               />

@@ -47,12 +47,20 @@ const Home = () => {
     newList.push(cardToAdd);
     setTraderOne(newList);
     sessionStorage.setItem("tr1", JSON.stringify(traderOne));
+    setNotificationMessage(
+      `<b>${cardToAdd.card.name}</b> has been added to <i>trader one</i>`
+    );
+    setShowNotification(true);
   };
   const changeTraderTwosCards = (cardToAdd: ISavedCard) => {
     let newList: ISavedCard[] = traderTwo;
     newList.push(cardToAdd);
     setTraderTwo(newList);
     sessionStorage.setItem("tr2", JSON.stringify(traderTwo));
+    setNotificationMessage(
+      `<b>${cardToAdd.card.name}</b> has been added to <i>trader two</i>`
+    );
+    setShowNotification(true);
   };
   const clearAllCards = () => {
     sessionStorage.setItem("tr1", JSON.stringify([]));
@@ -83,7 +91,11 @@ const Home = () => {
       setTraderTwo(newArray);
       sessionStorage.setItem("tr2", JSON.stringify(newArray));
     }
+    setNotificationMessage(
+      `<b>${card.name}</b> has been removed from <i>trader ${trader}</i>`
+    );
     setShowDeleteNotification(false);
+    setShowNotification(true);
   };
 
   useEffect(() => {
