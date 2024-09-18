@@ -26,7 +26,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 : "11rem"
             }`,
             // testing, up for voting
-            borderRadius: "10px",
+            borderRadius: "50%",
             backgroundColor: `${color.black}`,
             backgroundImage: `url(${pokeBall.src})`,
             backgroundPosition: "center",
@@ -38,7 +38,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
           <div
             className="three"
             style={{
-              border: "2px black solid",
+              // border: "2px black solid",
               borderRadius: "10px",
               height: "100%",
             }}
@@ -50,7 +50,7 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "space-evenly",
-                border: "2px white solid",
+                // border: "2px white solid",
                 borderRadius: "10px",
                 height: "100%",
                 padding: "1rem 1rem 0.5rem 1rem",
@@ -63,6 +63,37 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
+                  background:
+                    set.name.includes("Promos") ||
+                    set.name.includes("Legendary") ||
+                    set.name.includes("Expedition Base") ||
+                    set.name.includes("Best of Game") ||
+                    set.name.includes("Skyridge") ||
+                    set.name.includes("Neo Destiny")
+                      ? "white"
+                      : "",
+                  padding: set.name.includes("Promos")
+                    ? "0.2rem 0.5rem 0.5rem 0.5rem"
+                    : set.name.includes("Expedition Base")
+                    ? "0.5rem"
+                    : set.name.includes("Skyridge")
+                    ? "0.9rem 0.5rem"
+                    : set.name.includes("Best of Game")
+                    ? "0.7rem"
+                    : set.name.includes("Legendary")
+                    ? "0.5rem 0.7rem"
+                    : set.name.includes("Neo Destiny")
+                    ? "0.9rem"
+                    : "",
+                  borderRadius:
+                    set.name.includes("Promos") ||
+                    set.name.includes("Legendary") ||
+                    set.name.includes("Expedition Base") ||
+                    set.name.includes("Best of Game") ||
+                    set.name.includes("Skyridge") ||
+                    set.name.includes("Neo Destiny")
+                      ? "50%"
+                      : "",
                 }}
               >
                 <img
