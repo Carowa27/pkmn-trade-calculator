@@ -1,6 +1,5 @@
-import { windowSize } from "@/functions/windowSizes";
-import { useContext, useEffect, useState } from "react";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useEffect, useState } from "react";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 export const LoadingModule = () => {
   const [isThirdDot, setThirdDot] = useState<boolean>(false);
