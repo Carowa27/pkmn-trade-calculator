@@ -9,6 +9,7 @@ import {
   Trash3Fill,
   SortAlphaDown,
   XLg,
+  ArrowLeft,
 } from "react-bootstrap-icons";
 
 interface IBtnProps {
@@ -88,7 +89,7 @@ export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
       >
         {icon === "X" && <XLg size={25} />}
         {icon === "X-mini" && <X size={20} />}
-        {icon === "<" && <ArrowLeftShort size={25} />}
+        {icon === "<" && <ArrowLeft size={25} />}
         {icon === "search" && <Search size={25} />}
         {icon === "trash" && <Trash3Fill size={25} />}
         {icon === "sortName" && <SortAlphaDown size={25} />}
