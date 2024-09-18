@@ -39,8 +39,6 @@ const Home = () => {
   >("trader one");
   const [showClearNotification, setShowClearNotification] =
     useState<boolean>(false);
-  //PLACEHOLDER
-  const currency = "SEK";
 
   const changeShowModal = () => {
     setShowModal(false);
@@ -143,8 +141,6 @@ const Home = () => {
         clearAllCards={() => (
           setCardsToClear("all cards"), setShowClearNotification(true)
         )}
-        changeCurrency={() => console.log("clicked")}
-        currency={currency}
       />
       {showNotification && (
         <NotificationWindow
@@ -322,7 +318,14 @@ const Home = () => {
                 <ArrowLeft size={40} />
               )}
             </div>
-            <p style={{ textAlign: "center", margin: "0" }}>diff: {diffSum}$</p>
+            <p style={{ textAlign: "center", margin: "0" }}>
+              diff: {diffSum}
+              {globalValue?.currency === "USD" && "$"}
+              {globalValue?.currency === "EUR" && "€"}
+              {globalValue?.currency === "NOK" && "kr"}
+              {globalValue?.currency === "SEK" && "kr"}
+              {globalValue?.currency === "GBP" && "£"}
+            </p>
             <div
               style={{
                 display: "flex",

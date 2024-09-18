@@ -43,10 +43,7 @@ interface ICardTypeProps {
   clickFn?: ({}: ISavedCardProps) => void;
   filled?: boolean;
 }
-interface ICurrencyProps {
-  currency: "SEK" | "NOK" | "EUR" | "USD" | "GBP";
-  clickFn: () => void;
-}
+
 export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
   return (
     <button
@@ -173,57 +170,5 @@ export const CardTypeButton = ({
     >
       {type}
     </button>
-  );
-};
-
-export const CurrencyButton = ({ currency, clickFn }: ICurrencyProps) => {
-  const { globalValue } = useGlobalValue();
-  //always size 25
-  return (
-    <div
-      style={{
-        margin:
-          globalValue?.screen.breakpoint !== "S" &&
-          globalValue?.screen.breakpoint !== "XS"
-            ? "0 2rem"
-            : "",
-        display: "flex",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      {globalValue?.screen.breakpoint !== "S" &&
-        globalValue?.screen.breakpoint !== "XS" && (
-          <CurrencyExchange size={30} />
-        )}
-      <button
-        style={{
-          cursor: "pointer",
-          aspectRatio: "1/1",
-          height: "2.5rem",
-          background: "none",
-          border: "none",
-          color: color.primaryText,
-        }}
-      >
-        <div
-          onClick={clickFn}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <p>
-            {currency === "SEK" && "SEK"}
-            {currency === "NOK" && "NOK"}
-            {currency === "EUR" && "EUR"}
-            {currency === "USD" && "USD"}
-            {currency === "GBP" && "GBP"}
-          </p>
-          <CaretDown />
-        </div>
-      </button>
-    </div>
   );
 };

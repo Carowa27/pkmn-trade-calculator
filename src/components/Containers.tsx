@@ -95,7 +95,11 @@ export const TradersMat = ({
           {trader === "one"
             ? (Math.round(sumTraderOne * 100) / 100).toFixed(2)
             : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
-          $
+          {globalValue?.currency === "USD" && "$"}
+          {globalValue?.currency === "EUR" && "€"}
+          {globalValue?.currency === "NOK" && "kr"}
+          {globalValue?.currency === "SEK" && "kr"}
+          {globalValue?.currency === "GBP" && "£"}
         </p>
         {(globalValue?.screen.breakpoint === "S" ||
           globalValue?.screen.breakpoint === "XS") && (

@@ -219,7 +219,12 @@ export const PkmnCardTrader = ({
             globalValue?.screen.breakpoint !== "XS" &&
             "Value: "}
           {cardSum({ card, chosenType }) ? cardSum({ card, chosenType }) : "--"}
-          $
+
+          {globalValue?.currency === "USD" && "$"}
+          {globalValue?.currency === "EUR" && "€"}
+          {globalValue?.currency === "NOK" && "kr"}
+          {globalValue?.currency === "SEK" && "kr"}
+          {globalValue?.currency === "GBP" && "£"}
         </p>
       </div>
     </div>

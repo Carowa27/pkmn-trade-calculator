@@ -1,17 +1,12 @@
 "use client";
 
-import { ScrSize, windowSize } from "@/functions/windowSizes";
+import { windowSize } from "@/functions/windowSizes";
+import { IGlobalValuesProperties } from "@/interfaces/interfaces";
 import { createContext, useContext, useState, useEffect } from "react";
 
-interface globalValuesProperties {
-  screen: { height: number; width: number; breakpoint: ScrSize | undefined };
-
-  currency: "SEK" | "NOK" | "EUR" | "USD" | "GBP";
-}
-
 interface GlobalValueParams {
-  globalValue: globalValuesProperties | undefined;
-  setGlobalValue: (newValue: globalValuesProperties) => void;
+  globalValue: IGlobalValuesProperties | undefined;
+  setGlobalValue: (newValue: IGlobalValuesProperties) => void;
 }
 
 interface GlobalValueProviderProps {
@@ -23,7 +18,7 @@ export const GlobalValueContext = createContext<GlobalValueParams | undefined>(
 );
 
 export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
-  const [globalValue, setGlobalValue] = useState<globalValuesProperties>();
+  const [globalValue, setGlobalValue] = useState<IGlobalValuesProperties>();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
