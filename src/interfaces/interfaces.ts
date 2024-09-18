@@ -18,5 +18,12 @@ export interface IRemoveCard {
 
 export interface IGlobalValuesProperties {
   screen: { height: number; width: number; breakpoint: ScrSize | undefined };
-  currency: "SEK" | "NOK" | "EUR" | "USD" | "GBP";
+  currency: Currency;
+}
+export enum Currency {
+  SEK = "SEK",
+  NOK = "NOK",
+  EUR = "EUR",
+  USD = "USD",
+  GBP = "GBP",
 }

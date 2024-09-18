@@ -1,13 +1,12 @@
 import { color } from "@/utils/color";
 import { CurrencyExchange } from "react-bootstrap-icons";
 import { useGlobalValue } from "./GlobalValueProvider";
+import { Currency } from "@/interfaces/interfaces";
 
 export const CurrencySelect = () => {
   const { globalValue, setGlobalValue } = useGlobalValue();
   //always size 25
-  const changeCurrency = (
-    newCurrency: "SEK" | "NOK" | "EUR" | "USD" | "GBP"
-  ) => {
+  const changeCurrency = (newCurrency: Currency) => {
     try {
       setGlobalValue({
         screen: {
@@ -56,11 +55,7 @@ export const CurrencySelect = () => {
             height: "2.5rem",
           }}
           value={globalValue?.currency}
-          onChange={(e) =>
-            changeCurrency(
-              e.target.value as "SEK" | "NOK" | "EUR" | "USD" | "GBP"
-            )
-          }
+          onChange={(e) => changeCurrency(e.target.value as Currency)}
         >
           <option
             style={{

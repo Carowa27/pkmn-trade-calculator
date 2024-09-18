@@ -1,7 +1,7 @@
 "use client";
 
 import { windowSize } from "@/functions/windowSizes";
-import { IGlobalValuesProperties } from "@/interfaces/interfaces";
+import { Currency, IGlobalValuesProperties } from "@/interfaces/interfaces";
 import { createContext, useContext, useState, useEffect } from "react";
 
 interface GlobalValueParams {
@@ -28,7 +28,7 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
         width: window.innerWidth,
         breakpoint: windowSize(window.innerWidth),
       },
-      currency: globalValue?.currency ? globalValue.currency : "USD",
+      currency: globalValue?.currency ? globalValue.currency : Currency.USD,
     });
 
     // Initial setup
@@ -53,7 +53,7 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
         breakpoint: windowSize(window.innerWidth),
       },
 
-      currency: globalValue?.currency ? globalValue.currency : "USD",
+      currency: globalValue?.currency ? globalValue.currency : Currency.USD,
     });
   };
 
