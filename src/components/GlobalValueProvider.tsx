@@ -48,7 +48,6 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
   }, []);
 
   const handleResize = () => {
-    console.log("started");
     setGlobalValue({
       screen: { height: window.innerHeight, width: window.innerWidth },
       breakpoint: windowSize(window.innerWidth),
