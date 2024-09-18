@@ -1,9 +1,6 @@
 import { ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "./sumFunctions";
 
-// placeholder variable
-const cards: ISavedCard[] = [];
-
 interface ISortProps {
   cards: ISavedCard[];
   sortBy:
