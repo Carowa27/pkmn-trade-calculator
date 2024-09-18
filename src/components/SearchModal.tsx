@@ -10,6 +10,7 @@ import { Pagination } from "./Pagination";
 import { IconButton } from "./Buttons";
 import { ISavedCard } from "@/interfaces/interfaces";
 import { useGlobalValue } from "./GlobalValueProvider";
+import { color } from "@/utils/color";
 
 interface ModalProps {
   searchFor: "set" | "card";
@@ -120,7 +121,7 @@ export const SearchModal = ({
           width: "100%",
           position: "absolute",
           top: 0,
-          backgroundColor: "#000000E6",
+          backgroundColor: color.opacityBackground,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

@@ -9,6 +9,8 @@ export const color = {
 
   primaryText: "",
 
+  opacityBackground: "#00000080",
+
   primaryBackground: "",
   buttonBackground: "#12141630",
   buttonBorder: "grey solid 1px",
