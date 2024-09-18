@@ -1,11 +1,17 @@
-import { PrimaryButton } from "./Buttons";
+import { CurrencyButton, PrimaryButton } from "./Buttons";
 import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IHeaderProps {
   clearAllCards: () => void;
+  changeCurrency: () => void;
+  currency: "SEK" | "NOK" | "EUR" | "USD" | "GBP";
 }
 
-export const Header = ({ clearAllCards }: IHeaderProps) => {
+export const Header = ({
+  clearAllCards,
+  currency,
+  changeCurrency,
+}: IHeaderProps) => {
   const { globalValue } = useGlobalValue();
   return (
     <header
@@ -25,22 +31,12 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         }`,
       }}
     >
-      <h2>
-        Mad&apos;s Trade Calculator
-        <span
-          style={{
-            marginLeft: "1rem",
-            fontSize: "14px",
-            color: "#8D858C",
-            fontWeight: "lighter",
-          }}
-        >
-          V 0.1.4 ( {globalValue?.breakpoint} )
-        </span>
-      </h2>
-
+      <h2>Mad&apos;s Trade Calculator</h2>
+      <div style={{ marginLeft: "auto" }}>
+        <CurrencyButton currency={currency} clickFn={() => changeCurrency()} />
+      </div>
       {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
-        <div>
+        <div style={{ marginLeft: "2rem" }}>
           <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
         </div>
       )}

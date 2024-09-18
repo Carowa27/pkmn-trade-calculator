@@ -47,6 +47,16 @@ export const Footer = () => {
         &copy; {thisYear} Carolina (
         <Link href="https://github.com/Carowa27">Carowa27</Link>)
       </div>
+      <span
+        style={{
+          marginLeft: "1rem",
+          fontSize: "14px",
+          color: "#8D858C",
+          fontWeight: "lighter",
+        }}
+      >
+        V 0.1.4 ( {globalValue?.breakpoint} )
+      </span>
     </footer>
   );
 };

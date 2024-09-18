@@ -39,6 +39,8 @@ const Home = () => {
   >("trader one");
   const [showClearNotification, setShowClearNotification] =
     useState<boolean>(false);
+  //PLACEHOLDER
+  const currency = "SEK";
 
   const changeShowModal = () => {
     setShowModal(false);
@@ -141,6 +143,8 @@ const Home = () => {
         clearAllCards={() => (
           setCardsToClear("all cards"), setShowClearNotification(true)
         )}
+        changeCurrency={() => console.log("clicked")}
+        currency={currency}
       />
       {showNotification && (
         <NotificationWindow

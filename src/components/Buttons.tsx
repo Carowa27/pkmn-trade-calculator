@@ -9,7 +9,11 @@ import {
   SortAlphaDown,
   XLg,
   ArrowLeft,
+  Coin,
+  CurrencyExchange,
+  CaretDown,
 } from "react-bootstrap-icons";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IBtnProps {
   btnText: string;
@@ -38,6 +42,10 @@ interface ICardTypeProps {
   type: string;
   clickFn?: ({}: ISavedCardProps) => void;
   filled?: boolean;
+}
+interface ICurrencyProps {
+  currency: "SEK" | "NOK" | "EUR" | "USD" | "GBP";
+  clickFn: () => void;
 }
 export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
   return (
@@ -165,5 +173,52 @@ export const CardTypeButton = ({
     >
       {type}
     </button>
+  );
+};
+
+export const CurrencyButton = ({ currency, clickFn }: ICurrencyProps) => {
+  const { globalValue } = useGlobalValue();
+  //always size 25
+  return (
+    <div
+      style={{
+        margin: "0 2rem",
+        display: "flex",
+        alignItems: "center",
+        gap: "0.5rem",
+      }}
+    >
+      {globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS" && (
+        <CurrencyExchange size={30} />
+      )}
+      <button
+        style={{
+          cursor: "pointer",
+          aspectRatio: "1/1",
+          height: "2.5rem",
+          background: "none",
+          border: "none",
+          color: color.primaryText,
+        }}
+      >
+        <div
+          onClick={clickFn}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <p>
+            {currency === "SEK" && "SEK"}
+            {currency === "NOK" && "NOK"}
+            {currency === "EUR" && "EUR"}
+            {currency === "USD" && "USD"}
+            {currency === "GBP" && "GBP"}
+          </p>
+          <CaretDown />
+        </div>
+      </button>
+    </div>
   );
 };
