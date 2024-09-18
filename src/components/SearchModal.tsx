@@ -2,15 +2,14 @@
 
 import { IPkmnCard, IPkmnSet } from "@/interfaces/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./PkmnSet";
 import { PkmnCardSearch } from "./PkmnCard";
 import { Pagination } from "./Pagination";
-import { windowSize } from "@/functions/windowSizes";
 import { IconButton } from "./Buttons";
 import { ISavedCard } from "@/interfaces/interfaces";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface ModalProps {
   searchFor: "set" | "card";
