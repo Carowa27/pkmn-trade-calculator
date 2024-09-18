@@ -5,6 +5,7 @@ import { color } from "@/utils/color";
 import { useState } from "react";
 import { sortCards } from "@/functions/sortFunctions";
 import { useGlobalValue } from "./GlobalValueProvider";
+import pokeBall from "../../public/pokeBallBackground.webp";
 
 interface IHeaderProps {
   clearAllCards: () => void;
@@ -94,7 +95,12 @@ export const TradersMat = ({
   return (
     <div
       style={{
-        backgroundColor: "#8AA39988",
+        backgroundColor: `${color.black}88`,
+        backgroundImage: `url(${pokeBall.src})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundBlendMode: "overlay",
         borderRadius: "10px",
         width: `${
           globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
