@@ -1,7 +1,5 @@
 import { IPkmnSet } from "@/interfaces/dataFromApi";
-import { windowSize } from "@/functions/windowSizes";
-import { useContext } from "react";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface pkmnSetProps {
   set: IPkmnSet;
