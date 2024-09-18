@@ -68,21 +68,21 @@ const Home = () => {
   };
   const findCardToRemove = ({ id, trader }: ITraderCard) => {
     const card = trader === "one" ? traderOne[id].card : traderTwo[id].card;
-    setCardToRemove({ card, trader });
+    setCardToRemove({ trader, card, id });
     openRemoveCard();
   };
   const openRemoveCard = () => {
     setShowDeleteNotification(true);
   };
-  const removeCard = ({ card, trader }: IRemoveCard) => {
-    const newArray =
-      trader === "one"
-        ? traderOne.filter((item) => item.card !== card)
-        : traderTwo.filter((item) => item.card !== card);
+  const removeCard = ({ trader, id, card }: IRemoveCard) => {
+    const newArray = trader === "one" ? traderOne : traderTwo;
+    newArray.splice(id, 1);
     if (trader === "one") {
       setTraderOne(newArray);
+      sessionStorage.setItem("tr1", JSON.stringify(newArray));
     } else {
       setTraderTwo(newArray);
+      sessionStorage.setItem("tr2", JSON.stringify(newArray));
     }
     setShowDeleteNotification(false);
   };

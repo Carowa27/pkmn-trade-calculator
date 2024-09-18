@@ -12,4 +12,5 @@ export interface ITraderCard {
 export interface IRemoveCard {
   card: IPkmnCard;
   trader: "one" | "two";
+  id: number;
 }
