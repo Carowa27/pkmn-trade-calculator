@@ -19,7 +19,7 @@ export const Header = ({
         height: "3vh",
         margin: `${
           globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
-            ? "0.5rem 0rem"
+            ? "0.5rem 1rem"
             : "1rem 2rem 1rem 2rem"
         }`,
         display: "flex",

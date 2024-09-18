@@ -182,7 +182,10 @@ export const CurrencyButton = ({ currency, clickFn }: ICurrencyProps) => {
   return (
     <div
       style={{
-        margin: "0 2rem",
+        margin:
+          globalValue?.breakpoint !== "S" && globalValue?.breakpoint !== "XS"
+            ? "0 2rem"
+            : "",
         display: "flex",
         alignItems: "center",
         gap: "0.5rem",
