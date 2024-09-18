@@ -18,6 +18,7 @@ import { ITraderCard, IRemoveCard, ISavedCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { useGlobalValue } from "@/components/GlobalValueProvider";
+import { Footer } from "@/components/Footer";
 
 const Home = () => {
   const { globalValue } = useGlobalValue();
@@ -125,7 +126,7 @@ const Home = () => {
   }, [showModal, traderOne, traderTwo]);
 
   return (
-    <main
+    <div
       style={{
         display: "flex",
         flexDirection: "column",
@@ -206,7 +207,7 @@ const Home = () => {
           }
         />
       )}
-      <div
+      <main
         style={{
           height: `${
             globalValue?.breakpoint === "S" || globalValue?.breakpoint === "XS"
@@ -368,8 +369,9 @@ const Home = () => {
             setCardsToClear("trader two"), setShowClearNotification(true)
           )}
         />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 };
 export default Home;
