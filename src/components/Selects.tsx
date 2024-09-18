@@ -69,15 +69,7 @@ export const CurrencySelect = () => {
           value={globalValue?.exchange.currency}
           onChange={(e) => changeCurrency(e.target.value as Currency)}
         >
-          <option
-            style={{
-              background: color.black,
-              color: color.primaryText,
-            }}
-            value="USD"
-          >
-            USD
-          </option>
+          {" "}
           <option
             style={{
               background: color.black,
@@ -113,6 +105,15 @@ export const CurrencySelect = () => {
             value="SEK"
           >
             SEK
+          </option>
+          <option
+            style={{
+              background: color.black,
+              color: color.primaryText,
+            }}
+            value="USD"
+          >
+            USD
           </option>
         </select>
       </div>
