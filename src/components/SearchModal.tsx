@@ -211,7 +211,11 @@ export const SearchModal = ({
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "space-evenly",
-                gap: "1rem",
+                gap:
+                  globalValue?.breakpoint === "S" ||
+                  globalValue?.breakpoint === "XS"
+                    ? "00.5rem"
+                    : "1rem",
                 overflow: "hidden visible",
                 height: "100%",
                 paddingRight:
@@ -255,7 +259,7 @@ export const SearchModal = ({
                         cardWidth={`${
                           globalValue?.breakpoint === "S" ||
                           globalValue?.breakpoint === "XS"
-                            ? "8rem"
+                            ? `${globalValue.screen.width / 2 - 30}px`
                             : "12.5rem"
                         }`}
                         key={card.id + "-" + i}

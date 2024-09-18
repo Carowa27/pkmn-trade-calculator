@@ -147,7 +147,7 @@ export const CardTypeButton = ({
   return (
     <button
       style={{
-        background: backgroundColor(), //`${filled ? color.buttonBackground : "none"}`,
+        background: backgroundColor(),
         height: "2rem",
         width: "max-content",
         display: "flex",
@@ -157,6 +157,7 @@ export const CardTypeButton = ({
         border: color.buttonBorder,
         borderRadius: "10px",
         padding: "0.2rem 0.5rem",
+        margin: "1px",
         color: color.black,
         cursor: "pointer",
       }}

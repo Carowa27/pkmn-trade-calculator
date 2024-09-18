@@ -68,7 +68,6 @@ export const PkmnCardSearch = ({
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "space-evenly",
-            gap: "0.5rem",
             padding: "0.4rem 0 0.5rem 0",
           }}
         >
