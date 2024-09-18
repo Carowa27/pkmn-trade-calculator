@@ -1,12 +1,10 @@
 import { IPkmnCard } from "@/interfaces/dataFromApi";
-import { windowSize } from "@/functions/windowSizes";
 import { CardTypeButton, IconButton } from "./Buttons";
 import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
 import { rarityCardColor } from "@/functions/releaseYearFn";
-import { useContext } from "react";
-import { GlobalValueContext, useGlobalValue } from "./GlobalValueProvider";
+import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IPkmnCardSearchProps {
   card: IPkmnCard;
