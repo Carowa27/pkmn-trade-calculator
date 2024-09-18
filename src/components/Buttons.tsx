@@ -2,7 +2,6 @@ import { IPkmnCard } from "@/interfaces/dataFromApi";
 import { color } from "@/utils/color";
 import {
   X,
-  ArrowLeftShort,
   Search,
   CurrencyDollar,
   Calendar3,
