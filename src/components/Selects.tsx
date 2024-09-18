@@ -7,6 +7,18 @@ export const CurrencySelect = () => {
   const { globalValue, setGlobalValue } = useGlobalValue();
   //always size 25
   const changeCurrency = (newCurrency: Currency) => {
+    const newRate = JSON.parse(
+      localStorage.getItem("moneyRatesForPkmnTrades")!
+    );
+
+    localStorage.setItem(
+      "moneyRatesForPkmnTrades",
+      JSON.stringify({
+        date: newRate.date,
+        rates: newRate.rates,
+        lastUsedCurrency: newCurrency,
+      })
+    );
     try {
       setGlobalValue({
         screen: {
@@ -15,9 +27,9 @@ export const CurrencySelect = () => {
           breakpoint:
             globalValue?.screen.breakpoint && globalValue?.screen.breakpoint,
         },
-        currency: newCurrency,
+        exchange: { currency: newCurrency, rate: newRate.rates[newCurrency] },
       });
-      console.log(`Currency changed to ${newCurrency}`);
+      console.info(`Currency changed to ${newCurrency}`);
     } catch (error) {
       console.error("Failed to change currency:", error);
     }
@@ -54,7 +66,7 @@ export const CurrencySelect = () => {
             cursor: "pointer",
             height: "2.5rem",
           }}
-          value={globalValue?.currency}
+          value={globalValue?.exchange.currency}
           onChange={(e) => changeCurrency(e.target.value as Currency)}
         >
           <option

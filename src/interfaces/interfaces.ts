@@ -18,7 +18,7 @@ export interface IRemoveCard {
 
 export interface IGlobalValuesProperties {
   screen: { height: number; width: number; breakpoint: ScrSize | undefined };
-  currency: Currency;
+  exchange: IExchange;
 }
 export enum Currency {
   SEK = "SEK",
@@ -34,8 +34,12 @@ export interface IRateApiResponse {
   license: string;
   rates: { SEK: number; NOK: number; EUR: number; USD: number; GBP: number };
 }
-
+interface IExchange {
+  currency: Currency;
+  rate: number;
+}
 export interface ISavedRates {
   date: string;
   rates: { SEK: number; NOK: number; EUR: number; USD: number; GBP: number };
+  lastUsedCurrency: Currency;
 }

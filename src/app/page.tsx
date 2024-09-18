@@ -19,6 +19,7 @@ import {
   IRemoveCard,
   ISavedCard,
   Currency,
+  IGlobalValuesProperties,
 } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
@@ -27,9 +28,10 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { getRateFromApi } from "@/functions/moneyRateApiService";
 import { getToday } from "@/functions/dateFunctions";
+import { changeCurrency } from "@/functions/currencyFunctions";
 
 const Home = () => {
-  const { globalValue } = useGlobalValue();
+  const { globalValue, setGlobalValue } = useGlobalValue();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [showDeleteNotification, setShowDeleteNotification] =
@@ -115,7 +117,7 @@ const Home = () => {
     }
   }, []);
   useEffect(() => {
-    const diff = (
+    const diffUSD =
       Math.round(
         (cardSum({
           trader: "one",
@@ -126,23 +128,76 @@ const Home = () => {
             traderTwo: traderTwo,
           })) *
           100
-      ) / 100
+      ) / 100;
+    const diffNotUSD =
+      Math.round(
+        (cardSum({
+          trader: "one",
+          traderOne: traderOne,
+        }) *
+          globalValue?.exchange.rate! -
+          cardSum({
+            trader: "two",
+            traderTwo: traderTwo,
+          }) *
+            globalValue?.exchange.rate!) *
+          100
+      ) / 100;
+
+    const diff = (
+      globalValue?.exchange.currency === Currency.USD
+        ? Math.round(
+            (cardSum({
+              trader: "one",
+              traderOne: traderOne,
+            }) -
+              cardSum({
+                trader: "two",
+                traderTwo: traderTwo,
+              })) *
+              100
+          ) / 100
+        : Math.round(
+            (cardSum({
+              trader: "one",
+              traderOne: traderOne,
+            }) *
+              globalValue?.exchange.rate! -
+              cardSum({
+                trader: "two",
+                traderTwo: traderTwo,
+              }) *
+                globalValue?.exchange.rate!) *
+              100
+          ) / 100
     )
       .toFixed(2)
       .replaceAll("-", "");
     setDiffSum(diff);
-  }, [showModal, traderOne, traderTwo, showDeleteNotification]);
+  }, [
+    showModal,
+    traderOne,
+    traderTwo,
+    showDeleteNotification,
+    globalValue?.exchange,
+  ]);
   useEffect(() => {
     const savedRates = localStorage.getItem("moneyRatesForPkmnTrades");
     const parsedRates = JSON.parse(savedRates!);
+
     if (savedRates === null) {
       getRateFromApi();
     } else {
       if (parsedRates.date !== getToday()) {
         getRateFromApi();
+      } else {
+        if (parsedRates.lastUsedCurrency !== globalValue?.exchange.currency) {
+          console.log("should change to: ", parsedRates.lastUsedCurrency);
+        }
       }
     }
   }, []);
+
   return (
     <div
       style={{
@@ -190,7 +245,7 @@ const Home = () => {
                     cardSum({
                       trader: "one",
                       traderTwo: traderOne,
-                    })
+                    }) * globalValue?.exchange.rate!
                   )
                     .toFixed(2)
                     .replaceAll("-", "")
@@ -204,7 +259,7 @@ const Home = () => {
                     cardSum({
                       trader: "two",
                       traderTwo: traderTwo,
-                    })
+                    }) * globalValue?.exchange.rate!
                   )
                     .toFixed(2)
                     .replaceAll("-", "")
@@ -337,11 +392,11 @@ const Home = () => {
             </div>
             <p style={{ textAlign: "center", margin: "0" }}>
               diff: {diffSum}
-              {globalValue?.currency === "USD" && "$"}
-              {globalValue?.currency === "EUR" && "€"}
-              {globalValue?.currency === "NOK" && "kr"}
-              {globalValue?.currency === "SEK" && "kr"}
-              {globalValue?.currency === "GBP" && "£"}
+              {globalValue?.exchange.currency === "USD" && "$"}
+              {globalValue?.exchange.currency === "EUR" && "€"}
+              {globalValue?.exchange.currency === "NOK" && "kr"}
+              {globalValue?.exchange.currency === "SEK" && "kr"}
+              {globalValue?.exchange.currency === "GBP" && "£"}
             </p>
             <div
               style={{

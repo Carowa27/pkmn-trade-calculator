@@ -28,7 +28,12 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
         width: window.innerWidth,
         breakpoint: windowSize(window.innerWidth),
       },
-      currency: globalValue?.currency ? globalValue.currency : Currency.USD,
+      exchange: {
+        currency: globalValue?.exchange.currency
+          ? globalValue.exchange.currency
+          : Currency.USD,
+        rate: globalValue?.exchange.rate ? globalValue.exchange.rate : 0,
+      },
     });
 
     // Initial setup
@@ -53,7 +58,12 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
         breakpoint: windowSize(window.innerWidth),
       },
 
-      currency: globalValue?.currency ? globalValue.currency : Currency.USD,
+      exchange: {
+        currency: globalValue?.exchange.currency
+          ? globalValue.exchange.currency
+          : Currency.USD,
+        rate: globalValue?.exchange.rate ? globalValue.exchange.rate : 0,
+      },
     });
   };
 

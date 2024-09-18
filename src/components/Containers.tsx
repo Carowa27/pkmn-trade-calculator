@@ -1,6 +1,6 @@
 import { IconButton, PrimaryButton } from "./Buttons";
 import { PkmnCardTrader } from "./PkmnCard";
-import { ISavedCard, ITraderCard } from "@/interfaces/interfaces";
+import { Currency, ISavedCard, ITraderCard } from "@/interfaces/interfaces";
 import { color } from "@/utils/color";
 import { useState } from "react";
 import { sortCards } from "@/functions/sortFunctions";
@@ -93,13 +93,23 @@ export const TradersMat = ({
         <p>
           Sum:{" "}
           {trader === "one"
-            ? (Math.round(sumTraderOne * 100) / 100).toFixed(2)
-            : (Math.round(sumTraderTwo * 100) / 100).toFixed(2)}
-          {globalValue?.currency === "USD" && "$"}
-          {globalValue?.currency === "EUR" && "€"}
-          {globalValue?.currency === "NOK" && "kr"}
-          {globalValue?.currency === "SEK" && "kr"}
-          {globalValue?.currency === "GBP" && "£"}
+            ? globalValue?.exchange.currency === Currency.USD
+              ? (Math.round(sumTraderOne * 100) / 100).toFixed(2)
+              : (
+                  Math.round(sumTraderOne * globalValue?.exchange.rate! * 100) /
+                  100
+                ).toFixed(2)
+            : globalValue?.exchange.currency === Currency.USD
+            ? (Math.round(sumTraderTwo * 100) / 100).toFixed(2)
+            : (
+                Math.round(sumTraderTwo * globalValue?.exchange.rate! * 100) /
+                100
+              ).toFixed(2)}
+          {globalValue?.exchange.currency === "USD" && "$"}
+          {globalValue?.exchange.currency === "EUR" && "€"}
+          {globalValue?.exchange.currency === "NOK" && "kr"}
+          {globalValue?.exchange.currency === "SEK" && "kr"}
+          {globalValue?.exchange.currency === "GBP" && "£"}
         </p>
         {(globalValue?.screen.breakpoint === "S" ||
           globalValue?.screen.breakpoint === "XS") && (
