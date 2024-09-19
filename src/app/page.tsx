@@ -359,6 +359,12 @@ const Home = () => {
         />
         <section
           style={{
+            width: `${
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
+                ? "auto"
+                : "6.875rem"
+            }`,
             height: `${
               globalValue?.screen.breakpoint === "S" ||
               globalValue?.screen.breakpoint === "XS"
@@ -373,7 +379,6 @@ const Home = () => {
         >
           <div
             style={{
-              width: "70%",
               display: "flex",
               flexDirection: `${
                 globalValue?.screen.breakpoint === "S" ||
@@ -417,8 +422,20 @@ const Home = () => {
                 <ArrowLeft size={40} />
               )}
             </div>
-            <p style={{ textAlign: "center", margin: "0" }}>
-              diff: {diffSum}
+            <p
+              style={{
+                width: `${
+                  globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
+                    ? "7rem"
+                    : "auto"
+                }`,
+                textAlign: "center",
+                alignSelf: "center",
+                margin: "0",
+              }}
+            >
+              diff: <br /> {diffSum}
               {globalValue?.exchange.currency === "USD" && "$"}
               {globalValue?.exchange.currency === "EUR" && "€"}
               {globalValue?.exchange.currency === "NOK" && "kr"}
