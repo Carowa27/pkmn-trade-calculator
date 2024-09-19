@@ -231,7 +231,6 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "start",
-        gap: "0.5rem",
         height: `${globalValue?.screen.height + "px"}`,
         background: color.black,
       }}

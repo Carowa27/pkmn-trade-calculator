@@ -15,7 +15,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         margin: `${
           globalValue?.screen.breakpoint === "S" ||
           globalValue?.screen.breakpoint === "XS"
-            ? "0.5rem 1rem"
+            ? "1rem 1rem 0.5rem 1rem"
             : "1rem 2rem 1rem 2rem"
         }`,
         display: "flex",

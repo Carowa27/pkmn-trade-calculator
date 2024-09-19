@@ -16,6 +16,7 @@ export const Footer = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "0.5rem",
+        marginTop: "0.5rem",
       }}
     >
       <div
