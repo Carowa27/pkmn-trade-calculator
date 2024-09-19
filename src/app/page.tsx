@@ -285,6 +285,14 @@ const Home = () => {
               ? "97vh"
               : "auto"
           }`,
+          maxHeight: `${
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
+              ? "auto"
+              : globalValue?.screen.height! > 1400
+              ? "max-content"
+              : "50rem"
+          }`,
           width: `${
             globalValue?.screen.breakpoint === "S" ||
             globalValue?.screen.breakpoint === "XS"
@@ -306,7 +314,7 @@ const Home = () => {
               ? "0.5rem"
               : ""
           }`,
-          alignItems: "center",
+          alignItems: "start",
           justifyContent: `${
             globalValue?.screen.breakpoint === "S" ||
             globalValue?.screen.breakpoint === "XS"
@@ -348,6 +356,14 @@ const Home = () => {
               globalValue?.screen.breakpoint === "XS"
                 ? "min-content"
                 : "100%"
+            }`,
+            maxHeight: `${
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
+                ? "auto"
+                : globalValue?.screen.height! > 1400
+                ? "70%"
+                : "50rem"
             }`,
             display: "flex",
             flexDirection: "column",

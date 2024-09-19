@@ -10,13 +10,16 @@ export const Footer = () => {
     <footer
       style={{
         width: "100%",
+        maxWidth: "120rem",
         background: color.black,
         paddingBottom: "0.5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        alignSelf: "center",
         gap: "0.5rem",
-        marginTop: "0.5rem",
+        paddingTop: "0.5rem",
+        marginTop: "auto",
       }}
     >
       <div

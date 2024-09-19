@@ -72,6 +72,14 @@ export const TradersMat = ({
             : globalValue?.screen.height &&
               globalValue?.screen.height - 80 + "px"
         }`,
+        maxHeight: `${
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
+            ? "auto"
+            : globalValue?.screen.height! > 1400
+            ? "62.5rem"
+            : "50rem"
+        }`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
