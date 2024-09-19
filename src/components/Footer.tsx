@@ -115,7 +115,7 @@ export const Footer = () => {
           fontWeight: "lighter",
         }}
       >
-        V 0.1.4 ( {globalValue?.screen.breakpoint} )
+        V 0.1.5 ( {globalValue?.screen.breakpoint} )
       </span>
     </footer>
   );
