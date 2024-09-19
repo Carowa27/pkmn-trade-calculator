@@ -26,7 +26,12 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                 : "11rem"
             }`,
             // testing, up for voting
-            borderRadius: "50%",
+            borderRadius: `${
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "XS"
+                ? "25%"
+                : "50%"
+            }`,
             backgroundColor: `${color.black}`,
             backgroundImage: `url(${pokeBall.src})`,
             backgroundPosition: "center",
@@ -68,9 +73,9 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                     set.name.includes("Legendary") ||
                     set.name.includes("Expedition Base") ||
                     set.name.includes("Best of Game") ||
-                    set.name.includes("Skyridge") ||
-                    set.name.includes("Neo Destiny")
-                      ? "white"
+                    set.name.includes("Skyridge")
+                      ? // set.name.includes("Neo Destiny")
+                        "white"
                       : "",
                   padding: set.name.includes("Promos")
                     ? "0.2rem 0.5rem 0.5rem 0.5rem"
@@ -82,17 +87,17 @@ export const PkmnSet = ({ set, saveSet }: pkmnSetProps) => {
                     ? "0.7rem"
                     : set.name.includes("Legendary")
                     ? "0.5rem 0.7rem"
-                    : set.name.includes("Neo Destiny")
-                    ? "0.9rem"
-                    : "",
+                    : // : set.name.includes("Neo Destiny")
+                      // ? "0.9rem"
+                      "",
                   borderRadius:
                     set.name.includes("Promos") ||
                     set.name.includes("Legendary") ||
                     set.name.includes("Expedition Base") ||
                     set.name.includes("Best of Game") ||
-                    set.name.includes("Skyridge") ||
-                    set.name.includes("Neo Destiny")
-                      ? "50%"
+                    set.name.includes("Skyridge")
+                      ? // set.name.includes("Neo Destiny")
+                        "50%"
                       : "",
                 }}
               >
