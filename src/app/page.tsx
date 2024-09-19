@@ -314,7 +314,12 @@ const Home = () => {
               ? "0.5rem"
               : ""
           }`,
-          alignItems: "start",
+          alignItems: `${
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
+              ? "center"
+              : "start"
+          }`,
           justifyContent: `${
             globalValue?.screen.breakpoint === "S" ||
             globalValue?.screen.breakpoint === "XS"
