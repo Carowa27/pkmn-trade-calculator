@@ -10,6 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Mad's Trade Calculator",
   description: "Calc for making trades easier",
+  keywords: [
+    "Pokemon",
+    "Pokémon",
+    "trade calculator",
+    "trade helper",
+    "pokemon tcg",
+    "pokémon tcg",
+  ],
 };
 
 export default function RootLayout({
