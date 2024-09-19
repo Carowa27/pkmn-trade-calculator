@@ -19,7 +19,6 @@ import {
   IRemoveCard,
   ISavedCard,
   Currency,
-  IGlobalValuesProperties,
   ISavedRates,
 } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
