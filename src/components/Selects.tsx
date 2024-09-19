@@ -59,6 +59,7 @@ export const CurrencySelect = () => {
         }}
       >
         <select
+          id="currency-select"
           style={{
             background: "none",
             color: color.primaryText,
