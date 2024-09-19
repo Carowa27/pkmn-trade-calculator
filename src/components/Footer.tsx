@@ -57,7 +57,7 @@ export const Footer = () => {
               }
             >
               <li style={{ marginTop: "0.5rem" }}>
-                Pokemon TCG API - https://docs.pokemontcg.io/
+                Pokémon TCG API - https://docs.pokemontcg.io/
               </li>
               <li>Open Exchange Rates API - https://openexchangerates.org/</li>
             </ul>
@@ -73,7 +73,7 @@ export const Footer = () => {
           >
             <h4>Card Values</h4>
             <p>
-              Card values come from the Pokemon TCG API and if there is no TCG
+              Card values come from the Pokémon TCG API and if there is no TCG
               Player info on the card, you will see &quot;No info found&quot;
             </p>
           </div>
