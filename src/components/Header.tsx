@@ -12,6 +12,13 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
     <header
       style={{
         height: "3vh",
+        width: `${
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
+            ? "100%"
+            : "75%"
+        }`,
+        maxWidth: "120rem",
         margin: `${
           globalValue?.screen.breakpoint === "S" ||
           globalValue?.screen.breakpoint === "XS"
@@ -20,6 +27,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
         }`,
         display: "flex",
         alignItems: "center",
+        alignSelf: "center",
         justifyContent: `${
           globalValue?.screen.breakpoint === "S" ||
           globalValue?.screen.breakpoint === "XS"

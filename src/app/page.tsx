@@ -285,7 +285,15 @@ const Home = () => {
               ? "97vh"
               : "auto"
           }`,
+          width: `${
+            globalValue?.screen.breakpoint === "S" ||
+            globalValue?.screen.breakpoint === "XS"
+              ? "100%"
+              : "75%"
+          }`,
+          maxWidth: "110rem",
           display: "flex",
+          alignSelf: "center",
           flexDirection: `${
             globalValue?.screen.breakpoint === "S" ||
             globalValue?.screen.breakpoint === "XS"
@@ -333,7 +341,7 @@ const Home = () => {
               globalValue?.screen.breakpoint === "S" ||
               globalValue?.screen.breakpoint === "XS"
                 ? "auto"
-                : "6.875rem"
+                : "8rem"
             }`,
             height: `${
               globalValue?.screen.breakpoint === "S" ||
