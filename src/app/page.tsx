@@ -20,6 +20,7 @@ import {
   ISavedCard,
   Currency,
   IGlobalValuesProperties,
+  ISavedRates,
 } from "@/interfaces/interfaces";
 import { cardSum } from "@/functions/sumFunctions";
 import { color } from "@/utils/color";
@@ -185,11 +186,23 @@ const Home = () => {
     const savedRates = localStorage.getItem("moneyRatesForPkmnTrades");
     const parsedRates = JSON.parse(savedRates!);
 
+    const getNewRates = async () => {
+      const newRates = await getRateFromApi();
+      const ratesToSave: ISavedRates = {
+        date: getToday(),
+        rates: newRates!,
+        lastUsedCurrency: globalValue?.exchange.currency!,
+      };
+      localStorage.setItem(
+        "moneyRatesForPkmnTrades",
+        JSON.stringify(ratesToSave)
+      );
+    };
     if (savedRates === null) {
-      getRateFromApi();
+      getNewRates();
     } else {
       if (parsedRates.date !== getToday()) {
-        getRateFromApi();
+        getNewRates();
       } else {
         if (parsedRates.lastUsedCurrency !== globalValue?.exchange.currency) {
           console.log("should change to: ", parsedRates.lastUsedCurrency);
