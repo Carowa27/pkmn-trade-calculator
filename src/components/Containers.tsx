@@ -78,7 +78,7 @@ export const TradersMat = ({
             ? "auto"
             : globalValue?.screen.height! > 1400
             ? "62.5rem"
-            : "50rem"
+            : "62rem"
         }`,
         display: "flex",
         flexDirection: "column",

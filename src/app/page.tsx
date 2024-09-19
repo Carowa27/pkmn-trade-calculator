@@ -291,7 +291,7 @@ const Home = () => {
               ? "auto"
               : globalValue?.screen.height! > 1400
               ? "max-content"
-              : "50rem"
+              : "62rem"
           }`,
           width: `${
             globalValue?.screen.breakpoint === "S" ||
