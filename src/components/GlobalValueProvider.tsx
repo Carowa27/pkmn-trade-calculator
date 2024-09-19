@@ -36,10 +36,8 @@ export const GlobalValueProvider = ({ children }: GlobalValueProviderProps) => {
       },
     });
 
-    // Initial setup
     window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
       setIsMounted(false);
       window.removeEventListener("resize", handleResize);
