@@ -7,7 +7,7 @@ import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./PkmnSet";
 import { PkmnCardSearch } from "./PkmnCard";
 import { Pagination } from "./Pagination";
-import { IconButton } from "./Buttons";
+import { IconButton, PrimaryButton, SearchModalButton } from "./Buttons";
 import { ISavedCard } from "@/interfaces/interfaces";
 import { useGlobalValue } from "./GlobalValueProvider";
 import { color } from "@/utils/color";
@@ -24,6 +24,9 @@ export const SearchModal = ({
   changeTradersCards,
 }: ModalProps) => {
   const { globalValue } = useGlobalValue();
+  const [searchMethod, setSearchMethod] = useState<
+    "bySet" | "byInput" | "notChosen"
+  >("notChosen");
   const [setList, setSetList] = useState<IPkmnSet[]>();
   const [pageInfoSet, setPageInfoSet] = useState<{
     page: number;
@@ -90,11 +93,13 @@ export const SearchModal = ({
     });
   };
   useEffect(() => {
-    if (setList === undefined || setList.length === 0) {
-      setIsLoading(true);
-      getSets(pageNr);
+    if (searchMethod === "bySet") {
+      if (setList === undefined || setList.length === 0) {
+        setIsLoading(true);
+        getSets(pageNr);
+      }
     }
-  }, []);
+  }, [searchMethod]);
   useEffect(() => {
     if (search === "card") {
       if (
@@ -147,153 +152,213 @@ export const SearchModal = ({
             border: "2px solid lightgrey",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            justifyContent:
+              searchMethod === "notChosen" ? "center" : "space-between",
           }}
         >
-          <section
-            className="modalHeader"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "10px",
-            }}
-          >
-            {search === "card" && (
-              <div style={{ marginRight: "1rem" }}>
-                <IconButton
-                  icon="<"
-                  clickFn={() => (setSearch("set"), setSavedSet(undefined))}
-                  colorIcon="inherit"
-                />
-              </div>
-            )}
-            <div>{search === "set" ? <h2>Set</h2> : <h2>Card</h2>}</div>
-            {savedSet !== undefined && (
-              <div style={{ marginLeft: "1rem" }}>
-                <span style={{ fontWeight: "bolder" }}>Set: </span>
-                <span>{savedSet && savedSet.name}</span>
-              </div>
-            )}
-            <div style={{ marginLeft: "auto" }}>
-              <IconButton
-                icon={"X"}
-                clickFn={changeShowModal}
-                colorIcon="inherit"
-              />
-            </div>
-          </section>
-          <section
-            className="modalBody"
-            style={{
-              margin:
-                globalValue?.screen.breakpoint === "XS"
-                  ? "0"
-                  : "1.25rem 1.25rem 0.25rem 1.25rem",
-              width: globalValue?.screen.breakpoint === "S" ? "90%" : "100%",
-              display: "flex",
-              justifyContent: "center",
-              height:
-                globalValue?.screen.breakpoint === "XS" ||
-                globalValue?.screen.breakpoint === "S" ||
-                globalValue?.screen.breakpoint === "M" ||
-                globalValue?.screen.breakpoint === "L"
-                  ? "80%"
-                  : "85%",
-            }}
-          >
+          {searchMethod === "notChosen" ? (
             <div
               style={{
-                width:
-                  globalValue?.screen.breakpoint === "S" ||
-                  globalValue?.screen.breakpoint === "XS"
-                    ? "100%"
-                    : "90%",
+                height: "50%",
                 display: "flex",
-                flexWrap: "wrap",
+                flexDirection: "column",
                 justifyContent: "space-evenly",
-                gap:
-                  globalValue?.screen.breakpoint === "S" ||
-                  globalValue?.screen.breakpoint === "XS"
-                    ? "00.5rem"
-                    : "1rem",
-                overflow: "hidden visible",
-                height: "100%",
-                paddingRight:
-                  globalValue?.screen.breakpoint === "S" ||
-                  globalValue?.screen.breakpoint === "XS"
-                    ? 0
-                    : "0.5rem",
               }}
             >
-              {noHits || isLoading ? (
-                <section style={{ width: "100%" }}>
-                  {noHits && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "40px",
+                    alignSelf: "center",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  Search
+                </p>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    alignSelf: "center",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  Chose your way to search for the card
+                </p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                }}
+              >
+                <SearchModalButton
+                  btnText={"Sets"}
+                  clickFn={() => setSearchMethod("bySet")}
+                />
+                <SearchModalButton
+                  btnText={"Input"}
+                  clickFn={() => setSearchMethod("byInput")}
+                />
+              </div>
+            </div>
+          ) : searchMethod === "bySet" ? (
+            <>
+              <section
+                className="modalHeader"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "10px",
+                }}
+              >
+                {search === "card" && (
+                  <div style={{ marginRight: "1rem" }}>
+                    <IconButton
+                      icon="<"
+                      clickFn={() => (setSearch("set"), setSavedSet(undefined))}
+                      colorIcon="inherit"
+                    />
+                  </div>
+                )}
+                <div>{search === "set" ? <h2>Set</h2> : <h2>Card</h2>}</div>
+                {savedSet !== undefined && (
+                  <div style={{ marginLeft: "1rem" }}>
+                    <span style={{ fontWeight: "bolder" }}>Set: </span>
+                    <span>{savedSet && savedSet.name}</span>
+                  </div>
+                )}
+                <div style={{ marginLeft: "auto" }}>
+                  <IconButton
+                    icon={"X"}
+                    clickFn={changeShowModal}
+                    colorIcon="inherit"
+                  />
+                </div>
+              </section>
+              <section
+                className="modalBody"
+                style={{
+                  margin:
+                    globalValue?.screen.breakpoint === "XS"
+                      ? "0"
+                      : "1.25rem 1.25rem 0.25rem 1.25rem",
+                  width:
+                    globalValue?.screen.breakpoint === "S" ? "90%" : "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  height:
+                    globalValue?.screen.breakpoint === "XS" ||
+                    globalValue?.screen.breakpoint === "S" ||
+                    globalValue?.screen.breakpoint === "M" ||
+                    globalValue?.screen.breakpoint === "L"
+                      ? "80%"
+                      : "85%",
+                }}
+              >
+                <div
+                  style={{
+                    width:
+                      globalValue?.screen.breakpoint === "S" ||
+                      globalValue?.screen.breakpoint === "XS"
+                        ? "100%"
+                        : "90%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-evenly",
+                    gap:
+                      globalValue?.screen.breakpoint === "S" ||
+                      globalValue?.screen.breakpoint === "XS"
+                        ? "00.5rem"
+                        : "1rem",
+                    overflow: "hidden visible",
+                    height: "100%",
+                    paddingRight:
+                      globalValue?.screen.breakpoint === "S" ||
+                      globalValue?.screen.breakpoint === "XS"
+                        ? 0
+                        : "0.5rem",
+                  }}
+                >
+                  {noHits || isLoading ? (
+                    <section style={{ width: "100%" }}>
+                      {noHits && (
+                        <>
+                          <p>No hits</p>
+                        </>
+                      )}
+                      {isLoading && <LoadingModule />}
+                    </section>
+                  ) : null}
+                  {search === "set" && (
                     <>
-                      <p>No hits</p>
+                      {setList?.map((set, i) => {
+                        return (
+                          <PkmnSet
+                            set={set}
+                            saveSet={saveSet}
+                            key={set.id + "-" + i}
+                          />
+                        );
+                      })}
                     </>
                   )}
-                  {isLoading && <LoadingModule />}
-                </section>
-              ) : null}
-              {search === "set" && (
-                <>
-                  {setList?.map((set, i) => {
-                    return (
-                      <PkmnSet
-                        set={set}
-                        saveSet={saveSet}
-                        key={set.id + "-" + i}
-                      />
-                    );
-                  })}
-                </>
-              )}
 
-              {search === "card" && (
-                <>
-                  {cardList?.map((card, i) => {
-                    return (
-                      <PkmnCardSearch
-                        card={card}
-                        saveCard={changeTradersCards}
-                        cardWidth={`${
-                          globalValue?.screen.breakpoint === "S" ||
-                          globalValue?.screen.breakpoint === "XS"
-                            ? `${globalValue.screen.width / 2 - 30}px`
-                            : "12.5rem"
-                        }`}
-                        key={card.id + "-" + i}
-                      />
-                    );
-                  })}
-                </>
-              )}
-            </div>
-          </section>
-          <section
-            className="modalFooter"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {pageInfo && search === "card" && (
-              <Pagination
-                page={pageInfo.page}
-                pageSize={pageInfo.pageSize}
-                totalCount={pageInfo.totalCount}
-                updateSearch={updateSearch}
-              />
-            )}
-            {pageInfoSet && search === "set" && (
-              <Pagination
-                page={pageInfoSet.page}
-                pageSize={pageInfoSet.pageSize}
-                totalCount={pageInfoSet.totalCount}
-                updateSearch={updateSearch}
-              />
-            )}
-          </section>
+                  {search === "card" && (
+                    <>
+                      {cardList?.map((card, i) => {
+                        return (
+                          <PkmnCardSearch
+                            card={card}
+                            saveCard={changeTradersCards}
+                            cardWidth={`${
+                              globalValue?.screen.breakpoint === "S" ||
+                              globalValue?.screen.breakpoint === "XS"
+                                ? `${globalValue.screen.width / 2 - 30}px`
+                                : "12.5rem"
+                            }`}
+                            key={card.id + "-" + i}
+                          />
+                        );
+                      })}
+                    </>
+                  )}
+                </div>
+              </section>
+              <section
+                className="modalFooter"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                {pageInfo && search === "card" && (
+                  <Pagination
+                    page={pageInfo.page}
+                    pageSize={pageInfo.pageSize}
+                    totalCount={pageInfo.totalCount}
+                    updateSearch={updateSearch}
+                  />
+                )}
+                {pageInfoSet && search === "set" && (
+                  <Pagination
+                    page={pageInfoSet.page}
+                    pageSize={pageInfoSet.pageSize}
+                    totalCount={pageInfoSet.totalCount}
+                    updateSearch={updateSearch}
+                  />
+                )}
+              </section>
+            </>
+          ) : (
+            <></>
+          )}
         </article>
       </section>
     </>

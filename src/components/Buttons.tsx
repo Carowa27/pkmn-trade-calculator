@@ -61,6 +61,26 @@ export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
     </button>
   );
 };
+export const SearchModalButton = ({ btnText, clickFn }: IBtnProps) => {
+  return (
+    <button
+      style={{
+        background: color.buttonBackground,
+        color: "inherit",
+        fontWeight: "bold",
+        fontSize: "large",
+        width: "max-content",
+        padding: "1.5rem 2rem",
+        border: color.buttonBorder,
+        borderRadius: "30px",
+        cursor: "pointer",
+      }}
+      onClick={clickFn}
+    >
+      {btnText}
+    </button>
+  );
+};
 
 export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
   //always size 25
