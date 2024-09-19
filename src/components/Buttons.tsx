@@ -9,11 +9,7 @@ import {
   SortAlphaDown,
   XLg,
   ArrowLeft,
-  Coin,
-  CurrencyExchange,
-  CaretDown,
 } from "react-bootstrap-icons";
-import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IBtnProps {
   btnText: string;
@@ -41,7 +37,6 @@ interface ICardTypeProps {
   card: IPkmnCard;
   type: string;
   clickFn?: ({}: ISavedCardProps) => void;
-  filled?: boolean;
 }
 
 export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
@@ -106,12 +101,7 @@ export const IconButton = ({ icon, clickFn, colorIcon }: IIconProps) => {
   );
 };
 
-export const CardTypeButton = ({
-  card,
-  type,
-  clickFn,
-  filled,
-}: ICardTypeProps) => {
+export const CardTypeButton = ({ card, type, clickFn }: ICardTypeProps) => {
   const backgroundColor = () => {
     let typeColor = "";
     if (type === "1st") {
