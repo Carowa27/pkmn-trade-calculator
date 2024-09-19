@@ -116,33 +116,6 @@ const Home = () => {
     }
   }, []);
   useEffect(() => {
-    const diffUSD =
-      Math.round(
-        (cardSum({
-          trader: "one",
-          traderOne: traderOne,
-        }) -
-          cardSum({
-            trader: "two",
-            traderTwo: traderTwo,
-          })) *
-          100
-      ) / 100;
-    const diffNotUSD =
-      Math.round(
-        (cardSum({
-          trader: "one",
-          traderOne: traderOne,
-        }) *
-          globalValue?.exchange.rate! -
-          cardSum({
-            trader: "two",
-            traderTwo: traderTwo,
-          }) *
-            globalValue?.exchange.rate!) *
-          100
-      ) / 100;
-
     const diff = (
       globalValue?.exchange.currency === Currency.USD
         ? Math.round(
