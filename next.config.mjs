@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  trailingSlash: true,
+  trailingSlash: false,
   env: {
     COIN_RATE_API_KEY: process.env.COIN_RATE_API_KEY,
   },
