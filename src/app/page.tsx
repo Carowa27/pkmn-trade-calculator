@@ -29,7 +29,6 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { getRateFromApi } from "@/functions/moneyRateApiService";
 import { getToday } from "@/functions/dateFunctions";
-import { changeCurrency } from "@/functions/currencyFunctions";
 
 const Home = () => {
   const { globalValue, setGlobalValue } = useGlobalValue();
