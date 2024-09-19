@@ -205,7 +205,21 @@ const Home = () => {
         getNewRates();
       } else {
         if (parsedRates.lastUsedCurrency !== globalValue?.exchange.currency) {
-          console.log("should change to: ", parsedRates.lastUsedCurrency);
+          setGlobalValue({
+            screen: {
+              width: globalValue?.screen.width ? globalValue?.screen.width : 0,
+              height: globalValue?.screen.height
+                ? globalValue?.screen.height
+                : 0,
+              breakpoint:
+                globalValue?.screen.breakpoint &&
+                globalValue?.screen.breakpoint,
+            },
+            exchange: {
+              currency: parsedRates.lastUsedCurrency,
+              rate: parsedRates.rates[parsedRates.lastUsedCurrency],
+            },
+          });
         }
       }
     }
