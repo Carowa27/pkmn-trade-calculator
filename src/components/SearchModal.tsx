@@ -54,20 +54,21 @@ export const SearchModal = ({
     setSearchValue(e.target.value);
   };
   const searchCard = async (page: number) => {
+    setIsLoading(true);
     await getPkmnFromApi(`?q=name:%22${searchValue}%22`, page).then((res) => {
-      if (!res || res.data.length === 0) {
-        setNoHits(true);
-        setIsLoading(false);
-      }
-      if (res) {
+      if (res && res.data.length !== 0) {
         setSearch("card");
         setCardList(res.data as IPkmnCard[]);
+        setNoHits(false);
         setIsLoading(false);
         setPageInfo({
           page: res.page,
           pageSize: res.pageSize,
           totalCount: res.totalCount,
         });
+      } else {
+        setNoHits(true);
+        setIsLoading(false);
       }
     });
   };
@@ -123,7 +124,7 @@ export const SearchModal = ({
     }
   }, [searchMethod]);
   useEffect(() => {
-    if (search === "card") {
+    if (search === "card" && searchMethod !== "byInput") {
       if (
         (cardList === undefined || cardList.length === 0) &&
         savedSet !== undefined
@@ -245,6 +246,15 @@ export const SearchModal = ({
                     <IconButton
                       icon="<"
                       clickFn={() => (setSearch("set"), setSavedSet(undefined))}
+                      colorIcon="inherit"
+                    />
+                  </div>
+                )}
+                {search === "set" && searchMethod === "bySet" && (
+                  <div style={{ marginRight: "1rem" }}>
+                    <IconButton
+                      icon="<"
+                      clickFn={() => setSearchMethod("notChosen")}
                       colorIcon="inherit"
                     />
                   </div>
