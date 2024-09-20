@@ -2,7 +2,7 @@
 
 import { IPkmnCard, IPkmnSet } from "@/interfaces/dataFromApi";
 import { getPkmnFromApi, getSetsFromApi } from "@/functions/pkmnTcgApiServices";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./PkmnSet";
 import { PkmnCardSearch } from "./PkmnCard";
@@ -44,10 +44,33 @@ export const SearchModal = ({
     pageSize: number;
     totalCount: number;
   }>();
+  const [searchValue, setSearchValue] = useState<string>("");
   const saveSet = (set: IPkmnSet) => {
     setSavedSet(set);
     setSearch("card");
     setPageNr(1);
+  };
+  const changeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+  const searchCard = async (page: number) => {
+    await getPkmnFromApi(`?q=name:%22${searchValue}%22`, page).then((res) => {
+      if (!res || res.data.length === 0) {
+        console.error("no res from api call");
+        setNoHits(true);
+        setIsLoading(false);
+      }
+      if (res) {
+        setSearch("card");
+        setCardList(res.data as IPkmnCard[]);
+        setIsLoading(false);
+        setPageInfo({
+          page: res.page,
+          pageSize: res.pageSize,
+          totalCount: res.totalCount,
+        });
+      }
+    });
   };
   const getSets = async (page: number) => {
     await getSetsFromApi(page).then((res) => {
@@ -378,12 +401,42 @@ export const SearchModal = ({
                 <div>
                   <h2>Input</h2>
                 </div>
-                {savedSet !== undefined && (
-                  <div style={{ marginLeft: "1rem" }}>
-                    <span style={{ fontWeight: "bolder" }}>Set: </span>
-                    <span>{savedSet && savedSet.name}</span>
-                  </div>
-                )}
+                <form
+                  onSubmit={(e) => (e.preventDefault(), searchCard(1))}
+                  style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                >
+                  <label
+                    htmlFor="search_text"
+                    style={{
+                      alignSelf: "center",
+                    }}
+                  >
+                    <span style={{ fontWeight: "bolder" }}>Card name: </span>
+                  </label>{" "}
+                  <input
+                    type="text"
+                    id="search_text"
+                    value={searchValue}
+                    onChange={changeSearchValue}
+                    style={{
+                      width: "275px",
+                      paddingLeft: "0.2rem",
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                      border: "none",
+                      borderRadius: "5px",
+                    }}
+                  />
+                  <PrimaryButton
+                    btnText={"Search"}
+                    clickFn={() => searchCard(1)}
+                  />
+                </form>
                 <div style={{ marginLeft: "auto" }}>
                   <IconButton
                     icon={"X"}
@@ -446,20 +499,6 @@ export const SearchModal = ({
                       {isLoading && <LoadingModule />}
                     </section>
                   ) : null}
-                  {search === "set" && (
-                    <>
-                      {setList?.map((set, i) => {
-                        return (
-                          <PkmnSet
-                            set={set}
-                            saveSet={saveSet}
-                            key={set.id + "-" + i}
-                          />
-                        );
-                      })}
-                    </>
-                  )}
-
                   {search === "card" && (
                     <>
                       {cardList?.map((card, i) => {
@@ -493,14 +532,6 @@ export const SearchModal = ({
                     page={pageInfo.page}
                     pageSize={pageInfo.pageSize}
                     totalCount={pageInfo.totalCount}
-                    updateSearch={updateSearch}
-                  />
-                )}
-                {pageInfoSet && search === "set" && (
-                  <Pagination
-                    page={pageInfoSet.page}
-                    pageSize={pageInfoSet.pageSize}
-                    totalCount={pageInfoSet.totalCount}
                     updateSearch={updateSearch}
                   />
                 )}
