@@ -259,7 +259,9 @@ export const SearchModal = ({
                   <div style={{ marginRight: "1rem" }}>
                     <IconButton
                       icon="<"
-                      clickFn={() => setSearchMethod("notChosen")}
+                      clickFn={() => (
+                        setSearchMethod("notChosen"),
+                      )}
                       colorIcon="inherit"
                     />
                   </div>
@@ -406,9 +408,11 @@ export const SearchModal = ({
                 <div style={{ marginRight: "1rem" }}>
                   <IconButton
                     icon="<"
-                    clickFn={() => {
-                      setSearchMethod("notChosen");
-                    }}
+                    clickFn={() => (
+                      setSearchMethod("notChosen"),
+                      setSearch("set"),
+                      setSearchValue("")
+          )}
                     colorIcon="inherit"
                   />
                 </div>
