@@ -56,7 +56,6 @@ export const SearchModal = ({
   const searchCard = async (page: number) => {
     await getPkmnFromApi(`?q=name:%22${searchValue}%22`, page).then((res) => {
       if (!res || res.data.length === 0) {
-        console.error("no res from api call");
         setNoHits(true);
         setIsLoading(false);
       }
