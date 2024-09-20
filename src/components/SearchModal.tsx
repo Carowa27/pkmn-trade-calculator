@@ -141,6 +141,11 @@ export const SearchModal = ({
       getCardsInSet(savedSet, 1);
     }
   }, [savedSet]);
+  useEffect(() => {
+    if (noHits === true) {
+      setCardList([]);
+    }
+  }, [noHits]);
   return (
     <>
       <section
@@ -435,6 +440,7 @@ export const SearchModal = ({
                     style={{
                       width: "275px",
                       paddingLeft: "0.5rem",
+                      textTransform: "uppercase",
                       fontWeight: "bold",
                       fontSize: "18px",
                       border: "none",
