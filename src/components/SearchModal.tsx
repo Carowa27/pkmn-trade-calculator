@@ -434,7 +434,7 @@ export const SearchModal = ({
                     onChange={changeSearchValue}
                     style={{
                       width: "275px",
-                      paddingLeft: "0.2rem",
+                      paddingLeft: "0.5rem",
                       fontWeight: "bold",
                       fontSize: "18px",
                       border: "none",
