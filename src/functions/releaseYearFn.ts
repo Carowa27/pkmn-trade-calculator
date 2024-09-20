@@ -1,6 +1,10 @@
+import { IPkmnCard } from "@/interfaces/dataFromApi";
 import { color } from "@/utils/color";
 
-export const rarityCardColor = (release: string, rarity: string) => {
+export const rarityCardColor = (card: IPkmnCard) => {
+  const setName = card.set.name;
+  const release = card.set.releaseDate;
+  const rarity = card.rarity;
   const releaseDate = release.split("/");
   const releaseDateNr = releaseDate.map((d) => parseInt(d, 10 || 0));
   const year = releaseDateNr[0];
@@ -21,14 +25,13 @@ export const rarityCardColor = (release: string, rarity: string) => {
           return color.pkmnCardGrey;
         }
       } else {
+        if (setName === "Scarlet & Violet Black Star Promos") {
+          return color.pkmnCardGrey;
+        }
         return color.pkmnCardYellow;
       }
     } else {
-      if (release === "2022/11/01") {
-        return color.pkmnCardGrey;
-      } else {
-        return color.pkmnCardYellow;
-      }
+      return color.pkmnCardYellow;
     }
   }
 };

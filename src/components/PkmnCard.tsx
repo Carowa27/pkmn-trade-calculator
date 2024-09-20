@@ -36,6 +36,7 @@ export const PkmnCardSearch = ({
         width: cardWidth,
         borderRadius: "10px",
       }}
+      title={card.set.releaseDate}
     >
       <div
         style={{
@@ -59,11 +60,8 @@ export const PkmnCardSearch = ({
         <div
           style={{
             width: "100%",
-            backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
-            borderTop: `${rarityCardColor(
-              card.set.releaseDate,
-              card.rarity
-            )} 3px solid`,
+            backgroundColor: rarityCardColor(card),
+            borderTop: `${rarityCardColor(card)} 3px solid`,
             height: !card.tcgplayer?.prices ? "20%" : "auto",
             display: "flex",
             flexWrap: "wrap",
@@ -144,7 +142,7 @@ export const PkmnCardTrader = ({
       style={{
         width: cardWidth,
         aspectRatio: "1/1",
-        backgroundColor: rarityCardColor(card.set.releaseDate, card.rarity),
+        backgroundColor: rarityCardColor(card),
         borderRadius: "10px",
       }}
     >
