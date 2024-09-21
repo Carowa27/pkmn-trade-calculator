@@ -211,10 +211,7 @@ export const SearchModal = ({
               <section
                 className="modalBody"
                 style={{
-                  margin:
-                    globalValue?.screen.breakpoint === "XS"
-                      ? "0"
-                      : "0 auto 2.25rem auto",
+                  margin: "0 auto 2.25rem auto",
                   width:
                     globalValue?.screen.breakpoint === "XS" ||
                     globalValue?.screen.breakpoint === "S" ||
