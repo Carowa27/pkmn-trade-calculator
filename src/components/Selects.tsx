@@ -38,10 +38,12 @@ export const CurrencySelect = () => {
     <div
       style={{
         margin:
-          globalValue?.screen.breakpoint !== "S" &&
-          globalValue?.screen.breakpoint !== "XS"
-            ? "0 2rem"
-            : "",
+          globalValue?.screen.breakpoint === "S" ||
+          globalValue?.screen.breakpoint === "XS"
+            ? ""
+            : globalValue?.screen.breakpoint === "M"
+            ? "0.5rem"
+            : "0 2rem",
         display: "flex",
         alignItems: "center",
         gap: "0.5rem",

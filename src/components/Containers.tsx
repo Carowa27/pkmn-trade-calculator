@@ -48,6 +48,10 @@ export const TradersMat = ({
     sortCards({ cards, sortBy: param });
   };
 
+  const smallScreens =
+    globalValue?.screen.breakpoint === "S" ||
+    globalValue?.screen.breakpoint === "XS" ||
+    globalValue?.screen.breakpoint === "M";
   return (
     <div
       style={{
@@ -58,23 +62,16 @@ export const TradersMat = ({
         backgroundSize: "cover",
         backgroundBlendMode: "overlay",
         borderRadius: "10px",
-        width: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
-            ? "90vw"
-            : "45vw"
-        }`,
+        width: `${smallScreens ? "90vw" : "45vw"}`,
         height: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
+          smallScreens
             ? globalValue?.screen.height &&
               globalValue?.screen.height / 2 - 60 + "px"
             : globalValue?.screen.height &&
               globalValue?.screen.height - 80 + "px"
         }`,
         maxHeight: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
+          smallScreens
             ? "auto"
             : globalValue?.screen.height! > 1400
             ? "62.5rem"
@@ -215,12 +212,7 @@ export const TradersMat = ({
       <div
         style={{
           width: "95%",
-          maxHeight: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "67%"
-              : "85%"
-          }`,
+          maxHeight: `${smallScreens ? "67%" : "85%"}`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
@@ -229,12 +221,7 @@ export const TradersMat = ({
           overflow: "hidden visible",
           paddingRight: "0.5rem",
           paddingTop: "0.5rem",
-          marginTop: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "0"
-              : "0.5rem"
-          }`,
+          marginTop: `${smallScreens ? "0" : "0.5rem"}`,
         }}
       >
         {cards?.map((item, i) => {
@@ -242,8 +229,8 @@ export const TradersMat = ({
             <PkmnCardTrader
               card={item.card}
               cardWidth={`${
-                globalValue?.screen.breakpoint === "S" ||
-                globalValue?.screen.breakpoint === "XS"
+                globalValue?.screen.breakpoint === "XS" ||
+                globalValue?.screen.breakpoint === "S"
                   ? "6rem"
                   : "8rem"
               }`}

@@ -8,38 +8,27 @@ interface IHeaderProps {
 
 export const Header = ({ clearAllCards }: IHeaderProps) => {
   const { globalValue } = useGlobalValue();
+  const smallScreens =
+    globalValue?.screen.breakpoint === "S" ||
+    globalValue?.screen.breakpoint === "XS" ||
+    globalValue?.screen.breakpoint === "M";
   return (
     <header
       style={{
         height: "3vh",
-        width: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
-            ? "100%"
-            : "75%"
-        }`,
+        width: `${smallScreens ? "100%" : "75%"}`,
         maxWidth: "120rem",
         margin: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
+          globalValue?.screen.breakpoint === "XS" ||
+          globalValue?.screen.breakpoint === "S"
             ? "1rem 0rem 0.5rem 0rem"
             : "1rem 2rem 1rem 2rem"
         }`,
-        padding: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
-            ? "0 1rem"
-            : "0"
-        }`,
+        padding: `${smallScreens ? "0 1rem" : "0"}`,
         display: "flex",
         alignItems: "center",
         alignSelf: "center",
-        justifyContent: `${
-          globalValue?.screen.breakpoint === "S" ||
-          globalValue?.screen.breakpoint === "XS"
-            ? "center"
-            : "space-between"
-        }`,
+        justifyContent: `${smallScreens ? "center" : "space-between"}`,
       }}
     >
       <h2>Mad&apos;s Trade Calculator</h2>
@@ -48,7 +37,12 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
       </div>
       {globalValue?.screen.breakpoint !== "S" &&
         globalValue?.screen.breakpoint !== "XS" && (
-          <div style={{ marginLeft: "2rem" }}>
+          <div
+            style={{
+              marginLeft:
+                globalValue?.screen.breakpoint === "M" ? "1rem" : "2rem",
+            }}
+          >
             <PrimaryButton btnText="Clear all cards" clickFn={clearAllCards} />
           </div>
         )}

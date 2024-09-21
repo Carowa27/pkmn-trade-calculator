@@ -48,6 +48,11 @@ const Home = () => {
   const [showClearNotification, setShowClearNotification] =
     useState<boolean>(false);
 
+  const smallScreens =
+    globalValue?.screen.breakpoint === "S" ||
+    globalValue?.screen.breakpoint === "XS" ||
+    globalValue?.screen.breakpoint === "M";
+
   const changeShowModal = () => {
     setShowModal(false);
   };
@@ -279,53 +284,22 @@ const Home = () => {
       )}
       <main
         style={{
-          height: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "97vh"
-              : "auto"
-          }`,
+          height: `${smallScreens ? "97vh" : "auto"}`,
           maxHeight: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
+            smallScreens
               ? "auto"
               : globalValue?.screen.height! > 1400
               ? "max-content"
               : "62rem"
           }`,
-          width: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "100%"
-              : "90vw"
-          }`,
+          width: `${smallScreens ? "100%" : "90vw"}`,
           maxWidth: "110rem",
           display: "flex",
           alignSelf: "center",
-          flexDirection: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "column"
-              : "row"
-          }`,
-          gap: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "0.5rem"
-              : ""
-          }`,
-          alignItems: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "center"
-              : "start"
-          }`,
-          justifyContent: `${
-            globalValue?.screen.breakpoint === "S" ||
-            globalValue?.screen.breakpoint === "XS"
-              ? "start"
-              : "space-between"
-          }`,
+          flexDirection: `${smallScreens ? "column" : "row"}`,
+          gap: `${smallScreens ? "0.5rem" : ""}`,
+          alignItems: `${smallScreens ? "center" : "start"}`,
+          justifyContent: `${smallScreens ? "start" : "space-between"}`,
           margin: "0 2rem 0.5rem 2rem",
         }}
       >
@@ -350,21 +324,10 @@ const Home = () => {
         />
         <section
           style={{
-            width: `${
-              globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS"
-                ? "auto"
-                : "8rem"
-            }`,
-            height: `${
-              globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS"
-                ? "min-content"
-                : "100%"
-            }`,
+            width: `${smallScreens ? "auto" : "8rem"}`,
+            height: `${smallScreens ? "min-content" : "100%"}`,
             maxHeight: `${
-              globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS"
+              smallScreens
                 ? "auto"
                 : globalValue?.screen.height! > 1400
                 ? "70%"
@@ -379,18 +342,8 @@ const Home = () => {
           <div
             style={{
               display: "flex",
-              flexDirection: `${
-                globalValue?.screen.breakpoint === "S" ||
-                globalValue?.screen.breakpoint === "XS"
-                  ? "row"
-                  : "column"
-              }`,
-              margin: `${
-                globalValue?.screen.breakpoint === "S" ||
-                globalValue?.screen.breakpoint === "XS"
-                  ? "auto"
-                  : "1rem"
-              }`,
+              flexDirection: `${smallScreens ? "row" : "column"}`,
+              margin: `${smallScreens ? "auto" : "1rem"}`,
             }}
           >
             <div
@@ -420,27 +373,12 @@ const Home = () => {
                 }`,
               }}
             >
-              {globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS" ? (
-                <ArrowUp size={40} />
-              ) : (
-                <ArrowLeft size={40} />
-              )}
+              {smallScreens ? <ArrowUp size={40} /> : <ArrowLeft size={40} />}
             </div>
             <p
               style={{
-                width: `${
-                  globalValue?.screen.breakpoint === "S" ||
-                  globalValue?.screen.breakpoint === "XS"
-                    ? "7rem"
-                    : "auto"
-                }`,
-                minWidth: `${
-                  globalValue?.screen.breakpoint === "S" ||
-                  globalValue?.screen.breakpoint === "XS"
-                    ? "7rem"
-                    : "60px"
-                }`,
+                width: `${smallScreens ? "7rem" : "auto"}`,
+                minWidth: `${smallScreens ? "7rem" : "60px"}`,
                 textAlign: "center",
                 alignSelf: "center",
                 margin: "0",
@@ -480,8 +418,7 @@ const Home = () => {
                 }`,
               }}
             >
-              {globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS" ? (
+              {smallScreens ? (
                 <ArrowDown size={40} />
               ) : (
                 <ArrowRight size={40} />

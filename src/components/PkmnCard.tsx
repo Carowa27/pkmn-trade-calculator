@@ -203,12 +203,14 @@ export const PkmnCardTrader = ({
             color: color.black,
             padding:
               globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS"
+              globalValue?.screen.breakpoint === "XS" ||
+              globalValue?.screen.breakpoint === "M"
                 ? "0.2rem 0rem 0 0"
                 : "0.5rem 0rem 0 0",
             textAlign:
               globalValue?.screen.breakpoint === "XS" ||
-              globalValue?.screen.breakpoint === "S"
+              globalValue?.screen.breakpoint === "S" ||
+              globalValue?.screen.breakpoint === "M"
                 ? "center"
                 : "left",
             alignSelf: "center",
