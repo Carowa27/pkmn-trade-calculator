@@ -1,5 +1,5 @@
 import { color } from "@/utils/color";
-import { CurrencyExchange } from "react-bootstrap-icons";
+import { CaretDown, CurrencyExchange } from "react-bootstrap-icons";
 import { useGlobalValue } from "./GlobalValueProvider";
 import { Currency } from "@/interfaces/interfaces";
 
@@ -56,14 +56,14 @@ export const CurrencySelect = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          // flexDirection: "column",
           alignItems: "center",
         }}
       >
         <select
           id="currency-select"
           style={{
-            background: "none",
+            background: color.black,
             color: color.primaryText,
             border: "none",
             cursor: "pointer",
