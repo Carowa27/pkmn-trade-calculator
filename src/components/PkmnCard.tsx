@@ -65,7 +65,7 @@ export const PkmnCardSearch = ({
           <div
             style={{
               width: "20%",
-              margin: "0 0.5rem 0.2rem 0",
+              margin: "0 1rem 0.2rem 0",
               alignSelf: "end",
             }}
           >
