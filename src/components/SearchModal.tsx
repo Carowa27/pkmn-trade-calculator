@@ -115,6 +115,11 @@ export const SearchModal = ({
       }
     });
   };
+
+  const smallScreens =
+    globalValue?.screen.breakpoint === "S" ||
+    globalValue?.screen.breakpoint === "XS" ||
+    globalValue?.screen.breakpoint === "M";
   useEffect(() => {
     if (searchMethod === "bySet") {
       if (setList === undefined || setList.length === 0) {
@@ -401,6 +406,7 @@ export const SearchModal = ({
                   display: "flex",
                   alignItems: "center",
                   margin: "10px",
+                  flexWrap: smallScreens ? "wrap" : "nowrap",
                 }}
               >
                 <div style={{ marginRight: "1rem" }}>
@@ -417,43 +423,45 @@ export const SearchModal = ({
                 <div>
                   <h2>Input</h2>
                 </div>
-                <form
-                  onSubmit={(e) => (e.preventDefault(), searchCard(1))}
-                  style={{
-                    display: "flex",
-                    gap: "0.5rem",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                  }}
-                >
-                  <label
-                    htmlFor="search_text"
+                {!smallScreens && (
+                  <form
+                    onSubmit={(e) => (e.preventDefault(), searchCard(1))}
                     style={{
-                      alignSelf: "center",
+                      display: "flex",
+                      gap: "0.5rem",
+                      marginLeft: "auto",
+                      marginRight: "auto",
                     }}
                   >
-                    <span style={{ fontWeight: "bolder" }}>Card name: </span>
-                  </label>{" "}
-                  <input
-                    type="text"
-                    id="search_text"
-                    value={searchValue}
-                    onChange={changeSearchValue}
-                    style={{
-                      width: "275px",
-                      paddingLeft: "0.5rem",
-                      textTransform: "uppercase",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      border: "none",
-                      borderRadius: "5px",
-                    }}
-                  />
-                  <PrimaryButton
-                    btnText={"Search"}
-                    clickFn={() => searchCard(1)}
-                  />
-                </form>
+                    <label
+                      htmlFor="search_text"
+                      style={{
+                        alignSelf: "center",
+                      }}
+                    >
+                      <span style={{ fontWeight: "bolder" }}>Card name: </span>
+                    </label>
+                    <input
+                      type="text"
+                      id="search_text"
+                      value={searchValue}
+                      onChange={changeSearchValue}
+                      style={{
+                        width: "275px",
+                        paddingLeft: "0.5rem",
+                        textTransform: "uppercase",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        border: "none",
+                        borderRadius: "5px",
+                      }}
+                    />
+                    <PrimaryButton
+                      btnText={"Search"}
+                      clickFn={() => searchCard(1)}
+                    />
+                  </form>
+                )}
                 <div style={{ marginLeft: "auto" }}>
                   <IconButton
                     icon={"X"}
@@ -461,7 +469,47 @@ export const SearchModal = ({
                     colorIcon="inherit"
                   />
                 </div>
+                {smallScreens && (
+                  <form
+                    onSubmit={(e) => (e.preventDefault(), searchCard(1))}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      gap: "0.5rem",
+                      justifyContent: "space-evenly",
+                    }}
+                  >
+                    <label
+                      htmlFor="search_text"
+                      style={{
+                        alignSelf: "center",
+                      }}
+                    >
+                      <span style={{ fontWeight: "bolder" }}>Card: </span>
+                    </label>{" "}
+                    <input
+                      type="text"
+                      id="search_text"
+                      value={searchValue}
+                      onChange={changeSearchValue}
+                      style={{
+                        width: "50%",
+                        paddingLeft: "0.5rem",
+                        textTransform: "uppercase",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        border: "none",
+                        borderRadius: "5px",
+                      }}
+                    />
+                    <PrimaryButton
+                      btnText={"Search"}
+                      clickFn={() => searchCard(1)}
+                    />
+                  </form>
+                )}
               </section>
+
               <section
                 className="modalBody"
                 style={{
