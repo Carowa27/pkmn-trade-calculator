@@ -70,9 +70,10 @@ export const SearchModalButton = ({ btnText, clickFn }: IBtnProps) => {
         fontWeight: "bold",
         fontSize: "large",
         width: "max-content",
-        padding: "1.5rem 2rem",
+        height: "40px",
+        padding: "0.5rem 1rem",
         border: color.buttonBorder,
-        borderRadius: "30px",
+        borderRadius: "10px",
         cursor: "pointer",
       }}
       onClick={clickFn}
