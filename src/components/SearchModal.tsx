@@ -391,6 +391,7 @@ export const SearchModal = ({
                       {cardList?.map((card, i) => {
                         return (
                           <PkmnCardSearch
+                            searchMethod={searchMethod}
                             card={card}
                             saveCard={changeTradersCards}
                             cardWidth={`${
@@ -603,6 +604,7 @@ export const SearchModal = ({
                       {cardList?.map((card, i) => {
                         return (
                           <PkmnCardSearch
+                            searchMethod={searchMethod}
                             card={card}
                             saveCard={changeTradersCards}
                             cardWidth={`${

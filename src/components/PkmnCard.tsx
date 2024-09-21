@@ -7,6 +7,7 @@ import { rarityCardColor } from "@/functions/releaseYearFn";
 import { useGlobalValue } from "./GlobalValueProvider";
 
 interface IPkmnCardSearchProps {
+  searchMethod: "byInput" | "notChosen" | "bySet";
   card: IPkmnCard;
   saveCard: ({ card, type }: ISavedCard) => void;
   cardWidth: string;
@@ -25,6 +26,7 @@ interface IPkmnCardProps {
 }
 
 export const PkmnCardSearch = ({
+  searchMethod,
   card,
   saveCard,
   cardWidth,
@@ -54,9 +56,26 @@ export const PkmnCardSearch = ({
           backgroundPosition: "top",
           backgroundSize: "100% auto",
           display: "flex",
-          alignItems: "end",
+          flexDirection: "column",
+          justifyContent: "end",
+          // alignItems: "end",
         }}
       >
+        {searchMethod === "byInput" && (
+          <div
+            style={{
+              width: "20%",
+              margin: "0 0.5rem 0.2rem 0",
+              alignSelf: "end",
+            }}
+          >
+            <img
+              src={card.set.images.symbol}
+              alt={`${card.set.name} logo`}
+              style={{ width: "100%" }}
+            />
+          </div>
+        )}
         <div
           style={{
             width: "100%",
