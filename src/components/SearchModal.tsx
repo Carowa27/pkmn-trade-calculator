@@ -176,8 +176,10 @@ export const SearchModal = ({
                 ? "95vw"
                 : "70vw",
             height:
-              globalValue?.screen.breakpoint === "S" ||
-              globalValue?.screen.breakpoint === "XS"
+              searchMethod === "notChosen"
+                ? "max-content"
+                : globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
                 ? globalValue.screen.height - 20 + "px"
                 : "80vh",
             background: "grey",
@@ -212,7 +214,7 @@ export const SearchModal = ({
                   margin:
                     globalValue?.screen.breakpoint === "XS"
                       ? "0"
-                      : "1.25rem auto 0.25rem auto",
+                      : "0 auto 2.25rem auto",
                   width:
                     globalValue?.screen.breakpoint === "XS" ||
                     globalValue?.screen.breakpoint === "S" ||
@@ -238,18 +240,16 @@ export const SearchModal = ({
                     alignItems: "center",
                   }}
                 >
-                  <p
+                  <h2
                     style={{
-                      fontSize: "40px",
                       alignSelf: "center",
                       marginBottom: "0.5rem",
                     }}
                   >
                     Search
-                  </p>
+                  </h2>
                   <p
                     style={{
-                      fontSize: "20px",
                       alignSelf: "center",
                       marginBottom: "1rem",
                     }}
