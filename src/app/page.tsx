@@ -297,7 +297,7 @@ const Home = () => {
             globalValue?.screen.breakpoint === "S" ||
             globalValue?.screen.breakpoint === "XS"
               ? "100%"
-              : "75%"
+              : "90vw"
           }`,
           maxWidth: "110rem",
           display: "flex",
