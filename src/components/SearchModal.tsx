@@ -185,62 +185,96 @@ export const SearchModal = ({
             border: "2px solid lightgrey",
             display: "flex",
             flexDirection: "column",
-            justifyContent:
-              searchMethod === "notChosen" ? "center" : "space-between",
+            justifyContent: "space-between",
           }}
         >
           {searchMethod === "notChosen" ? (
-            <div
-              style={{
-                height: "50%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <div
+            <>
+              <section
+                className="modalHeader"
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "10px",
+                }}
+              >
+                <div style={{ marginLeft: "auto" }}>
+                  <IconButton
+                    icon={"X"}
+                    clickFn={changeShowModal}
+                    colorIcon="inherit"
+                  />
+                </div>
+              </section>
+              <section
+                className="modalBody"
+                style={{
+                  margin:
+                    globalValue?.screen.breakpoint === "XS"
+                      ? "0"
+                      : "1.25rem auto 0.25rem auto",
+                  width:
+                    globalValue?.screen.breakpoint === "XS" ||
+                    globalValue?.screen.breakpoint === "S" ||
+                    globalValue?.screen.breakpoint === "M"
+                      ? "90%"
+                      : "100%",
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "center",
+                  justifyContent: "center",
+                  height:
+                    globalValue?.screen.breakpoint === "XS" ||
+                    globalValue?.screen.breakpoint === "S" ||
+                    globalValue?.screen.breakpoint === "M" ||
+                    globalValue?.screen.breakpoint === "L"
+                      ? "100%"
+                      : "85%",
                 }}
               >
-                <p
+                <div
                   style={{
-                    fontSize: "40px",
-                    alignSelf: "center",
-                    marginBottom: "0.5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  Search
-                </p>
-                <p
+                  <p
+                    style={{
+                      fontSize: "40px",
+                      alignSelf: "center",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    Search
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "20px",
+                      alignSelf: "center",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    Chose your way to search for the card
+                  </p>
+                </div>
+                <div
                   style={{
-                    fontSize: "20px",
-                    alignSelf: "center",
-                    marginBottom: "1rem",
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
                   }}
                 >
-                  Chose your way to search for the card
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  alignItems: "center",
-                }}
-              >
-                <SearchModalButton
-                  btnText={"Sets"}
-                  clickFn={() => setSearchMethod("bySet")}
-                />
-                <SearchModalButton
-                  btnText={"Input"}
-                  clickFn={() => setSearchMethod("byInput")}
-                />
-              </div>
-            </div>
+                  <SearchModalButton
+                    btnText={"Sets"}
+                    clickFn={() => setSearchMethod("bySet")}
+                  />
+                  <SearchModalButton
+                    btnText={"Input"}
+                    clickFn={() => setSearchMethod("byInput")}
+                  />
+                </div>
+              </section>
+            </>
           ) : searchMethod === "bySet" ? (
             <>
               <section
