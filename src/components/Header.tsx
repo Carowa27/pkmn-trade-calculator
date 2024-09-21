@@ -16,7 +16,7 @@ export const Header = ({ clearAllCards }: IHeaderProps) => {
     <header
       style={{
         height: "3vh",
-        width: `${smallScreens ? "100%" : "75%"}`,
+        width: `${smallScreens ? "100%" : "90vW"}`,
         maxWidth: "120rem",
         margin: `${
           globalValue?.screen.breakpoint === "XS" ||
