@@ -89,13 +89,18 @@ export const SearchModal = ({
       }
     });
   };
+  const scrollToTop = () => {
+    const firstListObject = search === "set" ? setList![0].id : cardList![0].id;
+    const startElement = document.getElementById(firstListObject + "-0");
+    startElement?.scrollIntoView(false);
+  };
   const updateSearch = async (newPage: number) => {
     setIsLoading(true);
     setPageNr(newPage);
     if (search === "set") {
-      await getSets(newPage);
+      await getSets(newPage).then(scrollToTop);
     } else {
-      await getCardsInSet(savedSet!, newPage);
+      await getCardsInSet(savedSet!, newPage).then(scrollToTop);
     }
   };
   const getCardsInSet = async (set: IPkmnSet, page: number) => {
@@ -374,6 +379,7 @@ export const SearchModal = ({
                       {setList?.map((set, i) => {
                         return (
                           <PkmnSet
+                            id={set.id + "-" + i}
                             set={set}
                             saveSet={saveSet}
                             key={set.id + "-" + i}
@@ -390,6 +396,7 @@ export const SearchModal = ({
                           <PkmnCardSearch
                             searchMethod={searchMethod}
                             card={card}
+                            id={card.id + "-" + i}
                             saveCard={changeTradersCards}
                             cardWidth={`${
                               globalValue?.screen.breakpoint === "S" ||
@@ -601,6 +608,7 @@ export const SearchModal = ({
                       {cardList?.map((card, i) => {
                         return (
                           <PkmnCardSearch
+                            id={card.id + "-" + i}
                             searchMethod={searchMethod}
                             card={card}
                             saveCard={changeTradersCards}

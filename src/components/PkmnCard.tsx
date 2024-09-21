@@ -11,6 +11,7 @@ interface IPkmnCardSearchProps {
   card: IPkmnCard;
   saveCard: ({ card, type }: ISavedCard) => void;
   cardWidth: string;
+  id: string;
 }
 interface IPkmnCardTraderProps {
   card: IPkmnCard;
@@ -30,15 +31,16 @@ export const PkmnCardSearch = ({
   card,
   saveCard,
   cardWidth,
+  id,
 }: IPkmnCardSearchProps) => {
   const { globalValue } = useGlobalValue();
   return (
     <div
+      id={id}
       style={{
         width: cardWidth,
         borderRadius: "10px",
       }}
-      title={card.set.releaseDate}
     >
       <div
         style={{
