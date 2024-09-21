@@ -385,6 +385,12 @@ const Home = () => {
                   ? "row"
                   : "column"
               }`,
+              margin: `${
+                globalValue?.screen.breakpoint === "S" ||
+                globalValue?.screen.breakpoint === "XS"
+                  ? "auto"
+                  : "1rem"
+              }`,
             }}
           >
             <div
@@ -428,6 +434,12 @@ const Home = () => {
                   globalValue?.screen.breakpoint === "XS"
                     ? "7rem"
                     : "auto"
+                }`,
+                minWidth: `${
+                  globalValue?.screen.breakpoint === "S" ||
+                  globalValue?.screen.breakpoint === "XS"
+                    ? "7rem"
+                    : "60px"
                 }`,
                 textAlign: "center",
                 alignSelf: "center",
