@@ -173,13 +173,17 @@ export const SearchModal = ({
       >
         <article
           style={{
-            padding: "0.5rem",
+            padding:
+              globalValue?.screen.breakpoint === "XS" ||
+              globalValue?.screen.breakpoint === "S"
+                ? "0.5rem"
+                : "0.5rem 2rem",
             width:
               globalValue?.screen.breakpoint === "S"
                 ? "90vw"
                 : globalValue?.screen.breakpoint === "XS"
                 ? "95vw"
-                : "70vw",
+                : "max-content",
             height:
               searchMethod === "notChosen"
                 ? "max-content"
