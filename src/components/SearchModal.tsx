@@ -601,18 +601,17 @@ export const SearchModal = ({
                   margin:
                     globalValue?.screen.breakpoint === "XS"
                       ? "0"
-                      : "1.25rem 1.25rem 0.25rem 1.25rem",
+                      : "0.25rem auto 0.25rem auto",
                   width:
                     globalValue?.screen.breakpoint === "S" ? "90%" : "100%",
                   display: "flex",
                   justifyContent: "center",
                   height:
-                    globalValue?.screen.breakpoint === "XS" ||
-                    globalValue?.screen.breakpoint === "S" ||
-                    globalValue?.screen.breakpoint === "M" ||
-                    globalValue?.screen.breakpoint === "L"
-                      ? "80%"
-                      : "85%",
+                    showSearchTips === true
+                      ? "70%"
+                      : globalValue?.screen.breakpoint === "M"
+                      ? "78%"
+                      : "80%",
                 }}
               >
                 <div
