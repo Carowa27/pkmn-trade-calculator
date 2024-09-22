@@ -59,24 +59,26 @@ export const SearchModal = ({
   const changeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const searchCard = async (page: number) => {
+  const searchCard = async (page: number, orderBy: string) => {
     setIsLoading(true);
-    await getPkmnFromApi(`?q=name:%22${searchValue}%22`, page).then((res) => {
-      if (res && res.data.length !== 0) {
-        setSearch("card");
-        setCardList(res.data as IPkmnCard[]);
-        setNoHits(false);
-        setIsLoading(false);
-        setPageInfo({
-          page: res.page,
-          pageSize: res.pageSize,
-          totalCount: res.totalCount,
-        });
-      } else {
-        setNoHits(true);
-        setIsLoading(false);
+    await getPkmnFromApi(`?q=name:%22${searchValue}%22`, page, orderBy).then(
+      (res) => {
+        if (res && res.data.length !== 0) {
+          setSearch("card");
+          setCardList(res.data as IPkmnCard[]);
+          setNoHits(false);
+          setIsLoading(false);
+          setPageInfo({
+            page: res.page,
+            pageSize: res.pageSize,
+            totalCount: res.totalCount,
+          });
+        } else {
+          setNoHits(true);
+          setIsLoading(false);
+        }
       }
-    });
+    );
   };
   const getSets = async (page: number) => {
     await getSetsFromApi(page).then((res) => {
@@ -100,35 +102,41 @@ export const SearchModal = ({
     const startElement = document.getElementById(firstListObject + "-0");
     startElement?.scrollIntoView(false);
   };
-  const updateSearch = async (newPage: number) => {
+  const updateSearch = async (newPage: number, orderBy: string) => {
     setIsLoading(true);
     setPageNr(newPage);
     if (search === "set") {
       await getSets(newPage).then(scrollToTop);
     } else {
       if (searchMethod === "byInput") {
-        await searchCard(newPage).then(scrollToTop);
+        await searchCard(newPage, orderBy).then(scrollToTop);
       } else {
-        await getCardsInSet(savedSet!, newPage).then(scrollToTop);
+        await getCardsInSet(savedSet!, newPage, orderBy).then(scrollToTop);
       }
     }
   };
-  const getCardsInSet = async (set: IPkmnSet, page: number) => {
-    await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, page).then((res) => {
-      if (!res || res.data.length === 0) {
-        setNoHits(true);
-        setIsLoading(false);
+  const getCardsInSet = async (
+    set: IPkmnSet,
+    page: number,
+    orderBy: string
+  ) => {
+    await getPkmnFromApi(`?q=set.id:%22${set.id}%22`, page, orderBy).then(
+      (res) => {
+        if (!res || res.data.length === 0) {
+          setNoHits(true);
+          setIsLoading(false);
+        }
+        if (res) {
+          setCardList(res.data as IPkmnCard[]);
+          setIsLoading(false);
+          setPageInfo({
+            page: res.page,
+            pageSize: res.pageSize,
+            totalCount: res.totalCount,
+          });
+        }
       }
-      if (res) {
-        setCardList(res.data as IPkmnCard[]);
-        setIsLoading(false);
-        setPageInfo({
-          page: res.page,
-          pageSize: res.pageSize,
-          totalCount: res.totalCount,
-        });
-      }
-    });
+    );
   };
 
   const smallScreens =
@@ -150,7 +158,7 @@ export const SearchModal = ({
         savedSet !== undefined
       ) {
         setIsLoading(true);
-        getCardsInSet(savedSet, 1);
+        getCardsInSet(savedSet, 1, "number");
       }
     }
   }, [search]);
@@ -158,7 +166,7 @@ export const SearchModal = ({
     setCardList([]);
     if (savedSet !== undefined) {
       setIsLoading(true);
-      getCardsInSet(savedSet, 1);
+      getCardsInSet(savedSet, 1, "number");
     }
   }, [savedSet]);
   useEffect(() => {
@@ -480,7 +488,9 @@ export const SearchModal = ({
                 </div>
                 {!smallScreens && (
                   <form
-                    onSubmit={(e) => (e.preventDefault(), searchCard(1))}
+                    onSubmit={(e) => (
+                      e.preventDefault(), searchCard(1, "set.releaseDate")
+                    )}
                     style={{
                       display: "flex",
                       gap: "0.5rem",
@@ -513,7 +523,7 @@ export const SearchModal = ({
                     />
                     <PrimaryButton
                       btnText={"Search"}
-                      clickFn={() => searchCard(1)}
+                      clickFn={() => searchCard(1, "set.releaseDate")}
                     />
                   </form>
                 )}
@@ -526,7 +536,9 @@ export const SearchModal = ({
                 </div>
                 {smallScreens && (
                   <form
-                    onSubmit={(e) => (e.preventDefault(), searchCard(1))}
+                    onSubmit={(e) => (
+                      e.preventDefault(), searchCard(1, "set.releaseDate")
+                    )}
                     style={{
                       width: "100%",
                       display: "flex",
@@ -559,7 +571,7 @@ export const SearchModal = ({
                     />
                     <PrimaryButton
                       btnText={"Search"}
-                      clickFn={() => searchCard(1)}
+                      clickFn={() => searchCard(1, "set.releaseDate")}
                     />
                   </form>
                 )}

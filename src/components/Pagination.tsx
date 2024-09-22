@@ -5,7 +5,7 @@ interface IProps {
   pageSize: number;
   totalCount: number;
   page: number;
-  updateSearch: (newPage: number) => void;
+  updateSearch: (newPage: number, orderBy: string) => void;
 }
 
 export const Pagination = ({
@@ -77,7 +77,7 @@ export const Pagination = ({
               cursor: "pointer",
             }}
             size={25}
-            onClick={() => (page !== 1 ? updateSearch(1) : null)}
+            onClick={() => (page !== 1 ? updateSearch(1, "number") : null)}
           ></SkipStartFill>
         </p>
         {numbers &&
@@ -103,7 +103,9 @@ export const Pagination = ({
                         cursor: "pointer",
                       }
                 }
-                onClick={() => (page !== number ? updateSearch(number) : null)}
+                onClick={() =>
+                  page !== number ? updateSearch(number, "number") : null
+                }
               >
                 {number}
               </p>
@@ -124,7 +126,7 @@ export const Pagination = ({
             }}
             size={25}
             onClick={() =>
-              page !== amountPages ? updateSearch(amountPages) : null
+              page !== amountPages ? updateSearch(amountPages, "number") : null
             }
           >
             &#xF557;
