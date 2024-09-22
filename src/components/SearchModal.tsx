@@ -7,7 +7,12 @@ import { LoadingModule } from "./LoadingModule";
 import { PkmnSet } from "./PkmnSet";
 import { PkmnCardSearch } from "./PkmnCard";
 import { Pagination } from "./Pagination";
-import { IconButton, PrimaryButton, SearchModalButton } from "./Buttons";
+import {
+  IconButton,
+  OnlyTextButton,
+  PrimaryButton,
+  SearchModalButton,
+} from "./Buttons";
 import { ISavedCard } from "@/interfaces/interfaces";
 import { useGlobalValue } from "./GlobalValueProvider";
 import { color } from "@/utils/color";
@@ -45,6 +50,7 @@ export const SearchModal = ({
     totalCount: number;
   }>();
   const [searchValue, setSearchValue] = useState<string>("");
+  const [showSearchTips, setShowSearchTips] = useState<boolean>(true);
   const saveSet = (set: IPkmnSet) => {
     setSavedSet(set);
     setSearch("card");
@@ -187,7 +193,9 @@ export const SearchModal = ({
                 ? "90vw"
                 : globalValue?.screen.breakpoint === "XS"
                 ? "95vw"
-                : "max-content",
+                : searchMethod === "notChosen"
+                ? "max-content"
+                : "70vw",
             height:
               searchMethod === "notChosen"
                 ? "max-content"
@@ -556,6 +564,36 @@ export const SearchModal = ({
                   </form>
                 )}
               </section>
+              <div style={{ width: "100%" }}>
+                <h3
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  Search tips
+                  <span style={{ fontSize: "small" }}>
+                    {showSearchTips ? (
+                      <OnlyTextButton
+                        btnText={"HIDE"}
+                        clickFn={() => setShowSearchTips(false)}
+                      />
+                    ) : (
+                      <OnlyTextButton
+                        btnText={"SHOW"}
+                        clickFn={() => setShowSearchTips(true)}
+                      />
+                    )}
+                  </span>
+                </h3>
+                {showSearchTips && (
+                  <>
+                    <p>
+                      You can search on a cards complete name or parts of a
+                      name, to search for parts of a name add a star infront,
+                      after or both.
+                    </p>
+                    <p>Example: *char *char* char*</p>
+                  </>
+                )}
+              </div>
 
               <section
                 className="modalBody"

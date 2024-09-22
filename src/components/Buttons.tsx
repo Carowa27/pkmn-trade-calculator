@@ -61,6 +61,24 @@ export const PrimaryButton = ({ btnText, clickFn, filled }: IBtnProps) => {
     </button>
   );
 };
+export const OnlyTextButton = ({ btnText, clickFn }: IBtnProps) => {
+  return (
+    <button
+      style={{
+        background: "none",
+        color: "inherit",
+        fontSize: "inherit",
+        width: "max-content",
+        padding: "0.5rem 1rem",
+        border: "none",
+        cursor: "pointer",
+      }}
+      onClick={clickFn}
+    >
+      {btnText}
+    </button>
+  );
+};
 export const SearchModalButton = ({ btnText, clickFn }: IBtnProps) => {
   return (
     <button
