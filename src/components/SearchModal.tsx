@@ -287,7 +287,7 @@ export const SearchModal = ({
                     clickFn={() => setSearchMethod("bySet")}
                   />
                   <SearchModalButton
-                    btnText={"Input"}
+                    btnText={"Searchbar"}
                     clickFn={() => setSearchMethod("byInput")}
                   />
                 </div>
@@ -476,7 +476,7 @@ export const SearchModal = ({
                   />
                 </div>
                 <div>
-                  <h2>Input</h2>
+                  <h2>Searchbar</h2>
                 </div>
                 {!smallScreens && (
                   <form
@@ -590,7 +590,9 @@ export const SearchModal = ({
                       name, to search for parts of a name add a star infront,
                       after or both.
                     </p>
-                    <p>Example: *char *char* char*</p>
+                    <p>
+                      <i>Example</i>: *char *char* char*
+                    </p>
                   </>
                 )}
               </div>
