@@ -100,7 +100,11 @@ export const SearchModal = ({
     if (search === "set") {
       await getSets(newPage).then(scrollToTop);
     } else {
-      await getCardsInSet(savedSet!, newPage).then(scrollToTop);
+      if (searchMethod === "byInput") {
+        await searchCard(newPage).then(scrollToTop);
+      } else {
+        await getCardsInSet(savedSet!, newPage).then(scrollToTop);
+      }
     }
   };
   const getCardsInSet = async (set: IPkmnSet, page: number) => {
